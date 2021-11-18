@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Game Review
- * Description:       Example block written with ESNext standard and JSX support – build step required.
+ * Description:       Add a review rating block with a score from 1 to 10 to your post. Adds schema.org meta data for Rich Results in search engines.
  * Requires at least: 5.8
  * Requires PHP:      7.0
  * Version:           0.1.0
