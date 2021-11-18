@@ -14,7 +14,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	}
 
 	const onChangeItem = ( newItem ) => {
-		setAttributes( { item: newItem } )
+		setAttributes( { item: newItem.replace(/(<([^>]+)>)/gi, "") } )
 	}
 
 	const onChangeValue = ( newValue ) => {
@@ -27,7 +27,8 @@ export default function Edit( { attributes, setAttributes } ) {
 			tagName="strong"
 			onChange={ onChangeItem }
 			className="item"
-			allowedFormats={ [ 'core/bold', 'core/italic' ] }
+			withoutInteractiveFormatting
+			allowedFormats={ [] }
 			value={ attributes.item }
 			placeholder={ __( 'Write your game title...' ) }
 		/><br/	>

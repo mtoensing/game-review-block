@@ -42,7 +42,7 @@ function Edit(_ref) {
 
   const onChangeItem = newItem => {
     setAttributes({
-      item: newItem
+      item: newItem.replace(/(<([^>]+)>)/gi, "")
     });
   };
 
@@ -56,7 +56,8 @@ function Edit(_ref) {
     tagName: "strong",
     onChange: onChangeItem,
     className: "item",
-    allowedFormats: ['core/bold', 'core/italic'],
+    withoutInteractiveFormatting: true,
+    allowedFormats: [],
     value: attributes.item,
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Write your game title...')
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
