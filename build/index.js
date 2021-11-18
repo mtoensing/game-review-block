@@ -42,6 +42,12 @@ function Edit(_ref) {
     });
   };
 
+  const onChangeValue = newValue => {
+    setAttributes({
+      value: newValue
+    });
+  };
+
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "strong",
     onChange: onChangeItem,
@@ -56,6 +62,13 @@ function Edit(_ref) {
     allowedFormats: ['core/bold', 'core/italic'],
     value: attributes.summary,
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Write your summary...')
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    tagName: "span",
+    onChange: onChangeValue,
+    className: "value",
+    allowedFormats: ['core/bold', 'core/italic'],
+    value: attributes.value,
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Write your rating score...')
   }));
 }
 
@@ -152,6 +165,10 @@ function save(_ref) {
     tagName: "span",
     className: "summary",
     value: attributes.summary
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, {
+    tagName: "span",
+    className: "value",
+    value: attributes.value
   }));
 }
 

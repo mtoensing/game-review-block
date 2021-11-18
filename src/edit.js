@@ -14,6 +14,10 @@ export default function Edit( { attributes, setAttributes } ) {
 		setAttributes( { item: newItem } )
 	}
 
+	const onChangeValue = ( newValue ) => {
+		setAttributes( { value: newValue} )
+	}
+
 	return (
 		<p { ...blockProps }>
 		<RichText 
@@ -23,7 +27,7 @@ export default function Edit( { attributes, setAttributes } ) {
 			allowedFormats={ [ 'core/bold', 'core/italic' ] }
 			value={ attributes.item }
 			placeholder={ __( 'Write your game title...' ) }
-		/><br/>
+		/><br/	>
 		<RichText 
 			tagName="span"
 			onChange={ onChangeSummary }
@@ -31,6 +35,14 @@ export default function Edit( { attributes, setAttributes } ) {
 			allowedFormats={ [ 'core/bold', 'core/italic' ] }
 			value={ attributes.summary }
 			placeholder={ __( 'Write your summary...' ) }
+		/><br/	>
+		<RichText 
+			tagName="span"
+			onChange={ onChangeValue }
+			className="value"
+			allowedFormats={ [ 'core/bold', 'core/italic' ] }
+			value={ attributes.value }
+			placeholder={ __( 'Write your rating score...' ) }
 		/>
 		</p>
 	);

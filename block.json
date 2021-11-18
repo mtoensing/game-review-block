@@ -20,6 +20,11 @@
 			"type": "string",
 			"source": "html",
 			"selector": "strong.item"
+		},
+		"value": {
+			"type": "string",
+			"source": "html",
+			"selector": "span.value"
 		}
 	},
 	"textdomain": "game-review",
