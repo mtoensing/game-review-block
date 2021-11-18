@@ -7,12 +7,21 @@ import { RichText, useBlockProps } from '@wordpress/block-editor';
  * editor into `post_content`.
  */
 export default function save( { attributes } ) {
+
 	const blockProps = useBlockProps.save();
+
 	return (
-		<RichText.Content 
-			{ ...blockProps } 
-			tagName="p" 
-			value={ attributes.summary } 
-		/>
+		<p { ...blockProps } >
+			<RichText.Content 
+				tagName="strong" 
+				className="item"
+				value={ attributes.item } 
+			/>
+			<RichText.Content 
+				tagName="span" 
+				className="summary"
+				value={ attributes.summary } 
+			/>
+		</p>
 	);
 }

@@ -14,7 +14,12 @@
 		"summary": {
 			"type": "string",
 			"source": "html",
-			"selector": "p"
+			"selector": "span.summary"
+		},
+		"item": {
+			"type": "string",
+			"source": "html",
+			"selector": "strong.item"
 		}
 	},
 	"textdomain": "game-review",

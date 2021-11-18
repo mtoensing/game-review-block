@@ -10,14 +10,28 @@ export default function Edit( { attributes, setAttributes } ) {
 		setAttributes( { summary: newContent } )
 	}
 
+	const onChangeItem = ( newItem ) => {
+		setAttributes( { item: newItem } )
+	}
+
 	return (
+		<p { ...blockProps }>
 		<RichText 
-			{ ...blockProps }
-			tagName="p"
+			tagName="strong"
+			onChange={ onChangeItem }
+			className="item"
+			allowedFormats={ [ 'core/bold', 'core/italic' ] }
+			value={ attributes.item }
+			placeholder={ __( 'Write your game title...' ) }
+		/><br/>
+		<RichText 
+			tagName="span"
 			onChange={ onChangeSummary }
+			className="summary"
 			allowedFormats={ [ 'core/bold', 'core/italic' ] }
 			value={ attributes.summary }
-			placeholder={ __( 'Write your text...' ) }
+			placeholder={ __( 'Write your summary...' ) }
 		/>
+		</p>
 	);
 }
