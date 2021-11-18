@@ -12,7 +12,7 @@ export default function save( { attributes } ) {
 		<RichText.Content 
 			{ ...blockProps } 
 			tagName="p" 
-			value={ attributes.content } 
+			value={ attributes.summary } 
 		/>
 	);
 }

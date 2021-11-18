@@ -6,17 +6,17 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	const blockProps = useBlockProps();
 
-	const onChangeContent = ( newContent ) => {
-		setAttributes( { content: newContent } )
+	const onChangeSummary = ( newContent ) => {
+		setAttributes( { summary: newContent } )
 	}
 
 	return (
 		<RichText 
 			{ ...blockProps }
 			tagName="p"
-			onChange={ onChangeContent }
+			onChange={ onChangeSummary }
 			allowedFormats={ [ 'core/bold', 'core/italic' ] }
-			value={ attributes.content }
+			value={ attributes.summary }
 			placeholder={ __( 'Write your text...' ) }
 		/>
 	);
