@@ -1,6 +1,9 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { RangeControl } from '@wordpress/components';
+import { useState } from '@wordpress/element';
 import './editor.scss';
+
 
 export default function Edit( { attributes, setAttributes } ) {
 
@@ -15,7 +18,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	}
 
 	const onChangeValue = ( newValue ) => {
-		setAttributes( { value: newValue} )
+		setAttributes( { value: String(newValue)} )
 	}
 
 	return (
@@ -36,14 +39,14 @@ export default function Edit( { attributes, setAttributes } ) {
 			value={ attributes.summary }
 			placeholder={ __( 'Write your summary...' ) }
 		/><br/	>
-		<RichText 
-			tagName="span"
-			onChange={ onChangeValue }
-			className="value"
-			allowedFormats={ [ 'core/bold', 'core/italic' ] }
-			value={ attributes.value }
-			placeholder={ __( 'Write your rating score...' ) }
-		/>
+		<RangeControl
+				label="Rating"
+				value={ Number(attributes.value) }
+				onChange={ onChangeValue }
+				min={ 1 }
+				max={ 10 }
+				step={ 0.5 } 
+			/>
 		</p>
 	);
 }

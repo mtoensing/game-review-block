@@ -24,7 +24,8 @@
 		"value": {
 			"type": "string",
 			"source": "html",
-			"selector": "span.value"
+			"selector": "span.value",
+			"default": 5
 		}
 	},
 	"textdomain": "game-review",
