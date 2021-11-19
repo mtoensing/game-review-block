@@ -46,9 +46,9 @@ function Edit(_ref) {
     });
   };
 
-  const onChangeValue = newValue => {
+  const onChangeShortscore = newShortscore => {
     setAttributes({
-      value: String(newValue)
+      shortscore: String(newShortscore)
     });
   };
 
@@ -69,11 +69,11 @@ function Edit(_ref) {
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Write your summary...')
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
     label: "Rating",
-    value: Number(attributes.value),
-    onChange: onChangeValue,
+    onChange: onChangeShortscore,
     min: 1,
     max: 10,
-    step: 0.5
+    step: 0.5,
+    value: Number(attributes.shortscore)
   }));
 }
 
@@ -172,8 +172,8 @@ function save(_ref) {
     value: attributes.summary
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, {
     tagName: "span",
-    className: "value",
-    value: attributes.value
+    className: "shortscore",
+    value: attributes.shortscore
   }));
 }
 

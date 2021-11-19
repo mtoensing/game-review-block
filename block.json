@@ -8,7 +8,8 @@
 	"icon": "smiley",
 	"description": "Add a review rating block with a score from 1 to 10 to your post. Adds schema.org meta data for Rich Results in search engines.",
 	"supports": {
-		"html": false
+		"html": false,
+		"multiple": false
 	},
 	"attributes": {
 		"summary": {
@@ -21,10 +22,10 @@
 			"source": "html",
 			"selector": "strong.item"
 		},
-		"value": {
+		"shortscore": {
 			"type": "string",
 			"source": "html",
-			"selector": "span.value",
+			"selector": "span.shortscore",
 			"default": 5
 		}
 	},

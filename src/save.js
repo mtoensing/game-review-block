@@ -15,17 +15,17 @@ export default function save( { attributes } ) {
 			<RichText.Content 
 				tagName="strong" 
 				className="item"
-				value={ attributes.item } 
+				value ={ attributes.item } 
 			/>
 			<RichText.Content 
 				tagName="span" 
 				className="summary"
-				value={ attributes.summary } 
+				value ={ attributes.summary } 
 			/>
 			<RichText.Content 
 				tagName="span" 
-				className="value"
-				value={ attributes.value } 
+				className="shortscore"
+				value ={ attributes.shortscore } 
 			/>
 		</p>
 	);

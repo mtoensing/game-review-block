@@ -17,8 +17,8 @@ export default function Edit( { attributes, setAttributes } ) {
 		setAttributes( { item: newItem.replace(/(<([^>]+)>)/gi, "") } )
 	}
 
-	const onChangeValue = ( newValue ) => {
-		setAttributes( { value: String(newValue)} )
+	const onChangeShortscore = ( newShortscore ) => {
+		setAttributes( { shortscore: String(newShortscore)} )
 	}
 
 	return (
@@ -42,11 +42,11 @@ export default function Edit( { attributes, setAttributes } ) {
 		/><br/	>
 		<RangeControl
 				label="Rating"
-				value={ Number(attributes.value) }
-				onChange={ onChangeValue }
+				onChange={ onChangeShortscore }
 				min={ 1 }
 				max={ 10 }
 				step={ 0.5 } 
+				value={ Number ( attributes.shortscore) }
 			/>
 		</p>
 	);
