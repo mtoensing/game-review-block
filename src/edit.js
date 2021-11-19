@@ -1,7 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { RangeControl } from '@wordpress/components';
-import { useState } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 import { useEntityProp } from '@wordpress/core-data';
 import './editor.scss';
@@ -14,16 +13,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	const onChangeSummary = ( newContent ) => {
 		setAttributes( { summary: newContent } )
 	}
-
-	const onChangeItem = ( newItem ) => {
-		// remove html 
-		setAttributes( { item: newItem.replace(/(<([^>]+)>)/gi, "") } )
-	}
-
-	const onChangeShortscore = ( newShortscore ) => {
-		setAttributes( { shortscore: String(newShortscore)} )
-	}
-
+	
 	const postType = useSelect(
 		( select ) => select( 'core/editor' ).getCurrentPostType(),
 		[]
@@ -32,20 +22,26 @@ export default function Edit( { attributes, setAttributes } ) {
 	const [ meta, setMeta ] = useEntityProp( 'postType', postType, 'meta' );
 
 	const shortscore_meta = meta[ '_shortscore_user_rating' ];
+	const game_meta = meta[ '_shortscore_game' ];
 
 	function updateShortscoreMeta( newValue ) {
 		setMeta( { ...meta, _shortscore_user_rating: String(newValue) } );
+	}
+
+	function updateGameMeta( newValue ) {
+		setMeta( { ...meta, _shortscore_game: newValue.replace(/(<([^>]+)>)/gi, "") } );
+		setAttributes( { game: newValue } );
 	}
 
 	return (
 		<p { ...blockProps }>
 		<RichText 
 			tagName="strong"
-			onChange={ onChangeItem }
-			className="item"
+			onChange={ updateGameMeta }
+			className="game"
 			withoutInteractiveFormatting
 			allowedFormats={ [] }
-			value={ attributes.item }
+			value={ game_meta }
 			placeholder={ __( 'Write your game title...' ) }
 		/><br/	>
 		<RichText 

@@ -1,5 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { RichText, useBlockProps } from '@wordpress/block-editor';
+import { useEntityProp } from '@wordpress/core-data';
+import { useSelect } from '@wordpress/data';
 
 /**
  * The save function defines the way in which the different attributes should
@@ -10,18 +12,16 @@ export default function save( { attributes } ) {
 
 	const blockProps = useBlockProps.save();
 
+	
 	return (
 		<p { ...blockProps } >
-			<RichText.Content 
-				tagName="strong" 
-				className="item"
-				value ={ attributes.item } 
-			/>
+			
 			<RichText.Content 
 				tagName="span" 
 				className="summary"
 				value ={ attributes.summary } 
 			/>
+			
 		</p>
 	);
 }

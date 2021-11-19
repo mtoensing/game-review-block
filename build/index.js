@@ -32,7 +32,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 function Edit(_ref) {
   let {
     attributes,
@@ -46,22 +45,10 @@ function Edit(_ref) {
     });
   };
 
-  const onChangeItem = newItem => {
-    // remove html 
-    setAttributes({
-      item: newItem.replace(/(<([^>]+)>)/gi, "")
-    });
-  };
-
-  const onChangeShortscore = newShortscore => {
-    setAttributes({
-      shortscore: String(newShortscore)
-    });
-  };
-
   const postType = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(select => select('core/editor').getCurrentPostType(), []);
   const [meta, setMeta] = (0,_wordpress_core_data__WEBPACK_IMPORTED_MODULE_5__.useEntityProp)('postType', postType, 'meta');
   const shortscore_meta = meta['_shortscore_user_rating'];
+  const game_meta = meta['_shortscore_game'];
 
   function updateShortscoreMeta(newValue) {
     setMeta({ ...meta,
@@ -69,13 +56,22 @@ function Edit(_ref) {
     });
   }
 
+  function updateGameMeta(newValue) {
+    setMeta({ ...meta,
+      _shortscore_game: newValue.replace(/(<([^>]+)>)/gi, "")
+    });
+    setAttributes({
+      game: newValue
+    });
+  }
+
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "strong",
-    onChange: onChangeItem,
-    className: "item",
+    onChange: updateGameMeta,
+    className: "game",
     withoutInteractiveFormatting: true,
     allowedFormats: [],
-    value: attributes.item,
+    value: game_meta,
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Write your game title...')
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "span",
@@ -165,6 +161,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/core-data */ "@wordpress/core-data");
+/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__);
+
+
 
 
 
@@ -180,10 +182,6 @@ function save(_ref) {
   } = _ref;
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save();
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, {
-    tagName: "strong",
-    className: "item",
-    value: attributes.item
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, {
     tagName: "span",
     className: "summary",
     value: attributes.summary

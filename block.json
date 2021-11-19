@@ -17,10 +17,10 @@
 			"source": "html",
 			"selector": "span.summary"
 		},
-		"item": {
+		"game": {
 			"type": "string",
 			"source": "html",
-			"selector": "strong.item"
+			"selector": "strong.game"
 		}
 	},
 	"textdomain": "game-review",
