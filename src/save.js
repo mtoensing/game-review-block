@@ -22,11 +22,6 @@ export default function save( { attributes } ) {
 				className="summary"
 				value ={ attributes.summary } 
 			/>
-			<RichText.Content 
-				tagName="span" 
-				className="shortscore"
-				value ={ attributes.shortscore } 
-			/>
 		</p>
 	);
 }

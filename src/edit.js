@@ -2,6 +2,8 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { RangeControl } from '@wordpress/components';
 import { useState } from '@wordpress/element';
+import { useSelect } from '@wordpress/data';
+import { useEntityProp } from '@wordpress/core-data';
 import './editor.scss';
 
 
@@ -14,11 +16,25 @@ export default function Edit( { attributes, setAttributes } ) {
 	}
 
 	const onChangeItem = ( newItem ) => {
+		// remove html 
 		setAttributes( { item: newItem.replace(/(<([^>]+)>)/gi, "") } )
 	}
 
 	const onChangeShortscore = ( newShortscore ) => {
 		setAttributes( { shortscore: String(newShortscore)} )
+	}
+
+	const postType = useSelect(
+		( select ) => select( 'core/editor' ).getCurrentPostType(),
+		[]
+	);
+
+	const [ meta, setMeta ] = useEntityProp( 'postType', postType, 'meta' );
+
+	const shortscore_meta = meta[ '_shortscore_user_rating' ];
+
+	function updateShortscoreMeta( newValue ) {
+		setMeta( { ...meta, _shortscore_user_rating: String(newValue) } );
 	}
 
 	return (
@@ -42,11 +58,11 @@ export default function Edit( { attributes, setAttributes } ) {
 		/><br/	>
 		<RangeControl
 				label="Rating"
-				onChange={ onChangeShortscore }
+				onChange={ updateShortscoreMeta }
 				min={ 1 }
 				max={ 10 }
 				step={ 0.5 } 
-				value={ Number ( attributes.shortscore) }
+				value={ Number ( shortscore_meta ) }
 			/>
 		</p>
 	);

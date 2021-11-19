@@ -21,12 +21,6 @@
 			"type": "string",
 			"source": "html",
 			"selector": "strong.item"
-		},
-		"shortscore": {
-			"type": "string",
-			"source": "html",
-			"selector": "span.shortscore",
-			"default": 5
 		}
 	},
 	"textdomain": "game-review",
