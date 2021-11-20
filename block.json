@@ -26,6 +26,12 @@
 			"type": "string",
 			"source": "html",
 			"selector": "span.rating"
+		},
+		"post_url": {
+			"type": "string",
+        	"source": "attribute",
+        	"selector": "a.score",
+        	"attribute": "href"
 		}
 	},
 	"textdomain": "game-review",

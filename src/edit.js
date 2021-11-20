@@ -23,7 +23,10 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	const shortscore_meta = meta[ '_shortscore_user_rating' ];
 	const game_meta = meta[ '_shortscore_game' ];
+	const post_url = wp.data.select("core/editor").getPermalink();
+	setAttributes( { post_url: post_url } );
 
+	console.info(post_url);
 
 	function updateShortscoreMeta( newValue ) {
 		setMeta( { ...meta, _shortscore_user_rating: String(newValue) } );

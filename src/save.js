@@ -11,29 +11,27 @@ import { useSelect } from '@wordpress/data';
 export default function save( { attributes } ) {
 
 	const blockProps = useBlockProps.save();
+	const posturl = attributes.post_url;
+	const hrefPostURL = { href: posturl };
 
-	
 	return (
 		<p { ...blockProps } >
-			
+			<a class="score" { ...hrefPostURL }
+                    ><RichText.Content 
+					tagName="strong" 
+					className="game fn"
+					value ={ attributes.game } 
+			/></a>
 			<RichText.Content 
 				tagName="span" 
 				className="summary"
 				value ={ attributes.summary } 
-			/><br/>
-			<RichText.Content 
-				tagName="strong" 
-				className="game"
-				value ={ attributes.game } 
-			/><br/>
+			/>
 			<RichText.Content 
 				tagName="span" 
 				className="rating"
 				value ={ attributes.rating } 
 			/>
-
-
-			
 		</p>
 	);
 }
