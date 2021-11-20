@@ -9,10 +9,6 @@ import './editor.scss';
 export default function Edit( { attributes, setAttributes } ) {
 
 	const blockProps = useBlockProps();
-
-	const onChangeSummary = ( newContent ) => {
-		setAttributes( { summary: newContent } )
-	}
 	
 	const postType = useSelect(
 		( select ) => select( 'core/editor' ).getCurrentPostType(),
@@ -21,15 +17,18 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	const [ meta, setMeta ] = useEntityProp( 'postType', postType, 'meta' );
 
-	const shortscore_meta = meta[ '_shortscore_user_rating' ];
+	const shortscore_meta = meta[ '_shortscore_rating' ];
 	const game_meta = meta[ '_shortscore_game' ];
 	const post_url = wp.data.select("core/editor").getPermalink();
 	setAttributes( { post_url: post_url } );
 
-	console.info(post_url);
+	const onChangeSummary = ( newContent ) => {
+		setMeta( { ...meta, _shortscore_summary: String(newContent) } );
+		setAttributes( { summary: newContent.replace(/(<([^>]+)>)/gi, "") } );
+	}
 
 	function updateShortscoreMeta( newValue ) {
-		setMeta( { ...meta, _shortscore_user_rating: String(newValue) } );
+		setMeta( { ...meta, _shortscore_rating: String(newValue) } );
 		setAttributes( { rating: String(newValue) } );
 	}
 
