@@ -27,6 +27,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	function updateShortscoreMeta( newValue ) {
 		setMeta( { ...meta, _shortscore_user_rating: String(newValue) } );
+		setAttributes( { rating: String(newValue) } );
 	}
 
 	function updateGameMeta( newValue ) {

@@ -21,6 +21,11 @@
 			"type": "string",
 			"source": "html",
 			"selector": "strong.game"
+		},
+		"rating": {
+			"type": "string",
+			"source": "html",
+			"selector": "span.rating"
 		}
 	},
 	"textdomain": "game-review",

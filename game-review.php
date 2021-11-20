@@ -30,7 +30,8 @@ function game_review_add_box( $content ){
     if (is_single()) {
 
         if(has_block('create-block/game-review')){
-            $content .= "game block review detected.";
+            $rating  = get_post_meta( get_the_ID(), '_shortscore_user_rating', true );
+            $content .= "game block review detected. " . $rating . "/10 is the rating.";
         }
             
     }

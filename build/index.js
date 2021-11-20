@@ -54,6 +54,9 @@ function Edit(_ref) {
     setMeta({ ...meta,
       _shortscore_user_rating: String(newValue)
     });
+    setAttributes({
+      rating: String(newValue)
+    });
   }
 
   function updateGameMeta(newValue) {
@@ -185,10 +188,14 @@ function save(_ref) {
     tagName: "span",
     className: "summary",
     value: attributes.summary
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, {
     tagName: "strong",
     className: "game",
     value: attributes.game
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, {
+    tagName: "span",
+    className: "rating",
+    value: attributes.rating
   }));
 }
 

@@ -20,11 +20,16 @@ export default function save( { attributes } ) {
 				tagName="span" 
 				className="summary"
 				value ={ attributes.summary } 
-			/>
+			/><br/>
 			<RichText.Content 
 				tagName="strong" 
 				className="game"
 				value ={ attributes.game } 
+			/><br/>
+			<RichText.Content 
+				tagName="span" 
+				className="rating"
+				value ={ attributes.rating } 
 			/>
 
 
