@@ -23,7 +23,22 @@
 function create_block_game_review_block_init() {
 	register_block_type( __DIR__ );
 }
+
 add_action( 'init', 'create_block_game_review_block_init' );
+
+function game_review_add_box( $content ){
+    if (is_single()) {
+
+        if(has_block('create-block/game-review')){
+            $content .= "game block review detected.";
+        }
+            
+    }
+
+    return $content;
+}
+    
+add_filter( "the_content", "game_review_add_box" );
 
 register_post_meta( 'post', '_shortscore_user_rating', array(
     'show_in_rest' => true,

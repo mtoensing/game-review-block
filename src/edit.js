@@ -24,6 +24,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	const shortscore_meta = meta[ '_shortscore_user_rating' ];
 	const game_meta = meta[ '_shortscore_game' ];
 
+
 	function updateShortscoreMeta( newValue ) {
 		setMeta( { ...meta, _shortscore_user_rating: String(newValue) } );
 	}
@@ -32,6 +33,8 @@ export default function Edit( { attributes, setAttributes } ) {
 		setMeta( { ...meta, _shortscore_game: newValue.replace(/(<([^>]+)>)/gi, "") } );
 		setAttributes( { game: newValue } );
 	}
+
+
 
 	return (
 		<p { ...blockProps }>

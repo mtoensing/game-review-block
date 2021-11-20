@@ -185,6 +185,10 @@ function save(_ref) {
     tagName: "span",
     className: "summary",
     value: attributes.summary
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, {
+    tagName: "strong",
+    className: "game",
+    value: attributes.game
   }));
 }
 

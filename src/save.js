@@ -21,6 +21,13 @@ export default function save( { attributes } ) {
 				className="summary"
 				value ={ attributes.summary } 
 			/>
+			<RichText.Content 
+				tagName="strong" 
+				className="game"
+				value ={ attributes.game } 
+			/>
+
+
 			
 		</p>
 	);
