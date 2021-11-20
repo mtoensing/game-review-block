@@ -19,12 +19,17 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	const shortscore_meta = meta[ '_shortscore_rating' ];
 	const game_meta = meta[ '_shortscore_game' ];
+	const summary_meta = meta[ '_shortscore_summary' ];
 	const post_url = wp.data.select("core/editor").getPermalink();
+	
 	setAttributes( { post_url: post_url } );
+	setAttributes( { game: game_meta } );
+	setAttributes( { rating: String(shortscore_meta) } );
+	setAttributes( { summary: summary_meta.replace(/(<([^>]+)>)/gi, "") } );
 
-	const onChangeSummary = ( newContent ) => {
-		setMeta( { ...meta, _shortscore_summary: String(newContent) } );
-		setAttributes( { summary: newContent.replace(/(<([^>]+)>)/gi, "") } );
+	function onChangeSummary ( newValue ) {
+		setMeta( { ...meta, _shortscore_summary: String(newValue) } );
+		setAttributes( { summary: newValue.replace(/(<([^>]+)>)/gi, "") } );
 	}
 
 	function updateShortscoreMeta( newValue ) {
@@ -36,8 +41,6 @@ export default function Edit( { attributes, setAttributes } ) {
 		setMeta( { ...meta, _shortscore_game: newValue.replace(/(<([^>]+)>)/gi, "") } );
 		setAttributes( { game: newValue } );
 	}
-
-
 
 	return (
 		<p { ...blockProps }>

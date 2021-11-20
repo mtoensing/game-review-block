@@ -42,19 +42,29 @@ function Edit(_ref) {
   const [meta, setMeta] = (0,_wordpress_core_data__WEBPACK_IMPORTED_MODULE_5__.useEntityProp)('postType', postType, 'meta');
   const shortscore_meta = meta['_shortscore_rating'];
   const game_meta = meta['_shortscore_game'];
+  const summary_meta = meta['_shortscore_summary'];
   const post_url = wp.data.select("core/editor").getPermalink();
   setAttributes({
     post_url: post_url
   });
+  setAttributes({
+    game: game_meta
+  });
+  setAttributes({
+    rating: String(shortscore_meta)
+  });
+  setAttributes({
+    summary: summary_meta.replace(/(<([^>]+)>)/gi, "")
+  });
 
-  const onChangeSummary = newContent => {
+  function onChangeSummary(newValue) {
     setMeta({ ...meta,
-      _shortscore_summary: String(newContent)
+      _shortscore_summary: String(newValue)
     });
     setAttributes({
-      summary: newContent.replace(/(<([^>]+)>)/gi, "")
+      summary: newValue.replace(/(<([^>]+)>)/gi, "")
     });
-  };
+  }
 
   function updateShortscoreMeta(newValue) {
     setMeta({ ...meta,
