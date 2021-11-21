@@ -28,6 +28,8 @@ function create_block_game_review_block_init() {
 
 }
 
+add_action( 'init', 'create_block_game_review_block_init' );
+
 function render_review_box(){
 	$game  = get_post_meta( get_the_ID(), '_shortscore_game', true );
 
@@ -37,28 +39,7 @@ function render_review_box(){
 		$html = render_reviewbox();
 		return $html;
 	};
-
-	
 }
-
-add_action( 'init', 'create_block_game_review_block_init' );
-
-function game_review_add_box( $content ){
-    if (is_single()) {
-
-        if(has_block('create-block/game-review')){
-            $rating  = get_post_meta( get_the_ID(), '_shortscore_rating', true );
-            $game  = get_post_meta( get_the_ID(), '_shortscore_game', true );
-            $summary  = get_post_meta( get_the_ID(), '_shortscore_summary', true );
-            $content .= "game block review detected! GAME: " . $game . " RATING: " . $rating . "/10 is the rating. SUMMARY: ". $summary;
-        }
-            
-    }
-
-    return $content;
-}
-    
-add_filter( "the_content", "game_review_add_box" );
 
 register_post_meta( 'post', '_shortscore_rating', array(
     'show_in_rest' => true,
@@ -224,29 +205,35 @@ function getPlatforms($post_id){
 
 function render_reviewbox(){
 
+	$summary = "";
+	$rating = 0;
+	$game = "";
+
 	$post_id = get_the_ID();
 	$permalink = get_permalink($post_id);
 	$date = get_the_date( DateTime::ISO8601 );
-	$rating  = get_post_meta( get_the_ID(), '_shortscore_rating', true );
-	$rating_class = "shortscore-" . round($rating);
+	$rating  = intval(get_post_meta( get_the_ID(), '_shortscore_rating', true ));
 	$game  = get_post_meta( get_the_ID(), '_shortscore_game', true );
 	$summary  = get_post_meta( get_the_ID(), '_shortscore_summary', true );
 	$author = get_the_author_meta( 'nickname', get_post_field( 'post_author', $post_id ) );
 
+	if( $rating < 1 AND $summary == "" AND $game != "" ) {
+		return false;
+	} 
 
-$html =	'<div class="type-game">
-    <div class="shortscore-hreview">
-        <div class="text"><span class="item"> <a class="score"
-                    href="' . $permalink . '"><strong class="fn">' . $game . '</strong></a>: </span><span class="summary">' . $summary . '</span><span class="reviewer vcard"> – <span
-                    class="fn">' . $author . '</span></span></div>
-        <div class="rating">
-            <div id="shortscore_value" class="shortscore ' . $rating_class . '"><span class="value">' . $rating . '</span></div>
-            <div class="outof">von <span class="best">10</span></div><span
-                class="dtreviewed">' . $date . '</span>
-        </div>
-    </div>
-</div>';
+	$html =	'<div class="wp-block-create-block-game-review">
+		<div class="shortscore-hreview">
+			<div class="text"><span class="item"> <a class="score"
+						href="' . $permalink . '"><strong class="fn">' . $game . '</strong></a>: </span><span class="summary">' . $summary . '</span><span class="reviewer vcard"> – <span
+						class="fn">' . $author . '</span></span></div>
+			<div class="rating">
+				<div id="shortscore_value" class="shortscore shortscore-' . round( $rating ) . '"><span class="value">' . $rating . '</span></div>
+				<div class="outof">von <span class="best">10</span></div><span
+					class="dtreviewed">' . $date . '</span>
+			</div>
+		</div>
+	</div>';
 
-return $html;
+	return $html;
 
 }

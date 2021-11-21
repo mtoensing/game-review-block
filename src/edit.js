@@ -41,7 +41,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	}
 
 	return (
-		<div { ...blockProps }>
+		<div { ...blockProps  }  className="wp-block-create-block-game-review wp-block-create-block-game-review-backend">
 		<RichText 
 			tagName="strong"
 			onChange={ updateGameMeta }
@@ -52,25 +52,26 @@ export default function Edit( { attributes, setAttributes } ) {
 			placeholder={ __( 'Write your game title...' ) }
 		/><br/	>
 		<RichText 
-			tagName="span"
+			tagName="p"
 			onChange={ onChangeSummary }
 			className="summary"
-			allowedFormats={ [ 'core/bold', 'core/italic' ] }
+			allowedFormats={ [] }
 			value={ attributes.summary }
 			placeholder={ __( 'Write your summary...' ) }
-		/><br/	>
+		/>
 		<RangeControl
-				label="Rating"
-				onChange={ updateShortscoreMeta }
-				min={ 1 }
-				max={ 10 }
-				step={ 0.5 } 
-				value={ Number ( shortscore_meta ) }
-			/>
-			<ServerSideRender
+			label="Rating"
+			help={ __( 'Review score from 1 to 10. The higher the better.' ) }
+			onChange={ updateShortscoreMeta }
+			min={ 1 }
+			max={ 10 }
+			step={ 0.5 } 
+			value={ Number ( shortscore_meta ) }
+		/>
+		<ServerSideRender
                     block="create-block/game-review"
                     attributes={ blockProps.attributes }
-            />
+        />
 		</div>
 	);
 }

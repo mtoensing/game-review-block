@@ -6,11 +6,12 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.wp-block-create-block-game-review {
-  border: 1px dotted #f00;
-  padding: 5px;
+.wp-block-create-block-game-review-backend {
+  border: 1px solid #e1effa;
+  background: #eef5fa;
+  padding: 1em;
 }
-.wp-block-create-block-game-review .components-placeholder {
+.wp-block-create-block-game-review-backend .components-placeholder {
   display: none;
 }
 
