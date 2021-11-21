@@ -3,6 +3,7 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { RangeControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { useEntityProp } from '@wordpress/core-data';
+import ServerSideRender from '@wordpress/server-side-render';
 import './editor.scss';
 
 
@@ -69,7 +70,10 @@ export default function Edit( { attributes, setAttributes } ) {
 				step={ 0.5 } 
 				value={ Number ( shortscore_meta ) }
 			/>
-		
+			<ServerSideRender
+                    block="create-block/game-review"
+                    attributes={ blockProps.attributes }
+            />
 		</div>
 	);
 }

@@ -21,7 +21,16 @@
  * @see https://developer.wordpress.org/block-editor/how-to-guides/block-tutorial/writing-your-first-block-type/
  */
 function create_block_game_review_block_init() {
-	register_block_type( __DIR__ );
+
+	register_block_type( __DIR__ ,[
+		'render_callback' => 'render_review_box'
+	] );
+
+}
+
+function render_review_box(){
+	$game  = get_post_meta( get_the_ID(), '_shortscore_game', true );
+	return "<p>hello from php" . $game . "</p>";
 }
 
 add_action( 'init', 'create_block_game_review_block_init' );
