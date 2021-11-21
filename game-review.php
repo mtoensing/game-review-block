@@ -34,7 +34,8 @@ function render_review_box(){
 	if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
 		return "";
 	} else {
-		return "<p>Frontend hello from php" . $game . "</p>";
+		$html = render_reviewbox();
+		return $html;
 	};
 
 	
@@ -220,3 +221,32 @@ function getPlatforms($post_id){
 
 }
 
+
+function render_reviewbox(){
+
+	$post_id = get_the_ID();
+	$permalink = get_permalink($post_id);
+	$date = get_the_date( DateTime::ISO8601 );
+	$rating  = get_post_meta( get_the_ID(), '_shortscore_rating', true );
+	$rating_class = "shortscore-" . round($rating);
+	$game  = get_post_meta( get_the_ID(), '_shortscore_game', true );
+	$summary  = get_post_meta( get_the_ID(), '_shortscore_summary', true );
+	$author = get_the_author_meta( 'nickname', get_post_field( 'post_author', $post_id ) );
+
+
+$html =	'<div class="type-game">
+    <div class="shortscore-hreview">
+        <div class="text"><span class="item"> <a class="score"
+                    href="' . $permalink . '"><strong class="fn">' . $game . '</strong></a>: </span><span class="summary">' . $summary . '</span><span class="reviewer vcard"> – <span
+                    class="fn">' . $author . '</span></span></div>
+        <div class="rating">
+            <div id="shortscore_value" class="shortscore ' . $rating_class . '"><span class="value">' . $rating . '</span></div>
+            <div class="outof">von <span class="best">10</span></div><span
+                class="dtreviewed">' . $date . '</span>
+        </div>
+    </div>
+</div>';
+
+return $html;
+
+}
