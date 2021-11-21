@@ -15,23 +15,33 @@ export default function save( { attributes } ) {
 	const hrefPostURL = { href: posturl };
 
 	return (
-		<p { ...blockProps } >
-			<a class="score" { ...hrefPostURL }
-                    ><RichText.Content 
-					tagName="strong" 
-					className="game fn"
-					value ={ attributes.game } 
-			/></a>
-			<RichText.Content 
-				tagName="span" 
-				className="summary"
-				value ={ attributes.summary } 
-			/>
-			<RichText.Content 
-				tagName="span" 
-				className="rating"
-				value ={ attributes.rating } 
-			/>
-		</p>
+		<div { ...blockProps } >
+			<div class="shortscore-hreview">
+				<div class="text">
+					<span class="item">
+						<a class="score" { ...hrefPostURL }>
+							<RichText.Content 
+							tagName="strong" 
+							className="game fn"
+							value ={ attributes.game } /></a> 
+					</span>
+					<RichText.Content 
+							tagName="span" 
+							className="summary"
+							value ={ attributes.summary } 
+					/>
+					<span class="reviewer vcard"> – 
+						<span class="fn">Marc</span>
+					</span>
+				</div>
+				<div class="rating">
+					<RichText.Content 
+						tagName="span" 
+						className="rating"
+						value ={ attributes.rating } 
+					/>
+				</div>
+			</div>
+		</div>
 	);
 }

@@ -21,7 +21,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	const game_meta = meta[ '_shortscore_game' ];
 	const summary_meta = meta[ '_shortscore_summary' ];
 	const post_url = wp.data.select("core/editor").getPermalink();
-	
+
 	setAttributes( { post_url: post_url } );
 	setAttributes( { game: game_meta } );
 	setAttributes( { rating: String(shortscore_meta) } );
@@ -43,7 +43,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	}
 
 	return (
-		<p { ...blockProps }>
+		<div { ...blockProps }>
 		<RichText 
 			tagName="strong"
 			onChange={ updateGameMeta }
@@ -69,6 +69,7 @@ export default function Edit( { attributes, setAttributes } ) {
 				step={ 0.5 } 
 				value={ Number ( shortscore_meta ) }
 			/>
-		</p>
+		
+		</div>
 	);
 }
