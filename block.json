@@ -32,6 +32,16 @@
         	"source": "attribute",
         	"selector": "a.score",
         	"attribute": "href"
+		},
+		"status": {
+			"type": "string",
+        	"source": "html",
+        	"selector": "p.status",
+			"default": "please fill out all emtpy fields"
+		},
+		"statusicon": {
+			"type": "string",
+			"default": "hidden"
 		}
 	},
 	"textdomain": "game-review",

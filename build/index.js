@@ -37,6 +37,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function Edit(_ref) {
   let {
     attributes,
@@ -51,6 +52,9 @@ function Edit(_ref) {
   const ratingAttribute = {
     "class": "shortscore shortscore-" + Math.round(attributes.rating)
   };
+  const statusiconAttribute = {
+    "icon": attributes.statusicon
+  };
   setAttributes({
     game: game_meta
   });
@@ -60,6 +64,7 @@ function Edit(_ref) {
   setAttributes({
     summary: summary_meta.replace(/(<([^>]+)>)/gi, "")
   });
+  checkStatus();
 
   function onChangeSummary(newValue) {
     setMeta({ ...meta,
@@ -68,6 +73,7 @@ function Edit(_ref) {
     setAttributes({
       summary: newValue.replace(/(<([^>]+)>)/gi, "")
     });
+    checkStatus();
   }
 
   function updateShortscoreMeta(newValue) {
@@ -77,6 +83,7 @@ function Edit(_ref) {
     setAttributes({
       rating: String(newValue)
     });
+    checkStatus();
   }
 
   function updateGameMeta(newValue) {
@@ -86,6 +93,25 @@ function Edit(_ref) {
     setAttributes({
       game: newValue
     });
+    checkStatus();
+  }
+
+  function checkStatus() {
+    if (attributes.summary !== "" && attributes.game !== "") {
+      setAttributes({
+        status: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('All done.', 'game-review')
+      });
+      setAttributes({
+        statusicon: "saved"
+      });
+    } else {
+      setAttributes({
+        status: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Please fill out all fields.', 'game-review')
+      });
+      setAttributes({
+        statusicon: "hidden"
+      });
+    }
   }
 
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, blockProps, {
@@ -104,30 +130,19 @@ function Edit(_ref) {
     className: "text summary",
     allowedFormats: [],
     value: attributes.summary,
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Write your summary...')
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    class: "wp-block-create-block-game-review"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    class: "shortscore-hreview"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    class: "rating"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
-    id: "shortscore_value"
-  }, ratingAttribute), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", {
-    class: "value"
-  }, attributes.rating)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    class: "outof"
-  }, "von ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", {
-    class: "best"
-  }, "10"))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Write your summary...', 'game-review'),
+    withoutInteractiveFormatting: true
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
     label: "Rating",
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Review score from 1 to 10. The higher the better.'),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Review score from 1 to 10. The higher the better.', 'game-review'),
     onChange: updateShortscoreMeta,
     min: 1,
     max: 10,
     step: 0.5,
     value: Number(shortscore_meta)
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_7___default()), {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("p", {
+    class: "status notice"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Dashicon, statusiconAttribute), " ", attributes.status), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_7___default()), {
     block: "create-block/game-review",
     attributes: blockProps.attributes
   }));

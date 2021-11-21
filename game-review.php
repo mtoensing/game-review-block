@@ -217,7 +217,7 @@ function render_reviewbox(){
 	$summary  = get_post_meta( get_the_ID(), '_shortscore_summary', true );
 	$author = get_the_author_meta( 'nickname', get_post_field( 'post_author', $post_id ) );
 
-	if( $rating < 1 AND $summary == "" AND $game != "" ) {
+	if( $rating < 1 OR $summary == "" OR $game == "" ) {
 		return false;
 	} 
 

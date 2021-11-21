@@ -4,6 +4,7 @@ import { RangeControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { useEntityProp } from '@wordpress/core-data';
 import ServerSideRender from '@wordpress/server-side-render';
+import { Dashicon } from '@wordpress/components';
 import './editor.scss';
 
 export default function Edit( { attributes, setAttributes } ) {
@@ -21,24 +22,43 @@ export default function Edit( { attributes, setAttributes } ) {
 	const game_meta = meta[ '_shortscore_game' ];
 	const summary_meta = meta[ '_shortscore_summary' ];
 	const ratingAttribute = { "class" : "shortscore shortscore-" + Math.round( attributes.rating ) };
+	const statusiconAttribute = { "icon" : attributes.statusicon };
+
+	
 
 	setAttributes( { game: game_meta } );
 	setAttributes( { rating: String(shortscore_meta) } );
 	setAttributes( { summary: summary_meta.replace(/(<([^>]+)>)/gi, "") } );
+	checkStatus();
+
 
 	function onChangeSummary ( newValue ) {
 		setMeta( { ...meta, _shortscore_summary: String(newValue) } );
 		setAttributes( { summary: newValue.replace(/(<([^>]+)>)/gi, "") } );
+		checkStatus()
 	}
 
 	function updateShortscoreMeta( newValue ) {
 		setMeta( { ...meta, _shortscore_rating: String(newValue) } );
 		setAttributes( { rating: String(newValue) } );
+		checkStatus()
 	}
 
 	function updateGameMeta( newValue ) {
 		setMeta( { ...meta, _shortscore_game: newValue.replace(/(<([^>]+)>)/gi, "") } );
 		setAttributes( { game: newValue } );
+		checkStatus()
+	}
+
+	function checkStatus (){
+
+		if ( attributes.summary !== "" && attributes.game !== "" ){
+			setAttributes( { status: __( 'All done.', 'game-review' ) } );
+			setAttributes( { statusicon: "saved" } );
+		} else {
+			setAttributes( { status: __( 'Please fill out all fields.', 'game-review' ) } );
+			setAttributes( { statusicon: "hidden" } );
+		}
 	}
 
 	return (
@@ -58,9 +78,11 @@ export default function Edit( { attributes, setAttributes } ) {
 			className="text summary"
 			allowedFormats={ [] }
 			value={ attributes.summary }
-			placeholder={ __( 'Write your summary...' ) }
-		/>
-    
+			placeholder={ __( 'Write your summary...', 'game-review') }
+			withoutInteractiveFormatting
+			
+        />
+		{/**
 		<div class="wp-block-create-block-game-review">
 		<div class="shortscore-hreview">
 			<div class="rating">
@@ -69,16 +91,21 @@ export default function Edit( { attributes, setAttributes } ) {
 			</div>
 		</div>
 		</div>
+		**/}
+		
 
 		<RangeControl
 			label="Rating"
-			help={ __( 'Review score from 1 to 10. The higher the better.' ) }
+			help={ __( 'Review score from 1 to 10. The higher the better.', 'game-review' ) }
 			onChange={ updateShortscoreMeta }
 			min={ 1 }
 			max={ 10 }
 			step={ 0.5 } 
 			value={ Number ( shortscore_meta ) }
 		/>
+
+		<p class="status notice"><Dashicon { ...statusiconAttribute } /> { attributes.status }</p>
+		
 		
 		<ServerSideRender
                     block="create-block/game-review"
