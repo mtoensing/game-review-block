@@ -11,6 +11,9 @@
   background: #eef5fa;
   padding: 1em;
 }
+.wp-block-create-block-game-review-backend p.text {
+  padding: 1em;
+}
 .wp-block-create-block-game-review-backend .components-placeholder {
   display: none;
 }

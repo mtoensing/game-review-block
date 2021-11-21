@@ -48,6 +48,9 @@ function Edit(_ref) {
   const shortscore_meta = meta['_shortscore_rating'];
   const game_meta = meta['_shortscore_game'];
   const summary_meta = meta['_shortscore_summary'];
+  const ratingAttribute = {
+    "class": "shortscore shortscore-" + Math.round(attributes.rating)
+  };
   setAttributes({
     game: game_meta
   });
@@ -98,11 +101,25 @@ function Edit(_ref) {
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, {
     tagName: "p",
     onChange: onChangeSummary,
-    className: "summary",
+    className: "text summary",
     allowedFormats: [],
     value: attributes.summary,
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Write your summary...')
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    class: "wp-block-create-block-game-review"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    class: "shortscore-hreview"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    class: "rating"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    id: "shortscore_value"
+  }, ratingAttribute), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", {
+    class: "value"
+  }, attributes.rating)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    class: "outof"
+  }, "von ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", {
+    class: "best"
+  }, "10"))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
     label: "Rating",
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Review score from 1 to 10. The higher the better.'),
     onChange: updateShortscoreMeta,

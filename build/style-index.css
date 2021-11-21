@@ -10,6 +10,20 @@
 .wp-block-create-block-game-review {
   padding: 2px;
 }
+.wp-block-create-block-game-review .text {
+  padding: 1em;
+  margin-bottom: 1em;
+  color: #fff;
+  background-color: #337EB9;
+}
+.wp-block-create-block-game-review .text a {
+  color: #fff;
+  border-bottom: none;
+  text-decoration: none;
+}
+.wp-block-create-block-game-review .text .item .fn {
+  font-weight: 700;
+}
 .wp-block-create-block-game-review .shortscore-hreview {
   overflow: hidden;
   padding: 0;
@@ -40,21 +54,6 @@
 }
 .wp-block-create-block-game-review .shortscore-hreview .link a {
   text-decoration: none;
-}
-.wp-block-create-block-game-review .shortscore-hreview .text {
-  float: left;
-  padding: 1em;
-  margin-bottom: 1em;
-  color: #fff;
-  background-color: #337EB9;
-}
-.wp-block-create-block-game-review .shortscore-hreview .text a {
-  color: #fff;
-  border-bottom: none;
-  text-decoration: none;
-}
-.wp-block-create-block-game-review .shortscore-hreview .text .item .fn {
-  font-weight: 700;
 }
 .wp-block-create-block-game-review .shortscore-hreview .summary {
   font-size: 110%;
