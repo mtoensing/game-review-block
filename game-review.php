@@ -30,7 +30,14 @@ function create_block_game_review_block_init() {
 
 function render_review_box(){
 	$game  = get_post_meta( get_the_ID(), '_shortscore_game', true );
-	return "<p>hello from php" . $game . "</p>";
+
+	if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+		return "";
+	} else {
+		return "<p>Frontend hello from php" . $game . "</p>";
+	};
+
+	
 }
 
 add_action( 'init', 'create_block_game_review_block_init' );

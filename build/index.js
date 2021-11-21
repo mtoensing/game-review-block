@@ -46,10 +46,6 @@ function Edit(_ref) {
   const shortscore_meta = meta['_shortscore_rating'];
   const game_meta = meta['_shortscore_game'];
   const summary_meta = meta['_shortscore_summary'];
-  const post_url = wp.data.select("core/editor").getPermalink();
-  setAttributes({
-    post_url: post_url
-  });
   setAttributes({
     game: game_meta
   });

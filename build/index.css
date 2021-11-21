@@ -10,5 +10,8 @@
   border: 1px dotted #f00;
   padding: 5px;
 }
+.wp-block-create-block-game-review .components-placeholder {
+  display: none;
+}
 
 /*# sourceMappingURL=index.css.map*/
