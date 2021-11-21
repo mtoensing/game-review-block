@@ -225,13 +225,19 @@ function render_reviewbox(){
 	<div class="wp-block-create-block-game-review">
 		<div class="shortscore-hreview">
 			<p class="text">
-				<span class="item"><a class="score" href="' . $permalink . '"><strong class="fn">' . $game . '</strong></a>: </span><span class="summary">' . $summary . '</span><span class="reviewer vcard"> – <span class="fn">' . $author . '</span></span>
+				<span class="item">
+					<a class="score" href="' . $permalink . '"><strong class="fn">' . $game . '</strong></a>:
+				</span>
+				<span class="summary">' . $summary . '</span>
+				<span class="reviewer vcard"> – <span class="fn">' . $author . '</span></span>
 			</p>
 			<div class="rating">
 				<div id="shortscore_value" class="shortscore shortscore-' . round( $rating ) . '">
 					<span class="value">' . $rating . '</span>
 				</div>
-				<div class="outof">von <span class="best">10</span></div><span class="dtreviewed">' . $date . '</span></div>
+				<div class="outof">von <span class="best">10</span></div>
+				<span class="dtreviewed">' . $date . '</span>
+			</div>
 		</div>
 	</div>';
 
