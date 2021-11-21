@@ -30,10 +30,44 @@ function create_block_game_review_block_init() {
 
 add_action( 'init', 'create_block_game_review_block_init' );
 
+function savePostMeta( $post_ID, $meta_name, $meta_value ) {
+	add_post_meta( $post_ID, $meta_name, $meta_value, true ) || update_post_meta( $post_ID, $meta_name, $meta_value );
+}
+
 function render_review_box(){
 	$game  = get_post_meta( get_the_ID(), '_shortscore_game', true );
 
 	if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+
+		/** migration from SHORTSCORE to-do **/
+		$result = get_post_meta ( get_the_ID(), '_shortscore_result', true );
+		if ( isset( $result->shortscore ) AND isset( $result->shortscore->summary ) ) {
+
+			$summary = ( get_post_meta( get_the_ID(), '_shortscore_summary', true ));
+	
+			if ($summary == '' or $summary == false ){
+				savePostMeta( get_the_ID(), '_shortscore_summary', $result -> shortscore ->summary );
+			}
+		}
+		
+		if ( property_exists ( $result ,'game' ) AND property_exists ( $result->game,'title' ) ){
+
+			$game = ( get_post_meta( get_the_ID(), '_shortscore_game', true ));
+
+			if ($game == '' or $game == false ){
+				savePostMeta( get_the_ID(), '_shortscore_game', $result->game->title );
+			}
+		}
+
+		if ( isset( $result->shortscore ) AND isset( $result->shortscore->userscore ) ) {
+			$rating = ( get_post_meta( get_the_ID(), '_shortscore_rating', true ));
+
+			if ($rating == '' or $rating == false or $rating < 2 ){
+				savePostMeta( get_the_ID(), '_shortscore_rating', $result->shortscore->userscore );
+			}
+		}
+
+		
 		return "";
 	} else {
 		$html = render_reviewbox();
