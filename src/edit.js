@@ -24,8 +24,6 @@ export default function Edit( { attributes, setAttributes } ) {
 	const ratingAttribute = { "class" : "shortscore shortscore-" + Math.round( attributes.rating ) };
 	const statusiconAttribute = { "icon" : attributes.statusicon };
 
-	
-
 	setAttributes( { game: game_meta } );
 	setAttributes( { rating: String(shortscore_meta) } );
 	setAttributes( { summary: summary_meta.replace(/(<([^>]+)>)/gi, "") } );
@@ -72,13 +70,14 @@ export default function Edit( { attributes, setAttributes } ) {
 			value={ game_meta }
 			placeholder={ __( 'Write your game title...' ) }
 		/><br/	>
+
 		<RichText 
 			tagName="p"
 			onChange={ onChangeSummary }
 			className="text summary"
 			allowedFormats={ [] }
 			value={ attributes.summary }
-			placeholder={ __( 'Write your summary...', 'game-review') }
+			placeholder={ __( 'Write your short review summary...', 'game-review') }
 			withoutInteractiveFormatting
 			
         />
@@ -93,7 +92,6 @@ export default function Edit( { attributes, setAttributes } ) {
 		</div>
 		**/}
 		
-
 		<RangeControl
 			label="Rating"
 			help={ __( 'Review score from 1 to 10. The higher the better.', 'game-review' ) }
@@ -105,7 +103,6 @@ export default function Edit( { attributes, setAttributes } ) {
 		/>
 
 		<p class="status notice"><Dashicon { ...statusiconAttribute } /> { attributes.status }</p>
-		
 		
 		<ServerSideRender
                     block="create-block/game-review"

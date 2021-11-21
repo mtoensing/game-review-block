@@ -130,7 +130,7 @@ function Edit(_ref) {
     className: "text summary",
     allowedFormats: [],
     value: attributes.summary,
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Write your summary...', 'game-review'),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Write your short review summary...', 'game-review'),
     withoutInteractiveFormatting: true
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
     label: "Rating",
