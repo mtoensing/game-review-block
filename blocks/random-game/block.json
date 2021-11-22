@@ -1,0 +1,28 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "game-block/random-game",
+	"version": "0.1.0",
+	"title": "Random Game",
+	"category": "widgets",
+	"icon": "smiley",
+	"description": "Adds a random game.",
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+		"use_cache": {
+			"type": "boolean",
+			"default": false
+		},
+		"updated": {
+			"type": "number",
+			"default": 0,
+			"_builtIn": true
+		}
+	},
+	"textdomain": "game-review",
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/index.css",
+	"style": "file:./build/style-index.css"
+}

@@ -26,6 +26,10 @@ function game_review_block_init() {
 		'render_callback' => 'render_review_box'
 	] );
 
+	register_block_type( plugin_dir_path( __FILE__ ) . 'blocks/random-game/',[
+		'render_callback' => 'render_random_game'
+	] );
+
 }
 
 add_action( 'init', 'game_review_block_init' );
@@ -187,3 +191,53 @@ function render_reviewbox(){
 
 	return $html . $json_markup;
 }
+
+function render_random_game($attributes, $content) {
+    
+    if($attributes['use_cache'] == true){
+      if ( false === ( $shortscore_transient_link = get_transient( 'shortscore_transient_link' ) ) ) {
+          // It wasn't there, so regenerate the data and save the transient
+          $shortscore_transient_link = getGameLink();
+          set_transient( 'shortscore_transient_link', $shortscore_transient_link, 3600 );
+      }
+    } else {
+      $shortscore_transient_link = getGameLink();
+    }
+
+    return $shortscore_transient_link;
+}
+
+function getGameLink() {
+
+	$post = getRandomGame();
+	$post_id = $post->ID;
+	$game_title = get_post_meta( $post_id, '_shortscore_game', true );
+  
+	if ( $game_title == '' ) {
+	  $game_title = "error".get_the_title( $post_id );
+	}
+  
+	$link = '<a href="' . get_permalink( $post_id ) . '">' . $game_title . '</a>';
+  
+	return $link;
+  }
+  
+  function getRandomGame() {
+  
+	$args = array(
+	  'numberposts' => 1,
+	  'meta_query'  => [
+		[
+		  'key'     => '_shortscore_rating',
+		  'value'   => 2,
+		  'type'    => 'numeric',
+		  'compare' => '>',
+		],
+	  ],
+	  'orderby'     => 'rand'
+	);
+  
+	$games = get_posts( $args );
+  
+	return $games[0];
+  }
