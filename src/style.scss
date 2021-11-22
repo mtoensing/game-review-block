@@ -5,7 +5,7 @@
  * Replace them with your own styles or remove the file completely.
  */
 
- .wp-block-create-block-game-review {
+ .wp-block-game-review-box {
 	 
 	padding: 2px;
 
@@ -146,7 +146,7 @@
 
 @media only screen and (min-resolution: 192dpi), only screen and (min-device-pixel-ratio: 2)  {
 	html {
-		.wp-block-create-block-game-review {
+		.wp-block-game-review-box {
 			.shortscore {
 				background-image: url('../assets/shortscore-1200x1600.png');
 				background-image: url('../assets/shortscore.svg'), linear-gradient(transparent, transparent);

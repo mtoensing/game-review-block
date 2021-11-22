@@ -10,7 +10,7 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       game-review
  *
- * @package           create-block
+ * @package           game-review
  */
 
 /**
@@ -20,7 +20,7 @@
  *
  * @see https://developer.wordpress.org/block-editor/how-to-guides/block-tutorial/writing-your-first-block-type/
  */
-function create_block_game_review_block_init() {
+function game_review_block_init() {
 
 	register_block_type( __DIR__ ,[
 		'render_callback' => 'render_review_box'
@@ -28,7 +28,7 @@ function create_block_game_review_block_init() {
 
 }
 
-add_action( 'init', 'create_block_game_review_block_init' );
+add_action( 'init', 'game_review_block_init' );
 
 function savePostMeta( $post_ID, $meta_name, $meta_value ) {
 	add_post_meta( $post_ID, $meta_name, $meta_value, true ) || update_post_meta( $post_ID, $meta_name, $meta_value );
@@ -122,7 +122,7 @@ function render_reviewbox(){
 	$author_nickname = get_the_author_meta( 'nickname', get_post_field( 'post_author', $post_id ) );
 
 	$html =	'
-	<div class="wp-block-create-block-game-review">
+	<div class="wp-block-game-review-box">
 		<div class="shortscore-hreview">
 			<p class="text">
 				<span class="item">

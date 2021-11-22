@@ -60,7 +60,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	}
 
 	return (
-		<div { ...blockProps  }  className="wp-block-create-block-game-review wp-block-create-block-game-review-backend">
+		<div { ...blockProps  }  className="wp-block-game-review-box wp-block-game-review-box-backend">
 		<RichText 
 			tagName="strong"
 			onChange={ updateGameMeta }
@@ -82,7 +82,7 @@ export default function Edit( { attributes, setAttributes } ) {
 			
         />
 		{/**
-		<div class="wp-block-create-block-game-review">
+		<div class="wp-block-game-review-box">
 		<div class="shortscore-hreview">
 			<div class="rating">
 				<div id="shortscore_value" { ...ratingAttribute }><span class="value">{ attributes.rating }</span></div>
@@ -105,7 +105,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		<p class="status notice"><Dashicon { ...statusiconAttribute } /> { attributes.status }</p>
 		
 		<ServerSideRender
-                    block="create-block/game-review"
+                    block="game-review/review-box"
                     attributes={ blockProps.attributes }
         />
 		</div>
