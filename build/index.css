@@ -1,0 +1,29 @@
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/editor.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.wp-block-game-review-box-backend {
+  border: 1px solid #e1effa;
+  background: #eef5fa;
+  padding: 1em;
+}
+.wp-block-game-review-box-backend .dashicons {
+  width: 26px;
+  height: 26px;
+  font-size: 26px;
+}
+.wp-block-game-review-box-backend .notice {
+  margin: 0;
+}
+.wp-block-game-review-box-backend p.text {
+  padding: 1em;
+}
+.wp-block-game-review-box-backend .components-placeholder {
+  display: none;
+}
+
+/*# sourceMappingURL=index.css.map*/
