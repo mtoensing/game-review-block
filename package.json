@@ -1,7 +1,7 @@
 {
 	"name": "game-review",
 	"version": "0.1.0",
-	"description": "Example block written with ESNext standard and JSX support – build step required.",
+	"description": "Add a review rating block with a score from 1 to 10 to your post. Adds schema.org meta data for Rich Results in search engines.",
 	"author": "The WordPress Contributors",
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
@@ -11,7 +11,9 @@
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
 		"start": "wp-scripts start",
-		"packages-update": "wp-scripts packages-update"
+		"packages-update": "wp-scripts packages-update",
+		"build:review-box": "wp-scripts build blocks/review-box/src/index.js --output-path=blocks/review-box/build/",
+		"start:review-box": "wp-scripts start blocks/review-box/src/index.js --output-path=blocks/review-box/build/"
 	},
 	"dependencies": {
 		"@wordpress/block-editor": "^8.0.3",

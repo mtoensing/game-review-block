@@ -9,7 +9,5 @@ import { useSelect } from '@wordpress/data';
  * editor into `post_content`.
  */
 export default function save( { attributes } ) {
-
-
 	return null;
 }

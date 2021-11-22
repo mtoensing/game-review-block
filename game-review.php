@@ -22,7 +22,7 @@
  */
 function game_review_block_init() {
 
-	register_block_type( __DIR__ ,[
+	register_block_type( plugin_dir_path( __FILE__ ) . 'blocks/review-box/',[
 		'render_callback' => 'render_review_box'
 	] );
 
