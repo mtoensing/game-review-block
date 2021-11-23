@@ -9,6 +9,10 @@
 	background: rgb(238, 245, 250);
 	padding: 1em;
 
+	input.components-text-control__input[type=text] , textarea {
+		font-size: 18px;
+	}
+
 	.dashicons {
 		width: 26px;
     	height: 26px;
@@ -19,10 +23,8 @@
 		margin: 0;
 	}
 	
-	p.text {
-		
-		
-		padding: 1em;
+	.text {
+		padding: 2px;
 	}
 
 	.components-placeholder {

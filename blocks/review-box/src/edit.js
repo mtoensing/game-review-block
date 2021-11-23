@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText, InspectorControls } from '@wordpress/block-editor';
-import { RangeControl, Dashicon, ToggleControl,Panel, PanelBody, PanelRow } from '@wordpress/components';
+import { RangeControl, Dashicon, TextControl, TextareaControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { useEntityProp } from '@wordpress/core-data';
 import ServerSideRender from '@wordpress/server-side-render';
@@ -28,7 +28,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	setAttributes( { summary: summary_meta.replace(/(<([^>]+)>)/gi, "") } );
 	checkStatus();
 
-	function onChangeSummary ( newValue ) {
+	function updateSummary ( newValue ) {
 		setMeta( { ...meta, _shortscore_summary: String(newValue) } );
 		setAttributes( { summary: newValue.replace(/(<([^>]+)>)/gi, "") } );
 		checkStatus()
@@ -59,25 +59,20 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	return (
 		<div { ...blockProps  } className="wp-block-game-review-box wp-block-game-review-box-backend">
-		<RichText 
-			tagName="strong"
+		<TextControl 
 			onChange={ updateGameMeta }
 			className="game"
-			withoutInteractiveFormatting
-			allowedFormats={ [] }
+			label={ __( 'Game' ) }
 			value={ game_meta }
-			placeholder={ __( 'Write your game title...' ) }
-		/><br/	>
+			placeholder={ __( 'Write the name of the game ...', 'game-review' ) }
+		/>
 
-		<RichText 
-			tagName="p"
-			onChange={ onChangeSummary }
-			className="text summary"
-			allowedFormats={ [] }
+		<TextareaControl 
+			onChange={ updateSummary }
+			className="summary"
+			label={ __( 'Summary' ) }
 			value={ attributes.summary }
-			placeholder={ __( 'Write your short review summary...', 'game-review') }
-			withoutInteractiveFormatting
-			
+			placeholder={ __( 'Write a short review summary...', 'game-review') }
         />
 		{/**
 		<div class="wp-block-game-review-box">
