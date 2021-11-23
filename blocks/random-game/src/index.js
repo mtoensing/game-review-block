@@ -1,42 +1,40 @@
-import { __ } from '@wordpress/i18n';
-import { registerBlockType } from '@wordpress/blocks';
-import { InspectorControls, BlockControls } from '@wordpress/block-editor';
-import ServerSideRender from '@wordpress/server-side-render';
-import { ToolbarGroup, ToolbarButton, ToggleControl,Panel, PanelBody, PanelRow } from '@wordpress/components';
+/**
+ * Registers a new block provided a unique name and an object defining its behavior.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
+ */
+ import { registerBlockType } from '@wordpress/blocks';
 
-registerBlockType('game-block/random-game', {
-  edit: function(props) {
-    return (
-    <>
-    <InspectorControls>
-      <Panel>
-        <PanelBody>
-          <PanelRow>
-          <ToggleControl
-                label={__('Use cache', 'simpletoc')}
-                help={__('Cache the result for one hour', 'simpletoc')}
-                checked={ props.attributes.use_cache }
-                onChange={ () => props.setAttributes( {  use_cache: ! props.attributes.use_cache } ) }
-            />
-          </PanelRow>
-        </PanelBody>
-      </Panel>
-    </InspectorControls>
-    <BlockControls>
-      <ToolbarGroup>
-        <ToolbarButton
-          className="components-icon-button components-toolbar__control"
-          label={__('Update table of contents', 'simpletoc')}
-          onClick={ () => props.setAttributes( { updated: Date.now()} ) }
-          icon="update"
-        />
-      </ToolbarGroup>
-  </BlockControls>
-  <ServerSideRender block={props.name} attributes={props.attributes} />
-  </>
-  )
-  },
-  save: props => {
-    return null;
-  },
+
+ /**
+  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
+  * All files containing `style` keyword are bundled together. The code used
+  * gets applied both to the front of your site and to the editor.
+  *
+  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
+  */
+ import './style.scss';
+ 
+ /**
+  * Internal dependencies
+  */
+ import Edit from './edit';
+ import save from './save';
+
+/**
+ * Every block starts by registering a new block type definition.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
+ */
+ registerBlockType('game-review/random-game', {
+	
+	/**
+	 * @see ./edit.js
+	 */
+	edit: Edit,
+
+	/**
+	 * @see ./save.js
+	 */
+	save,
 });

@@ -1,10 +1,9 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
-import { RangeControl } from '@wordpress/components';
+import { RangeControl, Dashicon } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { useEntityProp } from '@wordpress/core-data';
 import ServerSideRender from '@wordpress/server-side-render';
-import { Dashicon } from '@wordpress/components';
 import './editor.scss';
 
 export default function Edit( { attributes, setAttributes } ) {
@@ -28,7 +27,6 @@ export default function Edit( { attributes, setAttributes } ) {
 	setAttributes( { rating: String(shortscore_meta) } );
 	setAttributes( { summary: summary_meta.replace(/(<([^>]+)>)/gi, "") } );
 	checkStatus();
-
 
 	function onChangeSummary ( newValue ) {
 		setMeta( { ...meta, _shortscore_summary: String(newValue) } );
@@ -60,7 +58,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	}
 
 	return (
-		<div { ...blockProps  }  className="wp-block-game-review-box wp-block-game-review-box-backend">
+		<div { ...blockProps  } className="wp-block-game-review-box wp-block-game-review-box-backend">
 		<RichText 
 			tagName="strong"
 			onChange={ updateGameMeta }
