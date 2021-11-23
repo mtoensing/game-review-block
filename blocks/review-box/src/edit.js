@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, RichText } from '@wordpress/block-editor';
-import { RangeControl, Dashicon } from '@wordpress/components';
+import { useBlockProps, RichText, InspectorControls } from '@wordpress/block-editor';
+import { RangeControl, Dashicon, ToggleControl,Panel, PanelBody, PanelRow } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { useEntityProp } from '@wordpress/core-data';
 import ServerSideRender from '@wordpress/server-side-render';
@@ -104,7 +104,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		
 		<ServerSideRender
                     block="game-review/review-box"
-                    attributes={ blockProps.attributes }
+                    attributes={ attributes }
         />
 		</div>
 	);

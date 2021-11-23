@@ -143,7 +143,7 @@ function Edit(_ref) {
     class: "status notice"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Dashicon, statusiconAttribute), " ", attributes.status), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_7___default()), {
     block: "game-review/review-box",
-    attributes: blockProps.attributes
+    attributes: attributes
   }));
 }
 

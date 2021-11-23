@@ -5,8 +5,11 @@ import { ToolbarGroup, ToolbarButton, ToggleControl,Panel, PanelBody, PanelRow }
 import { useBlockProps } from '@wordpress/block-editor';
 
 export default function Edit( { attributes, setAttributes } ) {
+
+    const blockProps = useBlockProps();
+
     return (
-        <div { ...useBlockProps() }>
+        <div { ...blockProps  } >
         <InspectorControls>
         <Panel>
             <PanelBody>
@@ -33,7 +36,7 @@ export default function Edit( { attributes, setAttributes } ) {
     </BlockControls>
     <ServerSideRender 
         block="game-review/random-game" 
-        attributes={ attributes } 
+        attributes={ attributes }
     />
     </div>
     );

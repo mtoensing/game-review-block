@@ -42,6 +42,10 @@
 		"statusicon": {
 			"type": "string",
 			"default": "hidden"
+		},
+		"use_cache": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"textdomain": "game-review",

@@ -18,6 +18,10 @@
 		"updated": {
 			"type": "number",
 			"default": 0
+		},
+		"use_cache": {
+			"type": "number",
+			"default": 0
 		}
 	},
 	"textdomain": "game-review",

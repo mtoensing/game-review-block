@@ -71,7 +71,6 @@ function render_review_box(){
 			}
 		}
 
-		
 		return "";
 	} else {
 		$html = render_reviewbox();
@@ -193,18 +192,26 @@ function render_reviewbox(){
 }
 
 function render_random_game($attributes, $content) {
+
+	$html = '<div class="wp-block-game-review-box">';
+
+	$random_game_html = '';
     
     if($attributes['use_cache'] == true){
-      if ( false === ( $shortscore_transient_link = get_transient( 'shortscore_transient_link' ) ) ) {
+      if ( false === ( $random_game_html = get_transient( 'shortscore_transient_link' ) ) ) {
           // It wasn't there, so regenerate the data and save the transient
-          $shortscore_transient_link = getGameLink();
-          set_transient( 'shortscore_transient_link', $shortscore_transient_link, 3600 );
+          $random_game_html = getGameLink();
+          set_transient( 'shortscore_transient_link', $random_game_html, 3600 );
       }
     } else {
-      $shortscore_transient_link = getGameLink();
+		$random_game_html = getGameLink();
     }
 
-    return $shortscore_transient_link;
+	$html .= $random_game_html;
+
+	$html .= '</div>';
+
+    return $html;
 }
 
 function getGameLink() {
@@ -216,9 +223,15 @@ function getGameLink() {
 	if ( $game_title == '' ) {
 	  $game_title = "error".get_the_title( $post_id );
 	}
+
+	if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+		$url = "#";
+	} else {
+		$url = get_permalink( $post_id );
+	};
   
-	$link = '<a href="' . get_permalink( $post_id ) . '">' . $game_title . '</a>';
-  
+	$link = '<a href="' . $url . '">' . $game_title . '</a>';
+
 	return $link;
   }
   
