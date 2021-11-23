@@ -15,7 +15,9 @@
 		"build:review-box": "wp-scripts build blocks/review-box/src/index.js --output-path=blocks/review-box/build/",
 		"start:review-box": "wp-scripts start blocks/review-box/src/index.js --output-path=blocks/review-box/build/",
 		"build:random-game": "wp-scripts build blocks/random-game/src/index.js --output-path=blocks/random-game/build/",
-		"start:random-game": "wp-scripts start blocks/random-game/src/index.js --output-path=blocks/random-game/build/"
+		"start:random-game": "wp-scripts start blocks/random-game/src/index.js --output-path=blocks/random-game/build/",
+		"build:game-list": "wp-scripts build blocks/game-list/src/index.js --output-path=blocks/game-list/build/",
+		"start:game-list": "wp-scripts start blocks/game-list/src/index.js --output-path=blocks/game-list/build/"
 	},
 	"dependencies": {
 		"@wordpress/block-editor": "^8.0.3",

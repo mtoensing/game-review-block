@@ -30,6 +30,10 @@ function game_review_block_init() {
 		'render_callback' => 'render_random_game'
 	] );
 
+	register_block_type( plugin_dir_path( __FILE__ ) . 'blocks/game-list/',[
+		'render_callback' => 'render_game_list'
+	] );
+
 }
 
 add_action( 'init', 'game_review_block_init' );
@@ -112,7 +116,7 @@ function render_reviewbox(){
 	$rating = 0;
 	$game = "";
 
-	$rating  = intval(get_post_meta( $post_id, '_shortscore_rating', true ));
+	$rating  = get_post_meta( $post_id, '_shortscore_rating', true );
 	$game  = get_post_meta( $post_id, '_shortscore_game', true );
 	$summary  = get_post_meta( $post_id, '_shortscore_summary', true );
 
@@ -135,7 +139,7 @@ function render_reviewbox(){
 				<span class="reviewer vcard"> – <span class="fn">' . $author_nickname . '</span></span>
 			</p>
 			<div class="rating">
-				<div id="shortscore_value" class="shortscore shortscore-' . round( $rating ) . '">
+				<div id="shortscore_value" class="shortscore shortscore-' . floor( $rating ) . '">
 					<span class="value">' . $rating . '</span>
 				</div>
 				<div class="outof">von <span class="best">10</span></div>
@@ -242,7 +246,7 @@ function getGameLink() {
 	  'meta_query'  => [
 		[
 		  'key'     => '_shortscore_rating',
-		  'value'   => 2,
+		  'value'   => 1,
 		  'type'    => 'numeric',
 		  'compare' => '>',
 		],
@@ -253,4 +257,50 @@ function getGameLink() {
 	$games = get_posts( $args );
   
 	return $games[0];
+  }
+
+
+  function render_game_list(){
+	$args = array(
+        'post_type'      => 'post',
+        'orderby'        => array( 'meta_value_num' => 'DESC', 'date' => 'DESC' ),
+        'meta_key'       => '_shortscore_rating',
+		'meta_type'		 => 'NUMERIC',
+		'compare' => '>=',
+        'posts_per_page' => '300',
+        'order'          => 'DESC',
+		'ignore_sticky_posts' => 1
+
+    );
+
+    $the_query = new WP_Query($args);
+    $html = '';
+	$prev_rating = 11;
+
+    while ($the_query->have_posts()) :
+		$the_query->the_post();
+		$post_id 	= get_the_ID();
+		$game = get_post_meta( $post_id, '_shortscore_game', true );
+		$current_rating = get_post_meta( $post_id, "_shortscore_rating", true);
+		$url = get_permalink($post_id);
+
+		
+		if(  ( $game != '' ) AND $current_rating > 0 ){
+
+
+			if ($current_rating < $prev_rating){
+				//$html .= '<h2>' . $current_rating . '/10</h2>';
+			}
+			//$html .= "<p> cur: " . $current_rating ." prev: " . $prev_rating . "</p>"; 
+			$html .= '<p>[' . $current_rating . '/10] - <a href="' . $url . '">' . $game . '</a></p>';
+			//$html .= "<p>" . $current_rating . "</p>";
+			
+
+		}
+
+	$prev_rating = $current_rating;
+    endwhile;
+    wp_reset_postdata();
+
+    return $html;
   }

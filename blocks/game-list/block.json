@@ -1,0 +1,27 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "game-review/game-list",
+	"version": "0.1.0",
+	"title": "Game List",
+	"category": "widgets",
+	"icon": "games",
+	"supports": {
+		"html": false
+	},
+	"description": "Lists all rated games.",
+	"attributes": {
+		"use_cache": {
+			"type": "boolean",
+			"default": false
+		},
+		"updated": {
+			"type": "number",
+			"default": 0
+		}
+	},
+	"textdomain": "game-review",
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/index.css",
+	"style": "file:./build/style-index.css"
+}
