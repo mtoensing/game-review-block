@@ -260,7 +260,7 @@ function getGameLink() {
   }
 
 
-  function render_game_list(){
+  function render_game_list($attributes){
 	$args = array(
         'post_type'      => 'post',
         'orderby'        => array( 'meta_value_num' => 'DESC', 'date' => 'DESC' ),
@@ -283,16 +283,16 @@ function getGameLink() {
 		$game = get_post_meta( $post_id, '_shortscore_game', true );
 		$current_rating = get_post_meta( $post_id, "_shortscore_rating", true);
 		$url = get_permalink($post_id);
+		$divider = $attributes['divider'];
 
 		
-		if(  ( $game != '' ) AND $current_rating > 0 ){
+		if ( ( $game != '' ) AND $current_rating > 0 ) {
 
-
-			if ($current_rating < $prev_rating){
-				//$html .= '<h2>' . $current_rating . '/10</h2>';
+			if (floor ( $current_rating ) < floor ( $prev_rating )){
+				$html .= '<h2>' . floor($current_rating) . $divider . '10</h2>';
 			}
 			//$html .= "<p> cur: " . $current_rating ." prev: " . $prev_rating . "</p>"; 
-			$html .= '<p>[' . $current_rating . '/10] - <a href="' . $url . '">' . $game . '</a></p>';
+			$html .= '<p>[' .  $current_rating . '/10] - <a href="' . $url . '">' . $game . '</a></p>';
 			//$html .= "<p>" . $current_rating . "</p>";
 			
 

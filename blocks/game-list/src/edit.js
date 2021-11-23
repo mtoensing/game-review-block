@@ -1,12 +1,16 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, BlockControls } from '@wordpress/block-editor';
 import ServerSideRender from '@wordpress/server-side-render';
-import { ToolbarGroup, ToolbarButton, ToggleControl,Panel, PanelBody, PanelRow } from '@wordpress/components';
+import { ToolbarGroup, ToolbarButton, ToggleControl, TextControl, Panel, PanelBody, PanelRow } from '@wordpress/components';
 import { useBlockProps } from '@wordpress/block-editor';
 
 export default function Edit( { attributes, setAttributes } ) {
 
     const blockProps = useBlockProps();
+
+    function updateDivider( newValue ) {
+		setAttributes( { divider: newValue } );
+	}
 
     return (
         <div { ...blockProps  } >
@@ -14,12 +18,12 @@ export default function Edit( { attributes, setAttributes } ) {
         <Panel>
             <PanelBody>
             <PanelRow>
-            <ToggleControl
-                    label={__('Use cache', 'game-review')}
-                    help={__('Cache the result for one hour', 'game-review')}
-                    checked={ attributes.use_cache }
-                    onChange={ () => setAttributes( {  use_cache: ! attributes.use_cache } ) }
-                />
+            <TextControl
+                    label={__('Divider', 'game-review')}
+                    help={__('The divider string between the score and maximum value', 'game-review')}
+                    value={ attributes.divider }
+                    onChange={updateDivider}
+            />
             </PanelRow>
             </PanelBody>
         </Panel>
