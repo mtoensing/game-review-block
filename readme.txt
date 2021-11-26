@@ -1,5 +1,5 @@
-=== Game Review ===
-Contributors:      The WordPress Contributors
+=== Game Review Block ===
+Contributors:      MarcDK
 Tags:              block, review, schema, box
 Tested up to:      5.8.0
 Stable tag:        0.1.0
