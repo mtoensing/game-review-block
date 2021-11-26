@@ -4,6 +4,7 @@ import { RangeControl, Dashicon, TextControl, TextareaControl } from '@wordpress
 import { useSelect } from '@wordpress/data';
 import { useEntityProp } from '@wordpress/core-data';
 import ServerSideRender from '@wordpress/server-side-render';
+
 import './editor.scss';
 
 export default function Edit( { attributes, setAttributes } ) {

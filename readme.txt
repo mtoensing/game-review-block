@@ -1,6 +1,6 @@
 === Game Review Block ===
 Contributors:      MarcDK
-Tags:              block, review, schema, box
+Tags:              block, review, schema, rating
 Tested up to:      5.8.0
 Stable tag:        0.1.0
 License:           GPL-2.0-or-later
@@ -12,6 +12,18 @@ Add a review rating block with a score from 1 to 10 to your post. Adds schema.or
 
 Add a review rating block with a score from 1 to 10 to your post. Adds schema.org meta data for Rich Results in search engines.
 
+= Features =
+
+* Easily extend your Gutenberg posts with a review box.
+* Add a rating score, game title and a short description. That's it. 
+* schema.org structured data and html microformats are added automatically. 
+* Valid HTML output.
+* Inherits the style and typography of your theme.
+* 3 blocks: Game Review Box, Game List and Random Game. 
+* Game Review add your review box.
+* Game List adds a list of all your rated games.
+* Random Game displays a random game title and links it to the coresponding post.
+
 == Installation ==
 
 1. Upload the plugin files to the `/wp-content/plugins/game-review` directory, or install the plugin through the WordPress plugins screen directly.
@@ -20,4 +32,8 @@ Add a review rating block with a score from 1 to 10 to your post. Adds schema.or
 == Changelog ==
 
 = 0.1.0 =
-* Release
+* Inital release.
+
+== Screenshots ==
+1. Game Review block in Gutenberg editor.
+2. Game Review block in the theme 
