@@ -1,1 +1,30 @@
-.wp-block-game-review-box-backend{background:#eef5fa;border:1px solid #e1effa;padding:1em}.wp-block-game-review-box-backend input.components-text-control__input[type=text],.wp-block-game-review-box-backend textarea{font-size:18px}.wp-block-game-review-box-backend .dashicons{font-size:26px;height:26px;width:26px}.wp-block-game-review-box-backend .notice{margin:0}.wp-block-game-review-box-backend .text{padding:2px}.wp-block-game-review-box-backend .components-placeholder{display:none}
+/*!**********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./blocks/review-box/src/editor.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.wp-block-game-review-review-box {
+  padding: 1em;
+}
+.wp-block-game-review-review-box input.components-text-control__input[type=text], .wp-block-game-review-review-box textarea {
+  font-size: 18px;
+}
+.wp-block-game-review-review-box .dashicons {
+  width: 26px;
+  height: 26px;
+  font-size: 26px;
+}
+.wp-block-game-review-review-box .notice {
+  margin: 0;
+}
+.wp-block-game-review-review-box .text {
+  padding: 2px;
+}
+.wp-block-game-review-review-box .components-placeholder {
+  display: none;
+}
+
+/*# sourceMappingURL=index.css.map*/

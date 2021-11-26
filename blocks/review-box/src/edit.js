@@ -59,7 +59,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	}
 
 	return (
-		<div { ...blockProps  } className="wp-block-game-review-box wp-block-game-review-box-backend">
+		<div { ...blockProps  }>
 		<TextControl 
 			onChange={ updateGameMeta }
 			className="game"
