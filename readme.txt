@@ -1,16 +1,16 @@
 === Game Review Block ===
 Contributors:      MarcDK
-Tags:              block, review, schema, rating
+Tags:              block, review, schema, rating, shortscore
 Tested up to:      5.8.0
 Stable tag:        0.1.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
-Add a review rating block with a score from 1 to 10 to your post. Adds schema.org meta data for Rich Results in search engines.
+Add a review rating block with a score from 1 to 10 to your post. Adds schema.org meta data for Rich Results in search engines. 
 
 == Description ==
 
-Add a review rating block with a score from 1 to 10 to your post. Adds schema.org meta data for Rich Results in search engines.
+Add a review rating block with a score from 1 to 10 to your post. Adds schema.org meta data for Rich Results in search engines. 
 
 = Features =
 
@@ -23,6 +23,7 @@ Add a review rating block with a score from 1 to 10 to your post. Adds schema.or
 * Game Review add your review box.
 * Game List adds a list of all your rated games.
 * Random Game displays a random game title and links it to the coresponding post.
+
 
 == Installation ==
 
