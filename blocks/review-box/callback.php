@@ -77,9 +77,9 @@ function getReviewboxHTML(){
 	$rating = 0;
 	$game = "";
 
-	$rating  = get_post_meta( $post_id, '_shortscore_rating', true );
-	$game  = get_post_meta( $post_id, '_shortscore_game', true );
-	$summary  = get_post_meta( $post_id, '_shortscore_summary', true );
+	$rating  = esc_html( get_post_meta( $post_id, '_shortscore_rating', true ) );
+	$game  = esc_html( get_post_meta( $post_id, '_shortscore_game', true ) );
+	$summary  = esc_html( get_post_meta( $post_id, '_shortscore_summary', true ) );
 
 	if ( $rating < 1 OR $summary == "" OR $game == "" ) {
 		return false;
