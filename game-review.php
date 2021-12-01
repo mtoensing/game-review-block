@@ -6,6 +6,7 @@
  * Requires PHP:      7.0
  * Version:           1.1
  * Author:            Marc Tönsing
+ * Author URI: 		  https://marc.tv
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       game-review
