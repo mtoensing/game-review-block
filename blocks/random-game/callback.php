@@ -30,7 +30,7 @@ function getGameLink() {
     $game_title = get_post_meta( $post_id, '_shortscore_game', true );
 
     if ( $game_title == '' ) {
-    $game_title = "error".get_the_title( $post_id );
+    $game_title = get_the_title( $post_id );
     }
 
     if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
