@@ -3,7 +3,7 @@
 	"apiVersion": 2,
 	"name": "game-review/review-box",
 	"version": "0.1.0",
-	"title": "Game Review",
+	"title": "Game Review Box",
 	"category": "widgets",
 	"icon": "games",
 	"description": "Add a review rating block with a score from 1 to 10 to your post. Adds schema.org meta data for Rich Results in search engines.",

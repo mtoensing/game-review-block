@@ -8,10 +8,6 @@ export default function Edit( { attributes, setAttributes } ) {
 
     const blockProps = useBlockProps();
 
-    function updateDivider( newValue ) {
-		setAttributes( { divider: newValue } );
-	}
-
     return (
         <div { ...blockProps  } >
         <BlockControls>
@@ -23,8 +19,8 @@ export default function Edit( { attributes, setAttributes } ) {
             icon="update"
             />
         </ToolbarGroup>
-    </BlockControls>
-    <ServerSideRender 
+        </BlockControls>
+        <ServerSideRender 
         block="game-review/game-list" 
         attributes={ attributes }
     />
