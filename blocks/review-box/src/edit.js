@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, RichText, InspectorControls } from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 import { RangeControl, Dashicon, TextControl, TextareaControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { useEntityProp } from '@wordpress/core-data';
@@ -21,17 +21,14 @@ export default function Edit( { attributes, setAttributes } ) {
 	const shortscore_meta = meta[ '_shortscore_rating' ];
 	const game_meta = meta[ '_shortscore_game' ];
 	const summary_meta = meta[ '_shortscore_summary' ];
-	const ratingAttribute = { "class" : "shortscore shortscore-" + Math.round( attributes.rating ) };
 	const statusiconAttribute = { "icon" : attributes.statusicon };
 
 	setAttributes( { game: game_meta } );
 	setAttributes( { rating: String(shortscore_meta) } );
-	setAttributes( { summary: summary_meta.replace(/(<([^>]+)>)/gi, "") } );
 	checkStatus();
 
 	function updateSummary ( newValue ) {
 		setMeta( { ...meta, _shortscore_summary: String(newValue) } );
-		setAttributes( { summary: newValue.replace(/(<([^>]+)>)/gi, "") } );
 		checkStatus()
 	}
 
@@ -49,7 +46,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	function checkStatus (){
 
-		if ( attributes.summary !== "" && attributes.game !== "" ){
+		if ( summary_meta !== "" && attributes.game !== "" ){
 			setAttributes( { status: __( 'All done.', 'game-review' ) } );
 			setAttributes( { statusicon: "saved" } );
 		} else {
@@ -72,7 +69,7 @@ export default function Edit( { attributes, setAttributes } ) {
 			onChange={ updateSummary }
 			className="summary"
 			label={ __( 'Summary' ) }
-			value={ attributes.summary }
+			value={ summary_meta }
 			placeholder={ __( 'Write a short review summary...', 'game-review') }
         />
 		{/**

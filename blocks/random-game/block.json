@@ -18,6 +18,10 @@
 		"updated": {
 			"type": "number",
 			"default": 0
+		},
+		"fontsize": {
+			"type": "string",
+			"default": "16"
 		}
 	},
 	"textdomain": "game-review",

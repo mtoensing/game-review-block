@@ -2,16 +2,16 @@
 
 function render_random_game($attributes, $content) {
 
-    $html = '<div class="wp-block-game-review-box">';
+    $html = '<div class="wp-block-random-game">';
 
     $random_game_html = '';
 
     if($attributes['use_cache'] == true){
-    if ( false === ( $random_game_html = get_transient( 'shortscore_transient_link' ) ) ) {
-        // It wasn't there, so regenerate the data and save the transient
-        $random_game_html = getGameLink();
-        set_transient( 'shortscore_transient_link', $random_game_html, 3600 );
-    }
+        if ( false === ( $random_game_html = get_transient( 'shortscore_transient_link' ) ) ) {
+            // It wasn't there, so regenerate the data and save the transient
+            $random_game_html = getGameLink();
+            set_transient( 'shortscore_transient_link', $random_game_html, 3600 );
+        }
     } else {
         $random_game_html = getGameLink();
     }
