@@ -28,7 +28,7 @@ function getGameLink($attributes) {
     $post = getRandomGame();
     $fontsizeattr = '';
 
-    if( $attributes["fontsize"] ){
+    if( isset($attributes["fontsize"] )){
         $fontsizeattr = 'style="font-size: ' . $attributes["fontsize"] . 'px"';
     }
 
