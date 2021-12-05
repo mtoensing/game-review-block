@@ -32,6 +32,9 @@ Add a review rating block with a score from 1 to 10 to your post. Adds schema.or
 
 == Changelog ==
 
+= 1.4 =
+* Fix: php notice 
+
 = 1.3 =
 * Feature: Fontsize Picker for Random Game
 
