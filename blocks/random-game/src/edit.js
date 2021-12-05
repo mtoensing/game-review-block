@@ -11,28 +11,29 @@ export default function Edit( { attributes, setAttributes } ) {
 
     const fontSizes = [
         {
-            name: __( 'Small' ),
-            slug: 'small',
-            size: 12,
-        },
-        {
             name: __( 'Big' ),
             slug: 'big',
-            size: 26,
+            size: 45,
         },
+        {
+            name: __( 'Bigger' ),
+            slug: 'bigger',
+            size: 60,
+        }
+        
     ];
     const fallbackFontSize = 16;
     
     const MyFontSizePicker = () => {
-        const [ fontSize, setFontSize ] = useState( 12 );
-    
+        const [ fontSize, setFontSize ] = useState( 16 );
         return (
             <FontSizePicker
                 fontSizes={ fontSizes }
-                value={ fontSize }
+                value={ attributes.fontsize }
                 fallbackFontSize={ fallbackFontSize }
                 onChange={ ( newFontSize ) => {
                     setFontSize( newFontSize );
+                    setAttributes( { fontsize: newFontSize } );
                 } }
             />
         );
@@ -44,6 +45,7 @@ export default function Edit( { attributes, setAttributes } ) {
         <Panel>
             <PanelBody>
             <PanelRow>
+            <MyFontSizePicker />
             <ToggleControl
                     label={__('Use cache', 'game-review')}
                     help={__('Cache the result for one hour', 'game-review')}
@@ -51,7 +53,6 @@ export default function Edit( { attributes, setAttributes } ) {
                     onChange={ () => setAttributes( {  use_cache: ! attributes.use_cache } ) }
                 />
             </PanelRow>
-            <MyFontSizePicker />
             </PanelBody>
         </Panel>
         </InspectorControls>

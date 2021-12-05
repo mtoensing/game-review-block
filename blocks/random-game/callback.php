@@ -9,11 +9,11 @@ function render_random_game($attributes, $content) {
     if($attributes['use_cache'] == true){
         if ( false === ( $random_game_html = get_transient( 'shortscore_transient_link' ) ) ) {
             // It wasn't there, so regenerate the data and save the transient
-            $random_game_html = getGameLink();
+            $random_game_html = getGameLink($attributes);
             set_transient( 'shortscore_transient_link', $random_game_html, 3600 );
         }
     } else {
-        $random_game_html = getGameLink();
+        $random_game_html = getGameLink($attributes);
     }
 
     $html .= $random_game_html;
@@ -23,14 +23,20 @@ function render_random_game($attributes, $content) {
     return $html;
 }
 
-function getGameLink() {
+function getGameLink($attributes) {
 
     $post = getRandomGame();
+    $fontsizeattr = '';
+
+    if( $attributes["fontsize"] ){
+        $fontsizeattr = 'style="font-size: ' . $attributes["fontsize"] . 'px"';
+    }
+
     $post_id = $post->ID;
     $game_title = get_post_meta( $post_id, '_shortscore_game', true );
 
     if ( $game_title == '' ) {
-    $game_title = get_the_title( $post_id );
+        $game_title = get_the_title( $post_id );
     }
 
     if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
@@ -39,7 +45,7 @@ function getGameLink() {
         $url = get_permalink( $post_id );
     };
 
-    $link = '<a href="' . $url . '">' . $game_title . '</a>';
+    $link = '<a ' . $fontsizeattr . ' href="' . $url . '">' . $game_title . '</a>';
 
     return $link;
 }

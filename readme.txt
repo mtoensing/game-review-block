@@ -2,7 +2,7 @@
 Contributors:      MarcDK
 Tags:              block, review, schema, rating, shortscore
 Tested up to:      5.8.0
-Stable tag:        1.2
+Stable tag:        1.3
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,7 +32,10 @@ Add a review rating block with a score from 1 to 10 to your post. Adds schema.or
 
 == Changelog ==
 
-= 0.1.0 =
+= 1.3 =
+* Feature: Fontsize Picker for Random Game
+
+= 1.0 =
 * Inital release.
 
 == Screenshots ==
