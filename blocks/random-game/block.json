@@ -9,7 +9,7 @@
 	"supports": {
 		"html": false
 	},
-	"description": "Adds a random game.",
+	"description": "Display a single random game.",
 	"attributes": {
 		"use_cache": {
 			"type": "boolean",
