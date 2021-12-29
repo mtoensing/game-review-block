@@ -134,7 +134,7 @@ function getReviewboxHTML(){
 	    'sameAs' => $author_url
 	  ),
 		'publisher' => array (
-			'@type' => 'Organisation',
+			'@type' => 'Organization',
 			'name' => $blogname,
 			'sameAs' => $domain,
 		),
