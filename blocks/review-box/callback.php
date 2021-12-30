@@ -86,7 +86,8 @@ function getReviewboxHTML(){
 	} 
 
 	$permalink = get_permalink($post_id);
-	$date = get_the_date( DateTime::ISO8601 );
+	$date_published = get_the_date( DateTime::ISO8601 );
+	$date_modified = get_the_modified_date( DateTime::ISO8601 );
 	$author_nickname = get_the_author_meta( 'nickname', get_post_field( 'post_author', $post_id ) );
 
 	$html =	'
@@ -104,7 +105,7 @@ function getReviewboxHTML(){
 					<span class="value">' . $rating . '</span>
 				</div>
 				<div class="outof">von <span class="best">10</span></div>
-				<span class="dtreviewed">' . $date . '</span>
+				<span class="dtreviewed">' . $date_published . '</span>
 			</div>
 		</div>
 	</div>';
@@ -136,6 +137,7 @@ function getReviewboxHTML(){
 		'publisher' => array (
 			'@type' => 'Organization',
 			'name' => $blogname,
+			'url' => $domain,
 			'sameAs' => $domain,
 		),
 	  'reviewRating' => array(
@@ -145,7 +147,8 @@ function getReviewboxHTML(){
 	    'worstRating' => '1'
 	  ),
 	  'url' => $permalink,
-	  'datePublished' => $date, // Zulu
+	  'datePublished' => $date_published, // Zulu
+	  'dateModified' => $date_modified,
 	  'description' => $summary,
 		'inLanguage' => $local_code
 	)
