@@ -70,6 +70,98 @@ register_post_meta( 'post', '_shortscore_summary', array(
     }
 ) );
 
+function getPlatformsJSON( $post_id ) {
+	$whitelist = array(
+		"Dreamcast",
+		"Switch",
+		"GameBoy",
+		"iOS",
+		"Android",
+		"GameCube",
+		"Wii",
+		"Super Nintendo",
+		"Mega Drive",
+		"NES",
+		"Vita",
+		"GameBoy",
+		"GBA",
+		"SNES",
+		"PlayStation",
+		"macOS",
+		"Windows",
+		"Xbox",
+		"Xbox 360",
+		"Series X",
+		"Series S",
+		"PC",
+		"PSP"
+	);
+
+	$platforms = array();
+	$tags = wp_get_post_tags($post_id);
+	$i = 0;
+
+	foreach ($tags as $tag) {
+		foreach ($whitelist as $os) {
+			if ( stripos($tag->name,$os) !== false ) {
+				$platforms[ 'operatingSystem' . $i ] = $tag->name;
+				$i++;
+			}
+		}
+	}
+
+	return $platforms;
+
+}
+
+function getGameImageJSON($post_id){
+
+	$img_array = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id) , 'large' ) ;
+ 
+	if ( $img_array OR $img_array != '' ) {
+   
+	   $url = $img_array[0];
+	   $width = $img_array[1];
+	   $height = $img_array[2];
+   
+	} else {
+		return false;
+	}
+	
+	$arr = array(
+		   '@type' => 'ImageObject',
+		   'url' => $url,
+		   'width' => $width,
+		   'height' => $height
+	);
+   
+	return $arr;
+}
+
+function getThemeLogoJSON(){		
+ $img_array = wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ) ) ;
+ 
+ if ( $img_array OR $img_array != '' ) {
+
+	$url = $img_array[0];
+	$width = $img_array[1];
+	$height = $img_array[2];
+
+ } else {
+	 return false;
+ }
+ 
+ $arr = array(
+		'@type' => 'ImageObject',
+	    'url' => $url,
+	    'width' => $width,
+	    'height' => $height
+ );
+
+ return $arr;
+
+}
+
 function getReviewboxHTML(){
 
 	$post_id = get_the_ID();
@@ -116,6 +208,9 @@ function getReviewboxHTML(){
 	$author_url = get_author_posts_url($author_id);
 	$local_code = get_locale();
 	$blogname = get_bloginfo( 'name' );
+	$gameimagejson = getGameImageJSON($post_id);
+	$platforms = getPlatformsJSON($post_id);
+	$logojson = getThemeLogoJSON();
 
 	$arr = array(
 	'@context' => 'https://schema.org',
@@ -125,35 +220,49 @@ function getReviewboxHTML(){
 			'@type' => 'VideoGame',
 			'applicationCategory' => 'Game',
 		),
-	  '@type' => 'Review',
-	  '@id' => $domain.'/?p=' . $post_id,
-	  'name' => $post_title,
-	  'author' => array(
+	  	'@type' => 'Review',
+		'@id' => $domain.'/?p=' . $post_id,
+		'name' => $post_title,
+		'author' => array(
 			'@type' => 'Person',
-	    '@id' => $domain.'/?author=' . $author_id,
-	    'name' => $author_nickname,
-	    'sameAs' => $author_url
-	  ),
+			'@id' => $domain.'/?author=' . $author_id,
+			'name' => $author_nickname,
+			'sameAs' => $author_url
+	  	),
 		'publisher' => array (
 			'@type' => 'Organization',
 			'name' => $blogname,
 			'url' => $domain,
-			'sameAs' => $domain,
+			'sameAs' => $domain
 		),
-	  'reviewRating' => array(
-	    '@type' => 'Rating',
-	    'ratingValue' => $rating,
-	    'bestRating' => '10',
-	    'worstRating' => '1'
-	  ),
-	  'url' => $permalink,
-	  'datePublished' => $date_published, // Zulu
-	  'dateModified' => $date_modified,
-	  'description' => $summary,
+	  	'reviewRating' => array(
+			'@type' => 'Rating',
+			'ratingValue' => $rating,
+			'bestRating' => '10',
+			'worstRating' => '1'
+	  	),
+		'url' => $permalink,
+		'datePublished' => $date_published, // Zulu
+		'dateModified' => $date_modified,
+		'description' => $summary,
 		'inLanguage' => $local_code
 	)
 	);
+
+	if ($platforms) {
+		$arr['@graph']['itemReviewed'] += $platforms;
+	}
+
+	if ($gameimagejson) {
+		$arr['@graph']['itemReviewed']['image'] = $gameimagejson;
+	}
+
+	if ($logojson) {
+		$arr['@graph']['publisher']['logo'] = $logojson;
+	}
+
 	$json = json_encode($arr,JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)."\n";
+	$json = str_replace(["operatingSystem0","operatingSystem1", "operatingSystem2", "operatingSystem3", "operatingSystem4","operatingSystem5","operatingSystem6","operatingSystem7","operatingSystem8"], "operatingSystem", $json);
 	$json_markup = '<script type="application/ld+json">' . $json . '</script>';
 
 	return $html . $json_markup;
