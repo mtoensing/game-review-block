@@ -139,7 +139,7 @@ function getGameImageJSON($post_id){
 }
 
 function getThemeLogoJSON(){		
- $img_array = wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ) ) ;
+ $img_array = wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ), "medium" ) ;
  
  if ( $img_array OR $img_array != '' ) {
 
