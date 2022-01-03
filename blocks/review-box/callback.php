@@ -90,7 +90,6 @@ function getPlatformsJSON( $post_id ) {
 		"macOS",
 		"Windows",
 		"Xbox",
-		"Xbox 360",
 		"Series X",
 		"Series S",
 		"PC",
