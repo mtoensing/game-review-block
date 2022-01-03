@@ -2,7 +2,7 @@
 Contributors:      MarcDK
 Tags:              block, review, schema, rating, shortscore
 Tested up to:      5.8.0
-Stable tag:        1.8
+Stable tag:        1.9
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,8 +32,8 @@ Add a review rating block with a score from 1 to 10 to your post. Adds schema.or
 
 == Changelog ==
 
-= 1.8 =
-* Fix: duplicate operatingSystems in structured data
+= 1.9 =
+* Fix: Correct use of operatingSystems in structured data.
 
 = 1.7 =
 * Feature: added logo, operatingSystem and modifiedDate to structured data.

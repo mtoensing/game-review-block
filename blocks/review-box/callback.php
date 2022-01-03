@@ -103,7 +103,7 @@ function getPlatformsJSON( $post_id ) {
 	foreach ($tags as $tag) {
 		foreach ($whitelist as $os) {
 			if ( stripos($tag->name,$os) !== false ) {
-				$platforms[ 'operatingSystem' . $i ] = $tag->name;
+				$platforms[] = $tag->name;
 				$i++;
 			}
 		}
@@ -249,7 +249,7 @@ function getReviewboxHTML(){
 	);
 
 	if ($platforms) {
-		$arr['@graph']['itemReviewed'] += $platforms;
+		$arr['@graph']['itemReviewed']['operatingSystem'] = $platforms;
 	}
 
 	if ($gameimagejson) {
@@ -261,7 +261,6 @@ function getReviewboxHTML(){
 	}
 
 	$json = json_encode($arr,JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)."\n";
-	$json = str_replace(["operatingSystem0","operatingSystem1", "operatingSystem2", "operatingSystem3", "operatingSystem4","operatingSystem5","operatingSystem6","operatingSystem7","operatingSystem8"], "operatingSystem", $json);
 	$json_markup = '<script type="application/ld+json">' . $json . '</script>';
 
 	return $html . $json_markup;
