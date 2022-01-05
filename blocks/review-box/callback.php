@@ -92,7 +92,6 @@ function getPlatformsJSON( $post_id ) {
 		"Xbox",
 		"Series X",
 		"Series S",
-		"PC",
 		"PSP"
 	);
 
@@ -103,7 +102,7 @@ function getPlatformsJSON( $post_id ) {
 	foreach ($tags as $tag) {
 		foreach ($whitelist as $os) {
 			if ( stripos($tag->name,$os) !== false ) {
-				$platforms[] = $tag->name;
+				$platforms[] = $os;
 				$i++;
 			}
 		}
