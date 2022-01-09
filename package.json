@@ -6,12 +6,10 @@
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
 	"scripts": {
-		"build": "wp-scripts build --entry blocks/review-box/src/review-box.js blocks/random-game/src/random-game.js blocks/game-list/src/game-list.js",
 		"format": "wp-scripts format",
 		"lint:css": "wp-scripts lint-style",
 		"check-engines": "wp-scripts check-engines",
 		"lint:js": "wp-scripts lint-js",
-		"start": "wp-scripts start --entry blocks/review-box/src/review-box.js blocks/random-game/src/random-game.js blocks/game-list/src/game-list.js",
 		"packages-update": "wp-scripts packages-update",
 		"build:review-box": "wp-scripts build blocks/review-box/src/review-box.js --output-path=blocks/review-box/build/",
 		"start:review-box": "wp-scripts start blocks/review-box/src/review-box.js --output-path=blocks/review-box/build/",
