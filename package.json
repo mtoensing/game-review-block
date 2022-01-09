@@ -20,11 +20,11 @@
 		"start:game-list": "wp-scripts start blocks/game-list/src/index.js --output-path=blocks/game-list/build/"
 	},
 	"dependencies": {
-		"@wordpress/block-editor": "^8.0.3",
-		"@wordpress/blocks": "^11.1.4",
-		"@wordpress/i18n": "^4.2.4"
+		"@wordpress/block-editor": ">=11.0.0",
+		"@wordpress/blocks": ">=11.1.4",
+		"@wordpress/i18n": ">=4.2.4"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^19.2.2"
+		"@wordpress/scripts": ">=19.2.2"
 	}
 }
