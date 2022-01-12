@@ -72,27 +72,43 @@ register_post_meta( 'post', '_shortscore_summary', array(
 
 function getPlatformsJSON( $post_id ) {
 	$whitelist = array(
-		"Dreamcast",
-		"Switch",
-		"GameBoy",
-		"iOS",
-		"Android",
-		"GameCube",
-		"Wii",
-		"Super Nintendo",
-		"Mega Drive",
-		"NES",
-		"Vita",
-		"GameBoy",
-		"GBA",
-		"SNES",
-		"PlayStation",
-		"macOS",
-		"Windows",
-		"Xbox",
-		"Series X",
-		"Series S",
-		"PSP"
+		"Dreamcast" => "Sega Dreamcast",
+		"Dreamcast" => "Sega Dreamcast",
+		"Switch" => "Nintendo Switch",
+		"GameBoy" => "GameBoy",
+		"iOS" => "iOS",
+		"Android" => "Android",
+		"GameCube" => "GameCube",
+		"Wii" => "Wii",
+		"Super Nintendo" => "Super Nintendo",
+		"SNES" => "Super Nintendo",
+		"Mega Drive" => "SEGA Mega Drive",
+		"Genesis" => "SEGA Genesis",
+		"NES" => "Nintendo Entertainment System",
+		"Nintendo Entertainment System" => "Nintendo Entertainment System",
+		"Vita" => "PlayStation Vita",
+		"GBA" => "Gameboy Advance",
+		"Gameboy Advance" => "Gameboy Advance",
+		"PlayStation 1" => "PlayStation",
+		"PlayStation 2" => "PlayStation 2",
+		"PlayStation 3" => "PlayStation 3",
+		"PlayStation 4" => "PlayStation 4",
+		"PlayStation 5" => "PlayStation 5",
+		"PSX" => "PlayStation",
+		"PS2" => "PlayStation 2",
+		"PS3" => "PlayStation 3",
+		"PS4" => "PlayStation 4",
+		"PS5" => "PlayStation 5",
+		"PSVR" => "PlayStation VR",
+		"macOS" => "macOS",
+		"Windows" => "Windows",
+		"Steam" => "Windows",
+		"Linux" => "Linux",
+		"Xbox 360" => "Xbox 360",
+		"Series S/X" => "Xbox Series S/X",
+		"Xbox Series" => "Xbox Series S/X",
+		"Xbox" => "Original Xbox",
+		"PSP" => "PlayStation Portable"
 	);
 
 	$platforms = array();
@@ -100,13 +116,15 @@ function getPlatformsJSON( $post_id ) {
 	$i = 0;
 
 	foreach ($tags as $tag) {
-		foreach ($whitelist as $os) {
-			if ( stripos($tag->name,$os) !== false ) {
+		foreach ($whitelist as $system => $os) {
+			if ( (strcasecmp($tag->name, $system) == 0 ) OR ( strcasecmp($tag->name, $os) == 0 )) {
 				$platforms[] = $os;
 				$i++;
 			}
 		}
 	}
+
+	$platforms = array_values(array_unique( $platforms ));
 
 	return $platforms;
 
