@@ -8,7 +8,7 @@ function render_review_box(){
 
 	if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
 
-		/** migration from SHORTSCORE to-do
+		/* migration from SHORTSCORE to-do
 		$result = get_post_meta ( get_the_ID(), '_shortscore_result', true );
 		if ( isset( $result->shortscore ) AND isset( $result->shortscore->summary ) ) {
 
@@ -37,7 +37,7 @@ function render_review_box(){
 		}
 
 		return "";
-		**/
+		*/
 	} else {
 		$html = getReviewboxHTML();
 		return $html;
