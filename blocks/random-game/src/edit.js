@@ -25,14 +25,13 @@ export default function Edit( { attributes, setAttributes } ) {
     const fallbackFontSize = 16;
     
     const MyFontSizePicker = () => {
-        const [ fontSize, setFontSize ] = useState( 16 );
+        const [ fontSize, setFontSize ] = useState( 12 );
         return (
             <FontSizePicker
                 fontSizes={ fontSizes }
                 value={ attributes.fontsize }
                 fallbackFontSize={ fallbackFontSize }
                 onChange={ ( newFontSize ) => {
-                    setFontSize( newFontSize );
                     setAttributes( { fontsize: newFontSize } );
                 } }
             />
@@ -46,6 +45,8 @@ export default function Edit( { attributes, setAttributes } ) {
             <PanelBody>
             <PanelRow>
             <MyFontSizePicker />
+            </PanelRow>
+            <PanelRow>
             <ToggleControl
                     label={__('Use cache', 'game-review')}
                     help={__('Cache the result for one hour', 'game-review')}

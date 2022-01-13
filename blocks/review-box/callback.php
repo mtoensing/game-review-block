@@ -8,7 +8,7 @@ function render_review_box(){
 
 	if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
 
-		/** migration from SHORTSCORE to-do **/
+		/** migration from SHORTSCORE to-do
 		$result = get_post_meta ( get_the_ID(), '_shortscore_result', true );
 		if ( isset( $result->shortscore ) AND isset( $result->shortscore->summary ) ) {
 
@@ -37,6 +37,7 @@ function render_review_box(){
 		}
 
 		return "";
+		**/
 	} else {
 		$html = getReviewboxHTML();
 		return $html;
@@ -228,7 +229,7 @@ function getReviewboxHTML(){
 	$platforms = getPlatformsJSON($post_id);
 	$logojson = getThemeLogoJSON();
 
-	$arr = array(
+	$arr_review = array(
 	'@context' => 'https://schema.org',
 	'@graph' => array(
 		'itemReviewed' => array(
@@ -266,19 +267,42 @@ function getReviewboxHTML(){
 	);
 
 	if ($platforms) {
-		$arr['@graph']['itemReviewed']['operatingSystem'] = $platforms;
+		$arr_review['@graph']['itemReviewed']['operatingSystem'] = $platforms;
 	}
 
 	if ($gameimagejson) {
-		$arr['@graph']['itemReviewed']['image'] = $gameimagejson;
+		$arr_review['@graph']['itemReviewed']['image'] = $gameimagejson;
 	}
 
 	if ($logojson) {
-		$arr['@graph']['publisher']['logo'] = $logojson;
+		$arr_review['@graph']['publisher']['logo'] = $logojson;
 	}
 
-	$json = json_encode($arr,JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)."\n";
-	$json_markup = '<script type="application/ld+json">' . $json . '</script>';
+	$json_review = json_encode($arr_review,JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)."\n";
+	$json_review_markup = '<script type="application/ld+json">' . $json_review . '</script>';
 
-	return $html . $json_markup;
+	$arr_videogame = array(
+		'@context' => 'https://schema.org',
+		'@type' => 'VideoGame',
+		'url' => $permalink,
+		'name' => $game,
+		'applicationCategory' => 'Game',
+		'datePublished' => $date_published, // Zulu
+		'dateModified' => $date_modified,
+		'description' => $summary,
+		'inLanguage' => $local_code
+	);
+
+	if ($gameimagejson) {
+		$arr_videogame['image'] = $gameimagejson;
+	}
+
+	if ($platforms) {
+		$arr_videogame['operatingSystem'] = $platforms;
+	}
+
+	$json_videogame = json_encode($arr_videogame,JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)."\n";
+	$json_videogame_markup = '<script type="application/ld+json">' . $json_videogame . '</script>';
+
+	return $html . $json_review_markup . $json_videogame_markup;
 }
