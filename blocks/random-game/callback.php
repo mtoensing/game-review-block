@@ -6,7 +6,10 @@ function render_random_game($attributes, $content) {
 
     $random_game_html = '';
 
-    if($attributes['use_cache'] == true){
+    $is_backend = defined('REST_REQUEST') && true === REST_REQUEST && 'edit' === filter_input(INPUT_GET, 'context', FILTER_SANITIZE_STRING);
+ 
+
+    if( $attributes['use_cache'] == true && $is_backend == false ){
         if ( false === ( $random_game_html = get_transient( 'shortscore_transient_link' ) ) ) {
             // It wasn't there, so regenerate the data and save the transient
             $random_game_html = getGameLink($attributes);
@@ -27,6 +30,8 @@ function getGameLink($attributes) {
 
     $post = getRandomGame();
     $fontsizeattr = '';
+    $is_backend = defined('REST_REQUEST') && true === REST_REQUEST && 'edit' === filter_input(INPUT_GET, 'context', FILTER_SANITIZE_STRING);
+ 
 
     if( isset($attributes["fontsize"] )){
         $fontsizeattr = 'style="font-size: ' . $attributes["fontsize"] . 'px"';
@@ -39,13 +44,13 @@ function getGameLink($attributes) {
         $game_title = get_the_title( $post_id );
     }
 
-    if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
-        $url = "#";
+    if ( $is_backend == true) {
+        $url = "";
     } else {
         $url = get_permalink( $post_id );
     };
 
-    $link = '<a ' . $fontsizeattr . ' href="' . $url . '">' . $game_title . '</a>';
+    $link = '<a ' . $fontsizeattr . ' href="' . $url . '" target="_self">' . $game_title . '</a>';
 
     return $link;
 }

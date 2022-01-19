@@ -182,6 +182,7 @@ function getThemeLogoJSON(){
 function getReviewboxHTML(){
 
 	$post_id = get_the_ID();
+
 	$summary = "";
 	$rating = 0;
 	$game = "";
