@@ -14,7 +14,7 @@ export default function Edit( { attributes, setAttributes, context: { postType, 
 	const [ meta, setMeta ] = useEntityProp( 'postType', postType, 'meta' );
 
 	if ( !postId && !postType ) {
-		return (<div { ...blockProps  }><p> { __( 'This block will work in a post context.', 'game-review' ) } </p></div>);
+		return (<div { ...blockProps  }><p> { __( 'The review block works only in a post context.', 'game-review' ) } </p></div>);
 	}
 
 	const shortscore_meta = meta[ '_shortscore_rating' ];
