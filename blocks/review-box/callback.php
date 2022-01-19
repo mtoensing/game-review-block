@@ -4,10 +4,12 @@ function savePostMeta( $post_ID, $meta_name, $meta_value ) {
 	add_post_meta( $post_ID, $meta_name, $meta_value, true ) || update_post_meta( $post_ID, $meta_name, $meta_value );
 }
 
-function render_review_box($attributes, $content, $block ){
+function render_review_box($attributes, $content, $block ) {
+
 	if ( ! isset( $block->context['postId'] ) ) {
-        return '';
-    }
+		return '';
+	}
+	
 	if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
 
 		/* migration from SHORTSCORE to-do

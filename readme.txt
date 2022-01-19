@@ -2,7 +2,7 @@
 Contributors:      MarcDK
 Tags:              block, review, schema, rating, shortscore
 Tested up to:      5.8.0
-Stable tag:        2.0.1
+Stable tag:        2.0.2
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
