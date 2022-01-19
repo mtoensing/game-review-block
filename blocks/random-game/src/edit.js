@@ -1,7 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
 import ServerSideRender from '@wordpress/server-side-render';
-import { useState } from '@wordpress/element';
 import { FontSizePicker, ToggleControl,Panel, PanelBody, PanelRow } from '@wordpress/components';
 import { useBlockProps } from '@wordpress/block-editor';
 

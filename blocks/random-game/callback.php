@@ -31,7 +31,6 @@ function getGameLink($attributes) {
     $post = getRandomGame();
     $fontsizeattr = '';
     $is_backend = defined('REST_REQUEST') && true === REST_REQUEST && 'edit' === filter_input(INPUT_GET, 'context', FILTER_SANITIZE_STRING);
- 
 
     if( isset($attributes["fontsize"] )){
         $fontsizeattr = 'style="font-size: ' . $attributes["fontsize"] . 'px"';
@@ -45,14 +44,14 @@ function getGameLink($attributes) {
     }
 
     if ( $is_backend == true) {
-        $url = "";
+        $url = "#void";
     } else {
         $url = get_permalink( $post_id );
     };
 
     $link = '<a ' . $fontsizeattr . ' href="' . $url . '" target="_self">' . $game_title . '</a>';
 
-    return $link;
+    return "<p>" . $link . "</p>";
 }
 
 function getRandomGame() {

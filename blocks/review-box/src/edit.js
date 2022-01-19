@@ -7,17 +7,15 @@ import ServerSideRender from '@wordpress/server-side-render';
 
 import './editor.scss';
 
-export default function Edit( { attributes, setAttributes } ) {
+export default function Edit( { attributes, setAttributes, context: { postType, postId, queryId } } ) {
 
 	const blockProps = useBlockProps();
-	
-	const postType = useSelect(
-		( select ) => select( 'core/editor' ).getCurrentPostType(),
-		[]
-	);
 
 	const [ meta, setMeta ] = useEntityProp( 'postType', postType, 'meta' );
 
+	if ( !postId && !postType ) {
+		return false;
+	}
 	const shortscore_meta = meta[ '_shortscore_rating' ];
 	const game_meta = meta[ '_shortscore_game' ];
 	const summary_meta = meta[ '_shortscore_summary' ];
