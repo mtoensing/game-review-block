@@ -29,6 +29,9 @@ function render_random_game($attributes, $content) {
 function getGameLink($attributes) {
 
     $post = getRandomGame();
+    $post_id = $post->ID;
+    $url = get_permalink( $post_id );
+    $tag = 'a';
     $fontsizeattr = '';
     $is_backend = defined('REST_REQUEST') && true === REST_REQUEST && 'edit' === filter_input(INPUT_GET, 'context', FILTER_SANITIZE_STRING);
 
@@ -36,20 +39,18 @@ function getGameLink($attributes) {
         $fontsizeattr = 'style="font-size: ' . $attributes["fontsize"] . 'px"';
     }
 
-    $post_id = $post->ID;
     $game_title = get_post_meta( $post_id, '_shortscore_game', true );
+
 
     if ( $game_title == '' ) {
         $game_title = get_the_title( $post_id );
     }
 
     if ( $is_backend == true) {
-        $url = "#void";
-    } else {
-        $url = get_permalink( $post_id );
-    };
+        $tag = "span";
+    }
 
-    $link = '<a ' . $fontsizeattr . ' href="' . $url . '" target="_self">' . $game_title . '</a>';
+    $link = '<'.$tag.' ' . $fontsizeattr . ' href="' . $url . '" target="_self">' . $game_title . '</'.$tag.'>';
 
     return "<p>" . $link . "</p>";
 }
