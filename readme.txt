@@ -1,8 +1,9 @@
 === Game Review Block ===
 Contributors:      MarcDK
 Tags:              block, review, schema, rating, shortscore
-Tested up to:      5.8.0
-Stable tag:        2.0.3
+Requires at least: 5.9
+Tested up to:      5.9
+Stable tag:        2.1
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
