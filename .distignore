@@ -5,5 +5,5 @@
 
 .distignore
 .gitignore
-
-npm run packages-update && npm run build:random-game && npm run build:game-list && npm run build:review-box
+.gitattributes
+.editorconfig
