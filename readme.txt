@@ -42,24 +42,10 @@ Add a review rating block with a score from 1 to 10 to your post. Adds schema.or
 = 2.0 =
 * Feature: Videogame Schema
 
-= 1.9 =
-* Fix: Correct use of operatingSystems in structured data.
-
-= 1.7 =
-* Feature: added logo, operatingSystem and modifiedDate to structured data.
-
-= 1.5 =
-* Fix: spelling fixes 
-
-= 1.4 =
-* Fix: php notice 
-
-= 1.3 =
-* Feature: Fontsize Picker for Random Game
-
 = 1.0 =
 * Inital release.
 
 == Screenshots ==
 1. Game Review block in Gutenberg editor.
 2. Game Review block in the theme 
+3. Game Review blocks: game-list, review-box, random-game
