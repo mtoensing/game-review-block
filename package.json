@@ -1,6 +1,6 @@
 {
 	"name": "game-review",
-	"version": "0.1.1",
+	"version": "2.6.0",
 	"description": "Add a review rating block with a score from 1 to 10 to your post. Adds schema.org meta data for Rich Results in search engines.",
 	"author": "Marc Tönsing",
 	"license": "GPL-2.0-or-later",
@@ -19,12 +19,12 @@
 		"start:game-list": "wp-scripts start blocks/game-list/src/index.js --output-path=blocks/game-list/build/"
 	},
 	"dependencies": {
-		"@wordpress/block-editor": "^9.7.0",
-		"@wordpress/blocks": "^11.14.0",
-		"@wordpress/i18n": "^4.15.0",
+		"@wordpress/block-editor": "^10.1.0",
+		"@wordpress/blocks": "^11.17.0",
+		"@wordpress/i18n": "^4.18.0",
 		"markdown-it": "^12.3.2"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^23.7.0"
+		"@wordpress/scripts": "^24.2.0"
 	}
 }

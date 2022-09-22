@@ -3,7 +3,7 @@ Contributors:      MarcDK
 Tags:              block, review, schema, rating, shortscore
 Requires at least: 5.9
 Tested up to:      5.9
-Stable tag:        2.5
+Stable tag:        2.6
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,9 @@ Add a review rating block with a score from 1 to 10 to your post. Adds schema.or
 1. Activate the plugin through the 'Plugins' screen in WordPress
 
 == Changelog ==
+
+= 2.6 = 
+* Better icons
 
 = 2.5 =
 * Feature: Automatic WordPress repository deployment with GitHub actions.
