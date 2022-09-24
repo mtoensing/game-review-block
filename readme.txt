@@ -25,8 +25,7 @@ Add a review rating block with a score from 1 to 10 to your post. Adds schema.or
 * Game List adds a list of all your rated games.
 * Random Game displays a random game title and links it to the coresponding post.
 
-Help and contribute to this plugin on GitHub: https://github.com/mtoensing/game-review-block 
-
+Contribute to this plugin on [GitHub](https://github.com/mtoensing/game-review-block).
 
 == Installation ==
 
