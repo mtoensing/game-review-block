@@ -27,7 +27,7 @@ export default function Edit( {
 					{ ' ' }
 					{ __(
 						'The review block works only in a post context.',
-						'game-review'
+						'game-review-block'
 					) }{ ' ' }
 				</p>
 			</div>
@@ -65,11 +65,14 @@ export default function Edit( {
 
 	function checkStatus() {
 		if ( summaryMeta !== '' && attributes.game !== '' ) {
-			setAttributes( { status: __( 'All done.', 'game-review' ) } );
+			setAttributes( { status: __( 'All done.', 'game-review-block' ) } );
 			setAttributes( { statusicon: 'saved' } );
 		} else {
 			setAttributes( {
-				status: __( 'Please fill out all fields.', 'game-review' ),
+				status: __(
+					'Please fill out all fields.',
+					'game-review-block'
+				),
 			} );
 			setAttributes( { statusicon: 'hidden' } );
 		}
@@ -80,22 +83,22 @@ export default function Edit( {
 			<TextControl
 				onChange={ updateGameMeta }
 				className="game"
-				label={ __( 'Game' ) }
+				label={ __( 'Game title', 'game-review-block' ) }
 				value={ gameMeta }
 				placeholder={ __(
-					'Write the name of the game …',
-					'game-review'
+					'The name of the game.',
+					'game-review-block'
 				) }
 			/>
 
 			<TextareaControl
 				onChange={ updateSummary }
 				className="summary"
-				label={ __( 'Summary' ) }
+				label={ __( 'Summary', 'game-review-block' ) }
 				value={ summaryMeta }
 				placeholder={ __(
-					'Write a short review summary…',
-					'game-review'
+					'A short summary of the review.',
+					'game-review-block'
 				) }
 			/>
 			{ /**
@@ -110,10 +113,10 @@ export default function Edit( {
 					 */ }
 
 			<RangeControl
-				label="Rating"
+				label={ __( 'Rating score', 'game-review-block' ) }
 				help={ __(
 					'Review score from 1 to 10. The higher the better.',
-					'game-review'
+					'game-review-block'
 				) }
 				onChange={ updateShortscoreMeta }
 				min={ 1 }

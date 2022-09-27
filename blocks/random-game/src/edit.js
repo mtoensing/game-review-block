@@ -21,12 +21,12 @@ export default function Edit( { attributes, setAttributes } ) {
 							<FontSizePicker
 								fontSizes={ [
 									{
-										name: __( 'Small' ),
+										name: __( 'Small', 'game-review-block' ),
 										slug: 'small',
 										size: 26,
 									},
 									{
-										name: __( 'Big' ),
+										name: __( 'Big','game-review-block' ),
 										slug: 'big',
 										size: 40,
 									},
@@ -41,10 +41,10 @@ export default function Edit( { attributes, setAttributes } ) {
 						</PanelRow>
 						<PanelRow>
 							<ToggleControl
-								label={ __( 'Use cache', 'game-review' ) }
+								label={ __( 'Use cache', 'game-review-block' ) }
 								help={ __(
 									'Cache the result for one hour',
-									'game-review'
+									'game-review-block'
 								) }
 								checked={ attributes.use_cache }
 								onChange={ () =>

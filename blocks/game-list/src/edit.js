@@ -12,7 +12,7 @@ export default function Edit( { attributes, setAttributes } ) {
 				<ToolbarGroup>
 					<ToolbarButton
 						className="components-icon-button components-toolbar__control"
-						label={ __( 'Update game list', 'game-review' ) }
+						label={ __( 'Update game list', 'game-review-block' ) }
 						onClick={ () =>
 							setAttributes( { updated: Date.now() } )
 						}
