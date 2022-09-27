@@ -3,24 +3,25 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
- .wp-block-game-review-review-box {
-	 
+.wp-block-game-review-review-box {
+
 	padding: 1em;
 
-	input.components-text-control__input[type=text] , textarea {
+	input.components-text-control__input[type="text"],
+	textarea {
 		font-size: 18px;
 	}
 
 	.dashicons {
 		width: 26px;
-    	height: 26px;
-    	font-size: 26px;
+		height: 26px;
+		font-size: 26px;
 	}
 
 	.notice {
 		margin: 0;
 	}
-	
+
 	.text {
 		padding: 2px;
 	}

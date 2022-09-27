@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json.schemastore.org/block.json",
+  "apiVersion": 2,
+  "name": "game-review/random-game",
+  "version": "2.8.0",
+  "title": "Random Game",
+  "category": "widgets",
+  "icon": "randomize",
+  "supports": {
+    "html": false
+  },
+  "description": "Display a single random game.",
+  "attributes": {
+    "use_cache": {
+      "type": "boolean",
+      "default": false
+    },
+    "updated": {
+      "type": "number",
+      "default": 0
+    },
+    "fontsize": {
+      "type": "number"
+    }
+  },
+  "textdomain": "game-review-block",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

@@ -3,7 +3,7 @@ Contributors:      MarcDK
 Tags:              block, review, schema, rating, shortscore
 Requires at least: 5.9
 Tested up to:      6.0
-Stable tag:        2.7
+Stable tag:        2.8
 Requires PHP:      7.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -35,8 +35,8 @@ Contribute to this plugin on [GitHub](https://github.com/mtoensing/game-review-b
 
 == Changelog ==
 
-= 2.7 = 
-* Fixed: Translations
+= 2.8 = 
+* Migration to new Gutenberg coding standards. This breaks translations but will bring them back soon. 
 
 = 2.6 = 
 * Better icons

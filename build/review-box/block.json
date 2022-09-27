@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json.schemastore.org/block.json",
+  "apiVersion": 2,
+  "name": "game-review/review-box",
+  "version": "2.8.0",
+  "title": "Game Review Box",
+  "category": "widgets",
+  "icon": "games",
+  "usesContext": [
+    "postId",
+    "postType",
+    "queryId"
+  ],
+  "description": "Add a review rating block with a score from 1 to 10 to your post. Adds schema.org meta data for Rich Results in search engines.",
+  "supports": {
+    "html": false,
+    "multiple": false
+  },
+  "attributes": {
+    "summary": {
+      "type": "string",
+      "source": "html",
+      "selector": "span.summary"
+    },
+    "game": {
+      "type": "string",
+      "source": "html",
+      "selector": "strong.game"
+    },
+    "rating": {
+      "type": "string",
+      "source": "html",
+      "selector": "span.rating"
+    },
+    "post_url": {
+      "type": "string",
+      "source": "attribute",
+      "selector": "a.score",
+      "attribute": "href"
+    },
+    "status": {
+      "type": "string",
+      "source": "html",
+      "selector": "p.status"
+    },
+    "statusicon": {
+      "type": "string",
+      "default": "hidden"
+    },
+    "use_cache": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "textdomain": "game-review-block",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

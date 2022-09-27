@@ -3,7 +3,7 @@
  * Plugin Name:       Game Review Block	
  * Description:       Add a review rating block with a score from 1 to 10 to your post. Adds schema.org meta data for Rich Results in search engines.
  * Requires PHP:      7.0
- * Version:           2.7
+ * Version:           2.8
  * Author:            Marc Tönsing
  * Author URI: 		  https://marc.tv
  * License:           GPL-2.0-or-later
@@ -13,9 +13,9 @@
  * @package           game-review
  */
 
-require dirname(__FILE__). '/blocks/review-box/callback.php';
-require dirname(__FILE__). '/blocks/random-game/callback.php';
-require dirname(__FILE__). '/blocks/game-list/callback.php';
+require dirname(__FILE__). '/src/review-box/callback.php';
+require dirname(__FILE__). '/src/random-game/callback.php';
+require dirname(__FILE__). '/src/game-list/callback.php';
 
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
@@ -26,15 +26,15 @@ require dirname(__FILE__). '/blocks/game-list/callback.php';
  */
 function game_review_block_init() {
 
-	register_block_type( plugin_dir_path( __FILE__ ) . 'blocks/review-box/',[
+	register_block_type( plugin_dir_path( __FILE__ ) . 'build/review-box/',[
 		'render_callback' => 'render_review_box'
 	] );
 
-	register_block_type( plugin_dir_path( __FILE__ ) . 'blocks/random-game/',[
+	register_block_type( plugin_dir_path( __FILE__ ) . 'build/random-game/',[
 		'render_callback' => 'render_random_game'
 	] );
 
-	register_block_type( plugin_dir_path( __FILE__ ) . 'blocks/game-list/',[
+	register_block_type( plugin_dir_path( __FILE__ ) . 'build/game-list/',[
 		'render_callback' => 'render_game_list'
 	] );
 

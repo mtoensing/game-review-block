@@ -21,12 +21,12 @@ export default function Edit( { attributes, setAttributes } ) {
 							<FontSizePicker
 								fontSizes={ [
 									{
-										name: __( 'Small', 'game-review-block' ),
+										name: 'small',
 										slug: 'small',
 										size: 26,
 									},
 									{
-										name: __( 'Big','game-review-block' ),
+										name: 'big',
 										slug: 'big',
 										size: 40,
 									},
