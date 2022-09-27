@@ -10,7 +10,6 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       game-review-block
  *
- * @package           game-review
  */
 
 require dirname(__FILE__). '/src/review-box/callback.php';
