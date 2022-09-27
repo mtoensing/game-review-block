@@ -35,6 +35,9 @@ Contribute to this plugin on [GitHub](https://github.com/mtoensing/game-review-b
 
 == Changelog ==
 
+= 2.7 = 
+* Fixed: Translations
+
 = 2.6 = 
 * Better icons
 
