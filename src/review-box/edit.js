@@ -130,7 +130,7 @@ export default function Edit( {
 			</p>
 
 			<ServerSideRender
-				block="game-review-block/review-box"
+				block="game-review/review-box"
 				attributes={ attributes }
 			/>
 		</div>
