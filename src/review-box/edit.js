@@ -38,6 +38,7 @@ export default function Edit( {
 	const gameMeta = meta._shortscore_game;
 	const summaryMeta = meta._shortscore_summary;
 	const statusiconAttribute = { icon: attributes.statusicon };
+	const statusClass = 'status notice status_' + attributes.statusicon;
 
 	setAttributes( { game: gameMeta } );
 	setAttributes( { rating: String( shortscoreMeta ) } );
@@ -125,7 +126,7 @@ export default function Edit( {
 				value={ Number( shortscoreMeta ) }
 			/>
 
-			<p className="status notice">
+			<p className= { statusClass } >
 				<Dashicon { ...statusiconAttribute } /> { attributes.status }
 			</p>
 
