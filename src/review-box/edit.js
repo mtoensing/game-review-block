@@ -126,7 +126,7 @@ export default function Edit( {
 				value={ Number( shortscoreMeta ) }
 			/>
 
-			<p className= { statusClass } >
+			<p className={ statusClass }>
 				<Dashicon { ...statusiconAttribute } /> { attributes.status }
 			</p>
 
