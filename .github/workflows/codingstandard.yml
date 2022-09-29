@@ -1,0 +1,25 @@
+name: Coding Standards
+on:
+    pull_request_target:
+        branches:
+            - master
+    push:
+        branches:
+            - master
+        paths-ignore:
+            - '**.md'
+
+    # Allows you to run this workflow manually from the Actions tab
+    workflow_dispatch:
+jobs:
+    tag:
+        name: Lint and build
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@master
+            - name: Build
+              run: |
+                  npm install @wordpress/scripts --save-dev --save-exact @wordpress/scripts
+                  npm run lint-js
+                  npm run lint-css
+                  npm run build
