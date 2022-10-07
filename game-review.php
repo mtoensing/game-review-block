@@ -11,6 +11,8 @@
  * Text Domain:       game-review-block
  */
 
+
+
 require dirname(__FILE__). '/src/review-box/callback.php';
 require dirname(__FILE__). '/src/random-game/callback.php';
 require dirname(__FILE__). '/src/game-list/callback.php';
@@ -39,3 +41,8 @@ function game_review_block_init() {
 }
 
 add_action( 'init', 'game_review_block_init' );
+
+
+
+
+

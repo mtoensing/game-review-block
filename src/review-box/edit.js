@@ -1,4 +1,6 @@
 import { __ } from '@wordpress/i18n';
+import { Component } from "@wordpress/element";
+import apiFetch from "@wordpress/api-fetch";
 import { useBlockProps } from '@wordpress/block-editor';
 import {
 	RangeControl,
@@ -11,13 +13,55 @@ import ServerSideRender from '@wordpress/server-side-render';
 
 import './editor.scss';
 
+
+class PlatformsCheck extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			error: null,
+			isLoaded: false,
+			platforms: [],
+		};
+	}
+	
+	componentDidMount() {
+		try {
+			apiFetch({
+				path: "/wp/v1/platforms", 
+			}).then((platforms) => {
+				this.setState({ platforms, isLoaded: true });
+			});
+		} catch (error) {
+			console.log(error);
+			this.setState({
+				error: error,
+				isLoaded: true,
+			});
+		}
+	}
+
+	render() {
+		const { error, isLoaded, platforms } = this.state;
+		if (error) {
+			return <div>Error: {error.message}</div>;
+		} else if (!isLoaded) {
+			return <div>Loading...</div>;
+		} else {
+			return (
+				<div className={"container"}>
+				  {platforms}
+				</div>
+			);
+		}
+	}
+}
+
 export default function Edit( {
 	attributes,
 	setAttributes,
 	context: { postType, postId },
 } ) {
 	const blockProps = useBlockProps();
-
 	const [ meta, setMeta ] = useEntityProp( 'postType', postType, 'meta' );
 
 	if ( ! postId && ! postType ) {
@@ -129,6 +173,8 @@ export default function Edit( {
 			<p className={ statusClass }>
 				<Dashicon { ...statusiconAttribute } /> { attributes.status }
 			</p>
+
+			<PlatformsCheck />
 
 			<ServerSideRender
 				block="game-review/review-box"

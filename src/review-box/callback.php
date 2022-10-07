@@ -311,3 +311,16 @@ function getReviewboxHTML(){
 
 	return $html . $json_review_markup . $json_videogame_markup;
 }
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'wp/v1', '/platforms', array(
+	  'methods' => 'GET',
+	  'callback' => 'get_game_review_block_platforms'
+	  ));
+  });
+  
+  function get_game_review_block_platforms() {
+	$postID = get_the_ID();
+	$platforms = implode('|',getPlatformsJSON($postID));
+	return "hello World" ;
+  }

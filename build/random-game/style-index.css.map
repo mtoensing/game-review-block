@@ -1,0 +1,1 @@
+{"version":3,"file":"random-game/style-index.css","mappings":";;;AAAA;EACC;AACD,C","sources":["webpack://game-review-block/./src/random-game/style.scss"],"sourcesContent":[".wp-block-random-game a {\n\tline-height: 1.1;\n}\n"],"names":[],"sourceRoot":""}
