@@ -35,6 +35,9 @@ Contribute to this plugin on [GitHub](https://github.com/mtoensing/game-review-b
 
 == Changelog ==
 
+= 3.1 =
+* house-keeping and code updates
+
 = 2.9 = 
 * Migration to new Gutenberg coding standards. This breaks translations but will bring them back soon. 
 * Fixed: automatic build process
