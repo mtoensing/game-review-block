@@ -2,8 +2,8 @@
 Contributors:      MarcDK
 Tags:              block, review, schema, rating, shortscore
 Requires at least: 5.9
-Tested up to:      6.0
-Stable tag:        3.1
+Tested up to:      6.1
+Stable tag:        3.2
 Requires PHP:      7.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -34,6 +34,10 @@ Contribute to this plugin on [GitHub](https://github.com/mtoensing/game-review-b
 1. Activate the plugin through the 'Plugins' screen in WordPress
 
 == Changelog ==
+
+= 3.2 =
+* Better color contrast. Slightly darker blue. 
+* Minor css tweaks. 
 
 = 3.1 =
 * house-keeping and code updates
