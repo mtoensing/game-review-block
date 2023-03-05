@@ -1,6 +1,6 @@
 {
 	"name": "game-review-block",
-	"version": "3.0.0",
+	"version": "3.1.0",
 	"description": "Add a review rating block with a score from 1 to 10 to your post. Adds schema.org meta data for Rich Results in search engines.",
 	"author": "Marc Tönsing",
 	"license": "GPL-2.0-or-later",
@@ -11,20 +11,19 @@
 		"check-engines": "wp-scripts check-engines",
 		"lint:js": "wp-scripts lint-js",
 		"packages-update": "wp-scripts packages-update",
+		"up": "wp-scripts packages-update",
 		"build": "wp-scripts build",
 		"start": "wp-scripts start",
 		"lint-js": "wp-scripts lint-js",
 		"lint-js:fix": "wp-scripts lint-js --fix",
 		"lint-css": "wp-scripts lint-style",
-		"lint-css:fix": "wp-scripts lint-style --fix"
+		"lint-css:fix": "wp-scripts lint-style --fix",
+		"wp-int": "npm install @wordpress/scripts --save-dev --save-exact @wordpress/scripts"
 	},
 	"dependencies": {
-		"@wordpress/block-editor": "^10.1.0",
-		"@wordpress/blocks": "^11.17.0",
-		"@wordpress/i18n": "^4.18.0",
-		"markdown-it": "^12.3.2"
+		"@wordpress/i18n": "^4.28.0"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^24.2.0"
+		"@wordpress/scripts": "^25.5.0"
 	}
 }
