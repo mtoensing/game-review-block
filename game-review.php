@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Game Review Block	
+ * Plugin Name:       Game Review Block
  * Description:       Add a review rating block with a score from 1 to 10 to your post. Adds schema.org meta data for Rich Results in search engines.
  * Requires PHP:      7.0
  * Version:           3.3
@@ -22,20 +22,21 @@ require dirname(__FILE__). '/src/game-list/callback.php';
  *
  * @see https://developer.wordpress.org/block-editor/how-to-guides/block-tutorial/writing-your-first-block-type/
  */
-function game_review_block_init() {
+function game_review_block_init()
+{
 
-	register_block_type( plugin_dir_path( __FILE__ ) . 'build/review-box/',[
-		'render_callback' => 'render_review_box'
-	] );
+    register_block_type(plugin_dir_path(__FILE__) . 'build/review-box/', [
+        'render_callback' => 'render_review_box'
+    ]);
 
-	register_block_type( plugin_dir_path( __FILE__ ) . 'build/random-game/',[
-		'render_callback' => 'render_random_game'
-	] );
+    register_block_type(plugin_dir_path(__FILE__) . 'build/random-game/', [
+        'render_callback' => 'render_random_game'
+    ]);
 
-	register_block_type( plugin_dir_path( __FILE__ ) . 'build/game-list/',[
-		'render_callback' => 'render_game_list'
-	] );
+    register_block_type(plugin_dir_path(__FILE__) . 'build/game-list/', [
+        'render_callback' => 'render_game_list'
+    ]);
 
 }
 
-add_action( 'init', 'game_review_block_init' );
+add_action('init', 'game_review_block_init');
