@@ -3,7 +3,7 @@ Contributors:      MarcDK
 Tags:              block, review, schema, rating, shortscore
 Requires at least: 5.9
 Tested up to:      6.1
-Stable tag:        3.2
+Stable tag:        3.3
 Requires PHP:      7.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -32,31 +32,6 @@ Contribute to this plugin on [GitHub](https://github.com/mtoensing/game-review-b
 
 1. Upload the plugin files to the `/wp-content/plugins/game-review` directory, or install the plugin through the WordPress plugins screen directly.
 1. Activate the plugin through the 'Plugins' screen in WordPress
-
-== Changelog ==
-
-= 3.2 =
-* Better color contrast. Slightly darker blue. 
-* Minor css tweaks. 
-
-= 3.1 =
-* house-keeping and code updates
-
-= 2.9 = 
-* Migration to new Gutenberg coding standards. This breaks translations but will bring them back soon. 
-* Fixed: automatic build process
-
-= 2.6 = 
-* Better icons
-
-= 2.5 =
-* Feature: Automatic WordPress repository deployment with GitHub actions.
-
-= 2.0 =
-* Feature: Videogame Schema
-
-= 1.0 =
-* Inital release.
 
 == Screenshots ==
 1. Game Review block in Gutenberg editor.
