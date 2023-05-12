@@ -111,18 +111,15 @@
 		font-weight: 700;
 		margin: 0 auto;
 		margin-bottom: 0.4em;
-	}
-
-	.shortscore {
 		position: relative;
-	  }
-	  
-	  .value {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-	  }
+
+		.value {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
 
 	.shortscore-1 {
 		background-position: -200px 0;
@@ -186,33 +183,39 @@
 }
 
 @keyframes press {
+
 	0% {
-	  transform: translateY(0);
+		transform: translateY(0);
 	}
+
 	50% {
-	  transform: translateY(3px);
+		transform: translateY(3px);
 	}
+
 	100% {
-	  transform: translateY(0);
+		transform: translateY(0);
 	}
-  }
-  
-  @keyframes pressValue {
+}
+
+@keyframes pressValue {
+
 	0% {
-	  transform: translate(-50%, -50%) translateY(0);
+		transform: translate(-50%, -50%) translateY(0);
 	}
+
 	50% {
-	  transform: translate(-50%, -50%) translateY(4px);
+		transform: translate(-50%, -50%) translateY(4px);
 	}
+
 	100% {
-	  transform: translate(-50%, -50%) translateY(0);
+		transform: translate(-50%, -50%) translateY(0);
 	}
-  }
-  
-  .shortscore.pressed {
+}
+
+.shortscore.pressed {
 	animation: press 0.3s ease-out;
-  }
-  
-  .value.pressed {
+}
+
+.value.pressed {
 	animation: pressValue 0.3s ease-out;
-  }
+}
