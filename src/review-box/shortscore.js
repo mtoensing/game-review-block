@@ -38,7 +38,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 					isAnimating = false; // Set the animation state to 'not running'
 				}, 300 );
 			}
-		}, 100 );
+		}, 200 );
 	};
 
 	// Create an observer
