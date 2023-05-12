@@ -35,6 +35,9 @@ Contribute to this plugin on [GitHub](https://github.com/mtoensing/game-review-b
 
 == Changelog ==
 
+= 3.5 =
+* Added animation to the game review block with vanilla js. 
+
 = 3.4 =
 * Refactoring
 
