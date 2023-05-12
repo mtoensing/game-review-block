@@ -46,6 +46,7 @@ function render_review_box($attributes, $content, $block)
         return "";
         */
     } else {
+        enqueue_frontend();
         $html = getReviewboxHTML();
         return $html;
     };
@@ -187,6 +188,11 @@ function getThemeLogoJSON()
 
     return $arr;
 
+}
+
+
+function enqueue_frontend(){
+    wp_enqueue_script("game-block", plugins_url( '/shortscore.js', __FILE__),'', 1.0, true); 
 }
 
 function getReviewboxHTML()
