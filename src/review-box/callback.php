@@ -229,7 +229,9 @@ function getReviewboxHTML()
 			</p>
 			<div class="rating">
 				<div id="shortscore_value" class="shortscore shortscore-' . floor($rating) . '">
+                <div class="value-wrapper">
 					<span class="value">' . $rating . '</span>
+                </div>
 				</div>
 				<div class="outof">von <span class="best">10</span></div>
 				<span class="dtreviewed">' . $date_published . '</span>
