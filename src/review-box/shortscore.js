@@ -36,7 +36,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 				setTimeout( () => {
 					valueElem.classList.remove( 'pressed' );
 					isAnimating = false; // Set the animation state to 'not running'
-				}, 300 );
+				}, 200 );
 			}
 		}, 200 );
 	};
