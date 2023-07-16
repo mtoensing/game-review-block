@@ -29,8 +29,7 @@ function render_random_game($attributes, $content)
 
 function getGameLink($attributes)
 {
-
-    $post = getRandomGame();
+    $post = getRandomGame($attributes["min_rating"]);
     $post_id = $post->ID;
     $url = get_permalink($post_id);
     $tag = 'a';
@@ -57,15 +56,14 @@ function getGameLink($attributes)
     return "<p>" . $link . "</p>";
 }
 
-function getRandomGame()
+function getRandomGame($min_rating = 1)
 {
-
     $args = array(
     'numberposts' => 1,
     'meta_query'  => [
         [
         'key'     => '_shortscore_rating',
-        'value'   => 1,
+        'value'   => $min_rating,
         'type'    => 'numeric',
         'compare' => '>',
         ],

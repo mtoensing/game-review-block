@@ -10,6 +10,7 @@ import {
 } from '@wordpress/components';
 
 export default function Edit( { attributes, setAttributes } ) {
+
 	const blockProps = useBlockProps();
 
 	return (
@@ -17,6 +18,23 @@ export default function Edit( { attributes, setAttributes } ) {
 			<InspectorControls>
 				<Panel>
 					<PanelBody>
+						<PanelRow>
+							<RangeControl
+								label={ __( 'Minimum Rating score', 'game-review-block' ) }
+								help={ __(
+									'Review score from 1 to 10. The higher the better.',
+									'game-review-block'
+								) }
+								onChange={ () =>
+									setAttributes( {
+										min_rating: ! attributes.min_rating,
+									} ) }
+								min={ 1 }
+								max={ 10 }
+								step={ 1 }
+								value={ Number( attributes.min_rating ) }
+							/>
+						</PanelRow>
 						<PanelRow>
 							<FontSizePicker
 								fontSizes={ [
