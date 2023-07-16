@@ -5,6 +5,7 @@ import {
 	FontSizePicker,
 	ToggleControl,
 	Panel,
+	RangeControl,
 	PanelBody,
 	PanelRow,
 } from '@wordpress/components';
@@ -22,13 +23,14 @@ export default function Edit( { attributes, setAttributes } ) {
 							<RangeControl
 								label={ __( 'Minimum Rating score', 'game-review-block' ) }
 								help={ __(
-									'Review score from 1 to 10. The higher the better.',
+									'Show only games higher than this score.',
 									'game-review-block'
 								) }
-								onChange={ () =>
+								onChange={ ( rating ) =>
 									setAttributes( {
-										min_rating: ! attributes.min_rating,
-									} ) }
+										min_rating: Number( rating ),
+									} )
+								}
 								min={ 1 }
 								max={ 10 }
 								step={ 1 }
