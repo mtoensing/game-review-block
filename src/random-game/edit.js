@@ -11,7 +11,6 @@ import {
 } from '@wordpress/components';
 
 export default function Edit( { attributes, setAttributes } ) {
-
 	const blockProps = useBlockProps();
 
 	return (
@@ -21,7 +20,10 @@ export default function Edit( { attributes, setAttributes } ) {
 					<PanelBody>
 						<PanelRow>
 							<RangeControl
-								label={ __( 'Minimum Rating score', 'game-review-block' ) }
+								label={ __(
+									'Minimum Rating score',
+									'game-review-block'
+								) }
 								help={ __(
 									'Show only games higher than this score.',
 									'game-review-block'
