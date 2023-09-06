@@ -35,6 +35,9 @@ Contribute to this plugin on [GitHub](https://github.com/mtoensing/game-review-b
 
 == Changelog ==
 
+= 3.9.2 =
+* Fixed: Line-break with decimal ratings.
+
 = 3.9.1 =
 * Compatible with WordPress 6.3
 
