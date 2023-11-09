@@ -2,7 +2,7 @@
 	"$schema": "https://json.schemastore.org/block.json",
 	"apiVersion": 2,
 	"name": "game-review/random-game",
-	"version": "3.9.2",
+	"version": "3.9.3",
 	"title": "Random Game",
 	"category": "widgets",
 	"icon": "randomize",

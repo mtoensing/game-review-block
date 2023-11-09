@@ -21,9 +21,9 @@
 		"wp-int": "npm install @wordpress/scripts --save-dev --save-exact @wordpress/scripts"
 	},
 	"dependencies": {
-		"@wordpress/i18n": "^4.41.0"
+		"@wordpress/i18n": "^4.45.0"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^26.12.0"
+		"@wordpress/scripts": "^26.16.0"
 	}
 }
