@@ -7,7 +7,7 @@ function render_random_game($attributes, $content)
 
     $random_game_html = '';
 
-    $is_backend = defined('REST_REQUEST') && true === REST_REQUEST && 'edit' === filter_input(INPUT_GET, 'context', FILTER_SANITIZE_STRING);
+    $is_backend = defined('REST_REQUEST') && true === REST_REQUEST && 'edit' === filter_input(INPUT_GET, 'context');
 
 
     if($attributes['use_cache'] == true && $is_backend == false) {
