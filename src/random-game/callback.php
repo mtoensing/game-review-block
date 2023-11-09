@@ -34,7 +34,7 @@ function getGameLink($attributes)
     $url = get_permalink($post_id);
     $tag = 'a';
     $fontsizeattr = '';
-    $is_backend = defined('REST_REQUEST') && true === REST_REQUEST && 'edit' === filter_input(INPUT_GET, 'context', FILTER_SANITIZE_STRING);
+    $is_backend = defined('REST_REQUEST') && true === REST_REQUEST && 'edit' === filter_input(INPUT_GET, 'context');
 
     if(isset($attributes["fontsize"])) {
         $fontsizeattr = 'style="font-size: ' . $attributes["fontsize"] . 'px"';
