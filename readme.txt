@@ -2,7 +2,7 @@
 Contributors:      MarcDK
 Tags:              block, review, schema, rating, shortscore
 Requires at least: 5.9
-Tested up to:      6.3
+Tested up to:      6.4
 Stable tag:        3.9.3
 Requires PHP:      7.0
 License:           GPL-2.0-or-later
@@ -34,6 +34,10 @@ Contribute to this plugin on [GitHub](https://github.com/mtoensing/game-review-b
 1. Activate the plugin through the 'Plugins' screen in WordPress
 
 == Changelog ==
+
+= 3.9.3 =
+* Tested with WordPress 6.4.
+* Removed deprecated filter function.
 
 = 3.9.2 =
 * Fixed: Line-break with decimal ratings.
