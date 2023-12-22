@@ -14,6 +14,7 @@
 require dirname(__FILE__). '/src/review-box/callback.php';
 require dirname(__FILE__). '/src/random-game/callback.php';
 require dirname(__FILE__). '/src/game-list/callback.php';
+require dirname(__FILE__). '/src/game-table/callback.php';
 
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
@@ -35,6 +36,10 @@ function game_review_block_init()
 
     register_block_type(plugin_dir_path(__FILE__) . 'build/game-list/', [
         'render_callback' => 'render_game_list'
+    ]);
+
+    register_block_type(plugin_dir_path(__FILE__) . 'build/game-table/', [
+        'render_callback' => 'render_game_table'
     ]);
 
 }
