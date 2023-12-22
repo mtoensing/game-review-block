@@ -3,7 +3,7 @@ Contributors:      MarcDK
 Tags:              block, review, schema, rating, shortscore
 Requires at least: 5.9
 Tested up to:      6.4
-Stable tag:        3.9.3
+Stable tag:        4.0.0
 Requires PHP:      7.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -21,7 +21,7 @@ Add a review rating block with a score from 1 to 10 to your post. Adds schema.or
 * schema.org structured data and html microformats are added automatically. 
 * Valid HTML output.
 * Inherits the style and typography of your theme.
-* 3 blocks: Game Review Box, Game List and Random Game. 
+* 4 blocks: Game Review Box, Game List, Game Table and Random Game. 
 * Game Review add your review box.
 * Game List adds a list of all your rated games.
 * Random Game displays a random game title and links it to the coresponding post.
@@ -34,6 +34,9 @@ Contribute to this plugin on [GitHub](https://github.com/mtoensing/game-review-b
 1. Activate the plugin through the 'Plugins' screen in WordPress
 
 == Changelog ==
+
+= 4.0.0 =
+* New: Game Table Block with sorting 
 
 = 3.9.3 =
 * Tested with WordPress 6.4.
