@@ -21,7 +21,7 @@ Add a review rating block with a score from 1 to 10 to your post. Adds schema.or
 * schema.org structured data and html microformats are added automatically. 
 * Valid HTML output.
 * Inherits the style and typography of your theme.
-* 4 blocks: Game Review Box, Game List, Game Table and Random Game. 
+* 4 blocks: Game Review Box, Game List, Game Table and Random Game.
 * Game Review add your review box.
 * Game List adds a list of all your rated games.
 * Random Game displays a random game title and links it to the coresponding post.

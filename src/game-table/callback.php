@@ -21,7 +21,7 @@ function render_game_table($attributes)
         'meta_key'       => '_shortscore_rating',
         'meta_type'      => 'NUMERIC',
         'compare'        => '>=',
-        'posts_per_page' => '300',
+        'posts_per_page' => '1000',
         'order'          => 'DESC',
         'ignore_sticky_posts' => 1
     );
