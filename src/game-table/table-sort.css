@@ -1,7 +1,6 @@
 /* Style for table headers to indicate they are clickable */
 #game-table th {
 	cursor: pointer;
-	background-color: #f4f4f4; /* Light grey background */
 	position: relative;
 	padding-right: 20px; /* Make room for the arrow icon */
 }
