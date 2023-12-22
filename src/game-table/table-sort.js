@@ -61,7 +61,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	}
 
 	// Attach a click event to each of the table headers
-	document.querySelectorAll( '#gameTable th' ).forEach( ( headerCell ) => {
+	document.querySelectorAll( '#game-table th' ).forEach( ( headerCell ) => {
 		headerCell.addEventListener( 'click', () => {
 			const tableElement =
 				headerCell.parentElement.parentElement.parentElement;

@@ -23,7 +23,7 @@ function render_game_table($attributes)
 
     $script = '';
     
-    $html = '<table id="gameTable">';
+    $html = '<table id="game-table">';
 
     // Add table headers
     $html .= '<thead><tr><th class="th-sort-desc">Rating</th><th class="th-sort-desc">Game</th><th class="th-sort-desc">Publish Date</th></tr></thead><tbody>';
