@@ -1,7 +1,19 @@
 <?php
 
 function render_game_table($attributes)
-{
+{   
+    $alignclass = !empty($attributes['align']) ? 'align' . $attributes['align'] : '';
+    $className = !empty($attributes['className']) ? strip_tags($attributes['className']) : '';
+    $html_class = '';
+
+    if (!empty($alignclass)) {
+        $html_class .= " $alignclass";
+    }
+
+    if (!empty($className)) {
+        $html_class .= " $className";
+    }
+
     // Arguments for WP_Query
     $args = array(
         'post_type'      => 'post',
@@ -23,7 +35,7 @@ function render_game_table($attributes)
 
     $script = '';
     
-    $html = '<table id="game-table">';
+    $html = "<table width=\"100%\" class=\"$html_class\" id=\"game-table\">";
 
     // Add table headers
     $html .= '<thead><tr><th class="th-sort-desc">Rating</th><th class="th-sort-desc">Game</th><th class="th-sort-desc">Publish Date</th></tr></thead><tbody>';
@@ -34,13 +46,14 @@ function render_game_table($attributes)
         $post_id = get_the_ID();
         $game = get_post_meta($post_id, '_shortscore_game', true);
         $current_rating = get_post_meta($post_id, "_shortscore_rating", true);
-        $publish_date = get_the_date('Y-m-d', $post_id); // Format date as desired
+        $publish_date = get_the_date('', $post_id); 
+        $publish_date_unix = get_the_date('U', $post_id); // Format date as desired
         $url = get_permalink($post_id);
 
         // Check if game name is not empty and current rating is greater than 0
         if (($game != '') and $current_rating > 0) {
             // Add a row to the table for each game
-            $html .= "<tr><td>" . $current_rating . "/10</td><td><a href='" . $url . "'>" . $game . "</a></td><td>" . $publish_date . "</td></tr>";
+            $html .= "<tr><td>" . $current_rating . "/10</td><td><a href='" . $url . "'>" . $game . "</a></td><td data-time=" . $publish_date_unix . ">" . $publish_date . "</td></tr>";
         }
     endwhile;
 

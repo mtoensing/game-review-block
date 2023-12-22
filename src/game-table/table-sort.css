@@ -27,3 +27,7 @@
 	margin-bottom: -2px;
 	border-top-color: #333; /* Dark arrow at the top */
 }
+
+#game-table td:first-child {
+    text-align: center;
+}
