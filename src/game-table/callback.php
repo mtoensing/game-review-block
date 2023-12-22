@@ -26,7 +26,7 @@ function render_game_table($attributes)
     $html = '<table id="gameTable">';
 
     // Add table headers
-    $html .= "<thead><tr><th>Rating</th><th>Game</th><th>Publish Date</th></tr></thead><tbody>";
+    $html .= '<thead><tr><th class="th-sort-desc">Rating</th><th class="th-sort-desc">Game</th><th class="th-sort-desc">Publish Date</th></tr></thead><tbody>';
 
     // Loop through the posts
     while ($the_query->have_posts()) :
