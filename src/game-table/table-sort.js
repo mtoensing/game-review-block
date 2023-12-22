@@ -1,16 +1,24 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Function to sort table
     function sortTable(table, column, asc = true) {
         const dirModifier = asc ? 1 : -1;
         const tBody = table.tBodies[0];
         const rows = Array.from(tBody.querySelectorAll('tr'));
 
-        // Sort each row
         const sortedRows = rows.sort((a, b) => {
             const aColText = a.querySelector(`td:nth-child(${ column + 1 })`).textContent.trim();
             const bColText = b.querySelector(`td:nth-child(${ column + 1 })`).textContent.trim();
 
-            return aColText > bColText ? (1 * dirModifier) : (-1 * dirModifier);
+            // Check if the columns are ratings (with '/10') or dates (formatted as 'YYYY-MM-DD')
+            if (aColText.includes('/10') && bColText.includes('/10')) {
+                // Extract and compare numeric values for ratings
+                return (parseFloat(aColText) - parseFloat(bColText)) * dirModifier;
+            } else if (!isNaN(Date.parse(aColText)) && !isNaN(Date.parse(bColText))) {
+                // Compare dates
+                return (new Date(aColText) - new Date(bColText)) * dirModifier;
+            } else {
+                // Default to string comparison
+                return aColText.localeCompare(bColText, undefined, {numeric: true, sensitivity: 'base'}) * dirModifier;
+            }
         });
 
         // Remove all existing TRs from the table
