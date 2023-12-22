@@ -38,7 +38,7 @@ function render_game_table($attributes)
     $html = "<table width=\"100%\" class=\"$html_class\" id=\"game-table\">";
 
     // Add table headers
-    $html .= '<thead><tr><th class="th-sort-desc">' . __( 'Rating', 'game-review-block' ) . '</th><th class="th-sort-desc">' . __( 'Game Title', 'game-review-block' ) . '</th><th class="th-sort-desc">' . __( 'Review published', 'game-review-block' ) . '</th></tr></thead><tbody>';
+    $html .= '<thead><tr><th class="th-sort-desc">' . __( 'Rating', 'game-review-block' ) . '</th><th class="th-sort-desc">' . __( 'Game title', 'game-review-block' ) . '</th><th class="th-sort-desc">' . __( 'Review published', 'game-review-block' ) . '</th></tr></thead><tbody>';
 
     // Loop through the posts
     while ($the_query->have_posts()) :
