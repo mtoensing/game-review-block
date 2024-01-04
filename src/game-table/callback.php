@@ -39,7 +39,7 @@ function render_game_table($attributes)
 
     // Add table headers
     $html .= '<thead><tr><th class="th-sort-desc">' . __( 'Rating', 'game-review-block' ) . '</th><th class="th-sort-desc">' . __( 'Game title', 'game-review-block' ) . '</th><th class="th-sort-desc">' . __( 'Review published', 'game-review-block' ) . '</th></tr></thead><tbody>';
-
+    $count = 0;
     // Loop through the posts
     while ($the_query->have_posts()) :
         $the_query->the_post();
@@ -52,10 +52,13 @@ function render_game_table($attributes)
 
         // Check if game name is not empty and current rating is greater than 0
         if (($game != '') and $current_rating > 0) {
+            $count++;
             // Add a row to the table for each game
             $html .= "<tr><td>" . $current_rating . "/10</td><td><a href='" . $url . "'>" . $game . "</a></td><td data-time=" . $publish_date_unix . ">" . $publish_date . "</td></tr>";
         }
     endwhile;
+
+    $html .= "\n</ul><!-- Count: ". $count . " -->\n";
 
     // Close the table tags
     $html .= "</tbody></table>";
