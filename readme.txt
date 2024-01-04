@@ -35,6 +35,9 @@ Contribute to this plugin on [GitHub](https://github.com/mtoensing/game-review-b
 
 == Changelog ==
 
+= 4.0.3 = 
+* Blocks have better names
+
 = 4.0.0 =
 * New: Game Table Block with sorting 
 
