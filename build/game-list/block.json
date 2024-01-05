@@ -3,7 +3,7 @@
   "apiVersion": 2,
   "name": "game-review/game-list",
   "version": "4.0.3",
-  "title": "Game Review List",
+  "title": "Game List",
   "category": "widgets",
   "icon": "editor-ol",
   "supports": {
