@@ -2,8 +2,8 @@
 	"$schema": "https://json.schemastore.org/block.json",
 	"apiVersion": 2,
 	"name": "game-review/game-list",
-	"version": "4.0.3",
-	"title": "Game List",
+	"version": "4.0.7",
+	"title": "Game Review List",
 	"category": "widgets",
 	"icon": "editor-ol",
 	"supports": {

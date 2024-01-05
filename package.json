@@ -1,6 +1,6 @@
 {
 	"name": "game-review-block",
-	"version": "4.0.5",
+	"version": "4.0.7",
 	"description": "Add a review rating block with a score from 1 to 10 to your post. Adds schema.org meta data for Rich Results in search engines.",
 	"author": "Marc Tönsing",
 	"license": "GPL-2.0-or-later",

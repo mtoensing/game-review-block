@@ -40,26 +40,6 @@ export default function Edit( { attributes, setAttributes } ) {
 							/>
 						</PanelRow>
 						<PanelRow>
-							<FontSizePicker
-								fontSizes={ [
-									{
-										name: 'small',
-										slug: 'small',
-										size: 26,
-									},
-									{
-										name: 'big',
-										slug: 'big',
-										size: 40,
-									},
-								] }
-								value={ parseInt( attributes.fontsize ) }
-								fallbackFontSize={ 26 }
-								onChange={ ( newFontSize ) =>
-									setAttributes( { fontsize: newFontSize } )
-								}
-								withSlider
-							/>
 						</PanelRow>
 						<PanelRow>
 							<ToggleControl
