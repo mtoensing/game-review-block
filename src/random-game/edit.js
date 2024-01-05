@@ -2,7 +2,6 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import ServerSideRender from '@wordpress/server-side-render';
 import {
-	FontSizePicker,
 	ToggleControl,
 	Panel,
 	RangeControl,
@@ -39,8 +38,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								value={ Number( attributes.min_rating ) }
 							/>
 						</PanelRow>
-						<PanelRow>
-						</PanelRow>
+						<PanelRow></PanelRow>
 						<PanelRow>
 							<ToggleControl
 								label={ __( 'Use cache', 'game-review-block' ) }
