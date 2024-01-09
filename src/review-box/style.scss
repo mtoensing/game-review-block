@@ -9,6 +9,18 @@
 
 	padding: 2px;
 
+	.shortscore-title {
+		color: #108d4f;
+		text-align: center;
+		margin-bottom: 1em;
+
+		a {
+			color: #108d4f;
+			border: none;
+			text-decoration: none;
+		}
+	}
+
 	.text {
 
 		padding: 0.5em 0.5em 0.6em;
@@ -22,23 +34,17 @@
 			text-decoration: none;
 		}
 
+		a:hover,
+		a:active {
+			color: #fff;
+			text-decoration: underline;
+		}
+
 		.item {
 
 			.fn {
 				font-weight: 700;
 			}
-		}
-	}
-
-	.shortscore-title {
-		color: #108d4f;
-		text-align: center;
-		margin-bottom: 1em;
-
-		a {
-			color: #108d4f;
-			border: none;
-			text-decoration: none;
 		}
 	}
 
@@ -98,11 +104,14 @@
 		* {
 			user-select: none;
 		}
+
 		background-repeat: no-repeat;
 		background-position: -400px -600px;
 		background-size: 600px;
 		background-image: url(assets/shortscore-600x800.png?v=1.0);
-		background-image: url(assets/shortscore.svg?v=1.0), linear-gradient(transparent, transparent);
+		background-image:
+			url(assets/shortscore.svg?v=1.0),
+			linear-gradient(transparent, transparent);
 		text-align: center;
 		width: 200px;
 		height: 200px;
@@ -169,7 +178,8 @@
 	color: #707070;
 }
 
-@media only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+@media only screen and (min-resolution: 192dpi),
+	only screen and (min-resolution: 2dppx) {
 
 	html {
 
