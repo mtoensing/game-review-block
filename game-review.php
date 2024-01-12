@@ -3,7 +3,7 @@
  * Plugin Name:       Game Review Block
  * Description:       Add a review rating block with a score from 1 to 10 to your post. Adds schema.org meta data for Rich Results in search engines.
  * Requires PHP:      7.0
- * Version:           4.1.0
+ * Version:           4.2.0
  * Author:            Marc Tönsing
  * Author URI: 		  https://toensing.com
  * License:           GPL-2.0-or-later
