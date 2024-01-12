@@ -35,7 +35,7 @@ Contribute to this plugin on [GitHub](https://github.com/mtoensing/game-review-b
 
 == Changelog ==
 
-= 4.1 =
+= 4.2 =
 * CSS fix for link color on hover.
 
 = 4.0.7 = 
