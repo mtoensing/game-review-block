@@ -1,6 +1,5 @@
 <?php
 
-
 function render_game_list($attributes)
 {
     $args = array(
