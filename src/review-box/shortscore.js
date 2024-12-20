@@ -14,7 +14,9 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
 	// Function to run the animation
 	const animateScore = () => {
-		if ( isAnimating ) return; // Ignore clicks if the animation is running
+		if ( isAnimating ) {
+			return;
+		} // Ignore clicks if the animation is running
 
 		isAnimating = true; // Set the animation state to 'running'
 		let currentScore = 0;
