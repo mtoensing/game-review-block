@@ -2,8 +2,8 @@
 Contributors:      MarcDK
 Tags:              block, review, schema, rating, shortscore
 Requires at least: 5.9
-Tested up to:      6.4
-Stable tag:        4.3.0
+Tested up to:      6.7
+Stable tag:        4.3.1
 Requires PHP:      7.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -36,7 +36,8 @@ Contribute to this plugin on [GitHub](https://github.com/mtoensing/game-review-b
 == Changelog ==
 
 = 4.3 =
-* Added sorting urls to review table
+* Added sorting urls to review table.
+* Tested with recent WordPress version.
 
 = 4.2 =
 * CSS fix for link color on hover.
