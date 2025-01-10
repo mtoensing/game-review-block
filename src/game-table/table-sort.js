@@ -1,132 +1,83 @@
-document.addEventListener( 'DOMContentLoaded', function () {
-	function sortTable( table, column, asc = true ) {
+document.addEventListener('DOMContentLoaded', function () {
+	// Cache the table and headers
+	const table = document.querySelector('#game-table');
+	if (!table) return; // Exit early if no table exists
+
+	const headers = Array.from(table.querySelectorAll('th'));
+	const tBody = table.tBodies[0];
+	let rows = Array.from(tBody.querySelectorAll('tr'));
+
+	// Avoid recalculating the column map repeatedly
+	const columnMap = { rating: 0, title: 1, date: 2 };
+
+	function sortTable(column, asc) {
 		const dirModifier = asc ? 1 : -1;
-		const tBody = table.tBodies[ 0 ];
-		const rows = Array.from( tBody.querySelectorAll( 'tr' ) );
 
-		// New sorting logic
-		const sortedRows = rows.sort( ( a, b ) => {
-			const aColTime = a
-				.querySelector( `td:nth-child(${ column + 1 })` )
-				.getAttribute( 'data-time' );
-			const bColTime = b
-				.querySelector( `td:nth-child(${ column + 1 })` )
-				.getAttribute( 'data-time' );
+		// Sort rows in-place for less memory allocation
+		rows.sort((a, b) => {
+			const aCell = a.cells[column];
+			const bCell = b.cells[column];
 
-			if ( aColTime && bColTime ) {
-				return (
-					( parseInt( aColTime ) - parseInt( bColTime ) ) *
-					dirModifier
-				);
+			const aColTime = aCell?.getAttribute('data-time');
+			const bColTime = bCell?.getAttribute('data-time');
+
+			if (aColTime && bColTime) {
+				return (parseInt(aColTime) - parseInt(bColTime)) * dirModifier;
 			}
 
-			const aColText = a
-				.querySelector( `td:nth-child(${ column + 1 })` )
-				.textContent.trim();
-			const bColText = b
-				.querySelector( `td:nth-child(${ column + 1 })` )
-				.textContent.trim();
-			return (
-				aColText.localeCompare( bColText, undefined, {
-					numeric: true,
-					sensitivity: 'base',
-				} ) * dirModifier
-			);
-		} );
+			const aColText = aCell.textContent.trim().toLowerCase();
+			const bColText = bCell.textContent.trim().toLowerCase();
+			return aColText.localeCompare(bColText, undefined, { numeric: true }) * dirModifier;
+		});
 
-		while ( tBody.firstChild ) {
-			tBody.removeChild( tBody.firstChild );
-		}
-
-		tBody.append( ...sortedRows );
-
-		table
-			.querySelectorAll( 'th' )
-			.forEach( ( th ) =>
-				th.classList.remove( 'th-sort-asc', 'th-sort-desc' )
-			);
-		table
-			.querySelector( `th:nth-child(${ column + 1 })` )
-			.classList.toggle( 'th-sort-asc', asc );
-		table
-			.querySelector( `th:nth-child(${ column + 1 })` )
-			.classList.toggle( 'th-sort-desc', ! asc );
+		// Re-attach rows with minimal DOM operations
+		const fragment = document.createDocumentFragment();
+		rows.forEach((row) => fragment.appendChild(row));
+		tBody.replaceChildren(fragment); // Fastest way to replace children
 	}
 
-	function updateURLParameter( param, value ) {
-		const url = new URL( window.location );
-		url.searchParams.set( param, value );
-		window.history.replaceState( {}, '', url );
+	function updateHeaderClasses(index, asc) {
+		headers.forEach((header, i) => {
+			header.classList.toggle('th-sort-asc', i === index && asc);
+			header.classList.toggle('th-sort-desc', i === index && !asc);
+		});
+	}
+
+	function updateURLParameter(param, value) {
+		const url = new URL(window.location);
+		url.searchParams.set(param, value);
+		window.history.replaceState({}, '', url);
 	}
 
 	function getSortParams() {
-		const urlParams = new URLSearchParams( window.location.search );
-		const columnName = urlParams.get( 'column' );
-		const order = urlParams.get( 'order' ) === 'asc';
-
-		let column;
-		switch ( columnName ) {
-			case 'rating':
-				column = 0;
-				break;
-			case 'title':
-				column = 1;
-				break;
-			case 'date':
-				column = 2;
-				break;
-			default:
-				column = NaN;
-		}
-
-		return { column, order };
+		const urlParams = new URLSearchParams(window.location.search);
+		const columnName = urlParams.get('column');
+		return { column: columnMap[columnName] ?? NaN, order: urlParams.get('order') === 'asc' };
 	}
 
 	function initTableSort() {
-		const table = document.querySelector( '#game-table' );
 		const { column, order } = getSortParams();
-
-		if ( ! isNaN( column ) ) {
-			sortTable( table, column, order );
+		if (!isNaN(column)) {
+			sortTable(column, order);
+			updateHeaderClasses(column, order);
 		}
 
-		document
-			.querySelectorAll( '#game-table th' )
-			.forEach( ( headerCell, index ) => {
-				headerCell.addEventListener( 'click', () => {
-					const tableElement =
-						headerCell.parentElement.parentElement.parentElement;
-					const headerIndex = index;
-					const currentIsAscending =
-						headerCell.classList.contains( 'th-sort-asc' );
+		headers.forEach((headerCell, index) => {
+			headerCell.addEventListener('click', () => {
+				const isAscending = headerCell.classList.contains('th-sort-asc');
+				const newIsAscending = !isAscending;
 
-					const newIsAscending = ! currentIsAscending;
+				// Perform sorting and updates
+				sortTable(index, newIsAscending);
+				updateHeaderClasses(index, newIsAscending);
 
-					// Update table sorting
-					sortTable( tableElement, headerIndex, newIsAscending );
-
-					// Map column index to name
-					let columnName;
-					switch ( headerIndex ) {
-						case 0:
-							columnName = 'rating';
-							break;
-						case 1:
-							columnName = 'title';
-							break;
-						default:
-							columnName = 'date';
-					}
-
-					// Update the URL with sort parameters
-					updateURLParameter( 'column', columnName );
-					updateURLParameter(
-						'order',
-						newIsAscending ? 'asc' : 'desc'
-					);
-				} );
-			} );
+				// Update URL parameters
+				const columnName = Object.keys(columnMap).find((key) => columnMap[key] === index);
+				updateURLParameter('column', columnName);
+				updateURLParameter('order', newIsAscending ? 'asc' : 'desc');
+			});
+		});
 	}
 
 	initTableSort();
-} );
+});
