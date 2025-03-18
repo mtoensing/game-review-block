@@ -48,7 +48,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	function updateHeaderClasses( index, asc ) {
 		headers.forEach( ( header, i ) => {
 			header.classList.toggle( 'th-sort-asc', i === index && asc );
-			header.classList.toggle( 'th-sort-desc', i === index && ! asc );
+			header.classList.toggle( 'th-sort-desc', i === index && (!asc || (index === columnMap.rating && isNaN(getSortParams().column))));
 		} );
 	}
 
@@ -68,11 +68,18 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	}
 
 	function initTableSort() {
-		const { column, order } = getSortParams();
-		if ( ! isNaN( column ) ) {
-			sortTable( column, order );
-			updateHeaderClasses( column, order );
+		let { column, order } = getSortParams();
+
+		// Falls keine URL-Parameter gesetzt sind, standardmäßig erste Spalte (`rating`) mit `desc` sortieren
+		if ( isNaN( column ) ) {
+			column = columnMap.rating;
+			order = false; // Standardmäßig `desc`
+			updateURLParameter( 'column', 'rating' );
+			updateURLParameter( 'order', 'desc' );
 		}
+
+		sortTable( column, order );
+		updateHeaderClasses( column, order ); // Korrekte Initialisierung der Header-Klassen
 
 		headers.forEach( ( headerCell, index ) => {
 			headerCell.addEventListener( 'click', () => {
