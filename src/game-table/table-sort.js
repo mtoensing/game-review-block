@@ -48,7 +48,13 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	function updateHeaderClasses( index, asc ) {
 		headers.forEach( ( header, i ) => {
 			header.classList.toggle( 'th-sort-asc', i === index && asc );
-			header.classList.toggle( 'th-sort-desc', i === index && (!asc || (index === columnMap.rating && isNaN(getSortParams().column))));
+			header.classList.toggle(
+				'th-sort-desc',
+				i === index &&
+					( ! asc ||
+						( index === columnMap.rating &&
+							isNaN( getSortParams().column ) ) )
+			);
 		} );
 	}
 
