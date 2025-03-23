@@ -11,10 +11,10 @@ import {
 } from '@wordpress/components';
 
 export default function Edit( { attributes, setAttributes } ) {
-	const blockProps = useBlockProps();
+	const blockProps = useBlockProps( { tagName: 'p' } );
 
 	return (
-		<div { ...blockProps }>
+		<p { ...blockProps }>
 			<InspectorControls>
 				<Panel>
 					<PanelBody>
@@ -95,6 +95,6 @@ export default function Edit( { attributes, setAttributes } ) {
 				block="game-review/random-game"
 				attributes={ attributes }
 			/>
-		</div>
+		</p>
 	);
 }

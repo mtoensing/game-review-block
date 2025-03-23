@@ -3,7 +3,7 @@
 function render_random_game($attributes, $content)
 {
 
-    $html = '<div class="wp-block-random-game"><div class="random-game-inline">';
+    $html = '<p class="wp-block-random-game">';
 
     $random_game_html = '';
 
@@ -23,13 +23,13 @@ function render_random_game($attributes, $content)
         $html .= '<span class="random-game-prefix">' . esc_html($attributes['prefix']) . '</span>';
     }
 
-    $html .= $random_game_html;
+    $html .= '<span class="random-game-link">' . $random_game_html . '</span>';
 
     if (!empty($attributes['postfix'])) {
         $html .= '<span class="random-game-postfix">' . esc_html($attributes['postfix']) . '</span>';
     }
 
-    $html .= '</div></div>';
+    $html .= '</p>';
 
     return $html;
 }

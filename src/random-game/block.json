@@ -7,7 +7,20 @@
 	"category": "widgets",
 	"icon": "randomize",
 	"supports": {
-		"html": false
+		"html": false,
+		"align": true,
+		"color": {
+			"text": true,
+			"background": true
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
 	},
 	"description": "Display a single random game.",
 	"attributes": {
