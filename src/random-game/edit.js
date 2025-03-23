@@ -14,7 +14,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	const blockProps = useBlockProps( { tagName: 'p' } );
 
 	return (
-		<p { ...blockProps }>
+		<>
 			<InspectorControls>
 				<Panel>
 					<PanelBody>
@@ -39,7 +39,6 @@ export default function Edit( { attributes, setAttributes } ) {
 								value={ Number( attributes.min_rating ) }
 							/>
 						</PanelRow>
-						<PanelRow></PanelRow>
 						<PanelRow>
 							<ToggleControl
 								label={ __( 'Use cache', 'game-review-block' ) }
@@ -95,6 +94,6 @@ export default function Edit( { attributes, setAttributes } ) {
 				block="game-review/random-game"
 				attributes={ attributes }
 			/>
-		</p>
+		</>
 	);
 }

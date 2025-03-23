@@ -1,15 +1,13 @@
 <?php
 
-function render_random_game($attributes, $content)
+function render_random_game($attributes)
 {
-
     $html = '<p class="wp-block-random-game">';
-
     $random_game_html = '';
 
     $is_backend = defined('REST_REQUEST') && true === REST_REQUEST && 'edit' === filter_input(INPUT_GET, 'context');
 
-    if($attributes['use_cache'] == true && $is_backend == false) {
+    if ($attributes['use_cache'] === true && !$is_backend) {
         if (false === ($random_game_html = get_transient('shortscore_transient_link'))) {
             // It wasn't there, so regenerate the data and save the transient
             $random_game_html = getGameLink($attributes);
@@ -40,24 +38,19 @@ function getGameLink($attributes)
     $post_id = $post->ID;
     $url = get_permalink($post_id);
     $tag = 'a';
-    $fontsizeattr = '';
     $is_backend = defined('REST_REQUEST') && true === REST_REQUEST && 'edit' === filter_input(INPUT_GET, 'context');
-
-    if(isset($attributes["fontsize"])) {
-        $fontsizeattr = 'style="font-size: ' . $attributes["fontsize"] . 'px"';
-    }
 
     $game_title = get_post_meta($post_id, '_shortscore_game', true);
 
-    if ($game_title == '') {
+    if ($game_title === '') {
         $game_title = get_the_title($post_id);
     }
 
-    if ($is_backend == true) {
+    if ($is_backend) {
         $tag = "span";
     }
 
-    $link = '<'.$tag.' ' . $fontsizeattr . ' href="' . $url . '" target="_self">' . $game_title . '</'.$tag.'>';
+    $link = '<' . $tag . ' href="' . $url . '" target="_self">' . $game_title . '</' . $tag . '>';
 
     return $link;
 }
@@ -65,16 +58,16 @@ function getGameLink($attributes)
 function getRandomGame($min_rating = 1)
 {
     $args = array(
-    'numberposts' => 1,
-    'meta_query'  => [
-        [
-        'key'     => '_shortscore_rating',
-        'value'   => $min_rating,
-        'type'    => 'numeric',
-        'compare' => '>',
+        'numberposts' => 1,
+        'meta_query'  => [
+            [
+                'key'     => '_shortscore_rating',
+                'value'   => $min_rating,
+                'type'    => 'numeric',
+                'compare' => '>',
+            ],
         ],
-    ],
-    'orderby'     => 'rand'
+        'orderby'     => 'rand'
     );
 
     $games = get_posts($args);
