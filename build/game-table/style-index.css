@@ -1,1 +1,1 @@
-#game-table td{padding:.5em}
+#game-table td{padding:.5em}#game-table th{cursor:pointer;-webkit-user-select:none;-moz-user-select:none;user-select:none}#game-table th.th-sort-asc,#game-table th.th-sort-desc,#game-table th:active,#game-table th:hover{background-color:#000;color:#fff}#game-table th.th-sort-asc:after{border-bottom-color:#fff}#game-table th.th-sort-desc:after{border-top-color:#fff}

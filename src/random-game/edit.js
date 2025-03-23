@@ -7,6 +7,7 @@ import {
 	RangeControl,
 	PanelBody,
 	PanelRow,
+	TextControl,
 } from '@wordpress/components';
 
 export default function Edit( { attributes, setAttributes } ) {
@@ -51,6 +52,38 @@ export default function Edit( { attributes, setAttributes } ) {
 									setAttributes( {
 										use_cache: ! attributes.use_cache,
 									} )
+								}
+							/>
+						</PanelRow>
+						<PanelRow>
+							<TextControl
+								label={ __(
+									'Prefix Text',
+									'game-review-block'
+								) }
+								help={ __(
+									'Text to display before the random game.',
+									'game-review-block'
+								) }
+								value={ attributes.prefix }
+								onChange={ ( value ) =>
+									setAttributes( { prefix: value } )
+								}
+							/>
+						</PanelRow>
+						<PanelRow>
+							<TextControl
+								label={ __(
+									'Postfix Text',
+									'game-review-block'
+								) }
+								help={ __(
+									'Text to display after the random game.',
+									'game-review-block'
+								) }
+								value={ attributes.postfix }
+								onChange={ ( value ) =>
+									setAttributes( { postfix: value } )
 								}
 							/>
 						</PanelRow>

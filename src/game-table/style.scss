@@ -8,3 +8,24 @@
 #game-table td {
 	padding: 0.5em;
 }
+
+#game-table th {
+	user-select: none;
+	cursor: pointer;
+
+	&.th-sort-asc,
+	&.th-sort-desc,
+	&:hover,
+	&:active {
+		background-color: #000;
+		color: #fff;
+	}
+}
+
+#game-table th.th-sort-asc::after {
+	border-bottom-color: #fff;
+}
+
+#game-table th.th-sort-desc::after {
+	border-top-color: #fff;
+}

@@ -76,7 +76,7 @@ function enqueue_table_sort_frontend()
         'game-table',
         plugin_dir_url(__FILE__) . 'table-sort.js',
         array(),
-        '4.5.0',
+        '4.6.0',
         true
     );
 
@@ -84,6 +84,6 @@ function enqueue_table_sort_frontend()
         'game-table',
         plugin_dir_url(__FILE__) . 'table-sort.css',
         array(),
-        '4.5.0'
+        '4.6.0'
     );
 }

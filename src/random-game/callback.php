@@ -3,12 +3,11 @@
 function render_random_game($attributes, $content)
 {
 
-    $html = '<div class="wp-block-random-game">';
+    $html = '<div class="wp-block-random-game"><div class="random-game-inline">';
 
     $random_game_html = '';
 
     $is_backend = defined('REST_REQUEST') && true === REST_REQUEST && 'edit' === filter_input(INPUT_GET, 'context');
-
 
     if($attributes['use_cache'] == true && $is_backend == false) {
         if (false === ($random_game_html = get_transient('shortscore_transient_link'))) {
@@ -20,9 +19,17 @@ function render_random_game($attributes, $content)
         $random_game_html = getGameLink($attributes);
     }
 
+    if (!empty($attributes['prefix'])) {
+        $html .= '<span class="random-game-prefix">' . esc_html($attributes['prefix']) . '</span>';
+    }
+
     $html .= $random_game_html;
 
-    $html .= '</div>';
+    if (!empty($attributes['postfix'])) {
+        $html .= '<span class="random-game-postfix">' . esc_html($attributes['postfix']) . '</span>';
+    }
+
+    $html .= '</div></div>';
 
     return $html;
 }
@@ -42,7 +49,6 @@ function getGameLink($attributes)
 
     $game_title = get_post_meta($post_id, '_shortscore_game', true);
 
-
     if ($game_title == '') {
         $game_title = get_the_title($post_id);
     }
@@ -53,7 +59,7 @@ function getGameLink($attributes)
 
     $link = '<'.$tag.' ' . $fontsizeattr . ' href="' . $url . '" target="_self">' . $game_title . '</'.$tag.'>';
 
-    return "<p>" . $link . "</p>";
+    return $link;
 }
 
 function getRandomGame($min_rating = 1)
