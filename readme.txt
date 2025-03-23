@@ -3,7 +3,7 @@ Contributors:      MarcDK
 Tags:              block, review, schema, rating, shortscore
 Requires at least: 5.9
 Tested up to:      6.7
-Stable tag:        4.6.0
+Stable tag:        4.7.0
 Requires PHP:      7.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -36,7 +36,7 @@ Contribute to this plugin on [GitHub](https://github.com/mtoensing/game-review-b
 == Changelog ==
 
 = 4.6 =
-* Better random game block styling with pre- and post text.
+* Better random game block with pre- and post text.
 * Better game table styling.
 
 = 4.3 =
