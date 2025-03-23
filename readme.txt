@@ -36,7 +36,8 @@ Contribute to this plugin on [GitHub](https://github.com/mtoensing/game-review-b
 == Changelog ==
 
 = 4.6 =
-* Better random game block with pre- and post text.
+* Better random game block styling with pre- and post text.
+* Better game table styling.
 
 = 4.3 =
 * Added sorting urls to review table.
