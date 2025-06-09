@@ -145,7 +145,7 @@ function getGameImageJSON($post_id)
 
     $img_array = wp_get_attachment_image_src(get_post_thumbnail_id($post_id), 'large') ;
 
-    if ($img_array or $img_array != '') {
+   if (!empty($img_array)) {
 
         $url = $img_array[0];
         $width = $img_array[1];
@@ -222,19 +222,19 @@ function getReviewboxHTML()
 		<div class="shortscore-hreview">
 			<p class="text">
 				<span class="item">
-					<a class="score" href="' . $permalink . '"><strong class="fn">' . $game . '</strong></a>:
+					<a class="score" href="' . esc_url($permalink) . '"><strong class="fn">' . esc_html($game) . '</strong></a>:
 				</span>
-				<span class="summary">' . $summary . '</span>
-				<span class="reviewer vcard"> – <span class="fn">' . $author_nickname . '</span></span>
+				<span class="summary">' . esc_html($summary) . '</span>
+				<span class="reviewer vcard"> – <span class="fn">' . esc_html($author_nickname) . '</span></span>
 			</p>
 			<div class="rating">
 				<div id="shortscore_value" class="shortscore shortscore-' . floor($rating) . '">
                 <div class="value-wrapper">
-					<span class="value">' . $rating . '</span>
+					<span class="value">' . esc_html($rating) . '</span>
                 </div>
 				</div>
 				<div class="outof">von <span class="best">10</span></div>
-				<span class="dtreviewed">' . $date_published . '</span>
+				<span class="dtreviewed">' . esc_html($date_published) . '</span>
 			</div>
 		</div>
 	</div>';
