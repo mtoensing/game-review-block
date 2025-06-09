@@ -3,7 +3,7 @@
 function render_game_table($attributes)
 {   
     $alignclass = !empty($attributes['align']) ? 'align' . $attributes['align'] : '';
-    $className = !empty($attributes['className']) ? strip_tags($attributes['className']) : '';
+    $className = !empty($attributes['className']) ? sanitize_html_class($attributes['className']) : '';
     $html_class = '';
 
     if (!empty($alignclass)) {
@@ -34,8 +34,8 @@ function render_game_table($attributes)
     // Start the HTML output with the opening of the table and add an ID for JavaScript targeting
 
     $script = '';
-    
-    $html = "<table width=\"100%\" class=\"wp-block-table is-style-stripes $html_class\" id=\"game-table\">";
+
+    $html = "<table width=\"100%\" class=\"wp-block-table is-style-stripes " . esc_attr($html_class) . "\" id=\"game-table\">";
 
     // Add table headers
     $html .= '<thead><tr><th class="th-sort-desc">' . __( 'Rating', 'game-review-block' ) . '</th><th class="th-sort-desc">' . __( 'Game title', 'game-review-block' ) . '</th><th class="th-sort-desc">' . __( 'Review published', 'game-review-block' ) . '</th></tr></thead><tbody>';
@@ -54,11 +54,11 @@ function render_game_table($attributes)
         if (($game != '') and $current_rating > 0) {
             $count++;
             // Add a row to the table for each game
-            $html .= "<tr><td>" . $current_rating . "/10</td><td><a href='" . $url . "'>" . $game . "</a></td><td data-time=" . $publish_date_unix . ">" . $publish_date . "</td></tr>";
+            $html .= "<tr><td>" . esc_html($current_rating) . "/10</td><td><a href='" . esc_url($url) . "'>" . esc_html($game) . "</a></td><td data-time=\"" . esc_attr($publish_date_unix) . "\">" . esc_html($publish_date) . "</td></tr>";
         }
     endwhile;
 
-    $html .= "\n</ul><!-- Count: ". $count . " -->\n";
+    $html .= "\n<!-- Count: ". $count . " -->\n";
 
     // Close the table tags
     $html .= "</tbody></table>";
