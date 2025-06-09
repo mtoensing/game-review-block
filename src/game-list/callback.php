@@ -32,14 +32,14 @@ function render_game_list($attributes)
                 if ($i != 0) {
                     $html .= "\n</ul>\n";
                 }
-                $html .= "<h2>" . floor($current_rating) . "/10</h2>\n";
+                $html .= "<h2>" . esc_html(floor($current_rating)) . "/10</h2>\n";
                 $html .= "\n<ul>\n";
             }
 
-            $html .= "\t<li>[" .  $current_rating . '/10] - <a href="' . $url . '">' . $game . "</a></li>\n";
+            $html .= "\t<li>[" .  esc_html($current_rating) . '/10] - <a href="' . esc_url($url) . '">' . esc_html($game) . "</a></li>\n";
 
             if ($i == ($num - 1)) {
-                $html .= "\n</ul><!-- SUM: ". $num . " -->\n";
+                $html .= "\n</ul><!-- SUM: ". intval($num) . " -->\n";
             }
 
             $i++;
