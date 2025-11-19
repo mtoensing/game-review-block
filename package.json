@@ -1,6 +1,6 @@
 {
 	"name": "game-review-block",
-	"version": "4.8.0",
+	"version": "4.8.5",
 	"description": "Add a review rating block with a score from 1 to 10 to your post. Adds schema.org meta data for Rich Results in search engines.",
 	"author": "Marc Tönsing",
 	"license": "GPL-2.0-or-later",
@@ -21,9 +21,9 @@
 		"wp-int": "npm install @wordpress/scripts --save-dev --save-exact @wordpress/scripts"
 	},
 	"dependencies": {
-		"@wordpress/i18n": "^5.25.0"
+		"@wordpress/i18n": "^6.8.0"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^30.18.0"
+		"@wordpress/scripts": "^31.0.0"
 	}
 }

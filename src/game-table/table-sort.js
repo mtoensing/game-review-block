@@ -30,6 +30,19 @@ document.addEventListener( 'DOMContentLoaded', function () {
 				);
 			}
 
+			// Special handling for the rating column: treat values like "9/10" or "9.5" as numbers
+			if ( column === columnMap.rating ) {
+				const aRawText = aCell.textContent.trim();
+				const bRawText = bCell.textContent.trim();
+
+				const aNum = parseFloat( aRawText );
+				const bNum = parseFloat( bRawText );
+
+				if ( ! isNaN( aNum ) && ! isNaN( bNum ) ) {
+					return ( aNum - bNum ) * dirModifier;
+				}
+			}
+
 			const aColText = aCell.textContent.trim().toLowerCase();
 			const bColText = bCell.textContent.trim().toLowerCase();
 			return (
