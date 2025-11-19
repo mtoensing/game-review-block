@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { InspectorControls } from '@wordpress/block-editor';
+import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import ServerSideRender from '@wordpress/server-side-render';
 import {
 	ToggleControl,
@@ -11,8 +11,10 @@ import {
 } from '@wordpress/components';
 
 export default function Edit( { attributes, setAttributes } ) {
+	const blockProps = useBlockProps();
+
 	return (
-		<>
+		<p { ...blockProps }>
 			<InspectorControls>
 				<Panel>
 					<PanelBody>
@@ -92,6 +94,6 @@ export default function Edit( { attributes, setAttributes } ) {
 				block="game-review/random-game"
 				attributes={ attributes }
 			/>
-		</>
+		</p>
 	);
 }

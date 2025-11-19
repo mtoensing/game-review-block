@@ -2,11 +2,12 @@
 Contributors:      MarcDK
 Tags:              block, review, schema, rating, shortscore
 Requires at least: 5.9
-Tested up to:      6.7
-Stable tag:        4.7.0
+Tested up to:      6.8
+Stable tag:        4.8.3
 Requires PHP:      7.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+Donate link:       https://marc.tv/out/donate
 
 Add a review rating block with a score from 1 to 10 to your post. Adds schema.org meta data for Rich Results in search engines. 
 
@@ -34,6 +35,10 @@ Contribute to this plugin on [GitHub](https://github.com/mtoensing/game-review-b
 1. Activate the plugin through the 'Plugins' screen in WordPress
 
 == Changelog ==
+
+= 4.8 =
+* Tested compatibility with WordPress 6.8
+* Fixed variable sanitization.
 
 = 4.6 =
 * Better random game block with pre- and post text.

@@ -48,11 +48,10 @@ function getGameLink($attributes)
 
     if ($is_backend) {
         $tag = "span";
+        return '<' . $tag . '>' . esc_html($game_title) . '</' . $tag . '>';
     }
 
-    $link = '<' . $tag . ' href="' . $url . '" target="_self">' . $game_title . '</' . $tag . '>';
-
-    return $link;
+    return '<' . $tag . ' href="' . esc_url($url) . '" target="_self">' . esc_html($game_title) . '</' . $tag . '>';
 }
 
 function getRandomGame($min_rating = 1)
