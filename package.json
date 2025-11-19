@@ -24,6 +24,6 @@
 		"@wordpress/i18n": "^6.8.0"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^31.0.0"
+		"@wordpress/scripts": "31.0.0"
 	}
 }
