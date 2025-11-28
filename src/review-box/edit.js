@@ -21,20 +21,6 @@ export default function Edit( {
 
 	const [ meta, setMeta ] = useEntityProp( 'postType', postType, 'meta' );
 
-	if ( ! postId && ! postType ) {
-		return (
-			<div { ...blockProps }>
-				<p>
-					{ ' ' }
-					{ __(
-						'The review block works only in a post context.',
-						'game-review-block'
-					) }{ ' ' }
-				</p>
-			</div>
-		);
-	}
-
 	const shortscoreMeta = meta._shortscore_rating;
 	const gameMeta = meta._shortscore_game;
 	const summaryMeta = meta._shortscore_summary;
@@ -47,7 +33,7 @@ export default function Edit( {
 			game: gameMeta,
 			rating: String( shortscoreMeta ),
 		} );
-	}, [ gameMeta, shortscoreMeta ] );
+	}, [ gameMeta, shortscoreMeta, setAttributes ] );
 
 	// Update status / statusicon based on summary & game after render
 	useEffect( () => {
@@ -70,7 +56,7 @@ export default function Edit( {
 				statusicon: 'hidden',
 			} );
 		}
-	}, [ summaryMeta, attributes.game, gameMeta ] );
+	}, [ summaryMeta, attributes.game, gameMeta, setAttributes ] );
 
 	function updateSummary( newValue ) {
 		setMeta( { ...meta, _shortscore_summary: String( newValue ) } );
@@ -88,6 +74,20 @@ export default function Edit( {
 			_shortscore_game: cleaned,
 		} );
 		setAttributes( { game: newValue } );
+	}
+
+	if ( ! postId && ! postType ) {
+		return (
+			<div { ...blockProps }>
+				<p>
+					{ ' ' }
+					{ __(
+						'The review block works only in a post context.',
+						'game-review-block'
+					) }{ ' ' }
+				</p>
+			</div>
+		);
 	}
 
 	return (
@@ -138,7 +138,8 @@ export default function Edit( {
 			/>
 
 			<p className={ statusClass }>
-				<Dashicon { ...statusiconAttribute } /> <small>{ attributes.status }</small>
+				<Dashicon { ...statusiconAttribute } />{ ' ' }
+				<small>{ attributes.status }</small>
 			</p>
 
 			<ServerSideRender
