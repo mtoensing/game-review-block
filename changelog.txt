@@ -1,7 +1,8 @@
 == Changelog ==
 
-= 3.4 =
-* Refactoring
+= 4.9 =
+* Tested compatibility with WordPress 6.9
+* Support for block api V3.
 
 = 3.2 =
 * Better color contrast. Slightly darker blue. 

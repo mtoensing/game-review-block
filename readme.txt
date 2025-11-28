@@ -2,7 +2,7 @@
 Contributors:      MarcDK
 Tags:              block, review, schema, rating, shortscore
 Requires at least: 5.9
-Tested up to:      6.8
+Tested up to:      6.9
 Stable tag:        4.9
 Requires PHP:      7.0
 License:           GPL-2.0-or-later
