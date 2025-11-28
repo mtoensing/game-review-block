@@ -8,6 +8,7 @@ import {
 } from '@wordpress/components';
 import { useEntityProp } from '@wordpress/core-data';
 import ServerSideRender from '@wordpress/server-side-render';
+import { useEffect } from '@wordpress/element';
 
 import './editor.scss';
 
@@ -40,43 +41,53 @@ export default function Edit( {
 	const statusiconAttribute = { icon: attributes.statusicon };
 	const statusClass = 'status notice status_' + attributes.statusicon;
 
-	setAttributes( { game: gameMeta } );
-	setAttributes( { rating: String( shortscoreMeta ) } );
-	checkStatus();
-
-	function updateSummary( newValue ) {
-		setMeta( { ...meta, _shortscore_summary: String( newValue ) } );
-		checkStatus();
-	}
-
-	function updateShortscoreMeta( newValue ) {
-		setMeta( { ...meta, _shortscore_rating: String( newValue ) } );
-		setAttributes( { rating: String( newValue ) } );
-		checkStatus();
-	}
-
-	function updateGameMeta( newValue ) {
-		setMeta( {
-			...meta,
-			_shortscore_game: newValue.replace( /(<([^>]+)>)/gi, '' ),
+	// Sync meta → attributes for game & rating after render
+	useEffect( () => {
+		setAttributes( {
+			game: gameMeta,
+			rating: String( shortscoreMeta ),
 		} );
-		setAttributes( { game: newValue } );
-		checkStatus();
-	}
+	}, [ gameMeta, shortscoreMeta ] );
 
-	function checkStatus() {
-		if ( summaryMeta !== '' && attributes.game !== '' ) {
-			setAttributes( { status: __( 'All done.', 'game-review-block' ) } );
-			setAttributes( { statusicon: 'saved' } );
+	// Update status / statusicon based on summary & game after render
+	useEffect( () => {
+		const hasSummary = summaryMeta && summaryMeta !== '';
+		const hasGame =
+			( attributes.game && attributes.game !== '' ) ||
+			( gameMeta && gameMeta !== '' );
+
+		if ( hasSummary && hasGame ) {
+			setAttributes( {
+				status: __( 'All done.', 'game-review-block' ),
+				statusicon: 'saved',
+			} );
 		} else {
 			setAttributes( {
 				status: __(
 					'Please fill out all fields.',
 					'game-review-block'
 				),
+				statusicon: 'hidden',
 			} );
-			setAttributes( { statusicon: 'hidden' } );
 		}
+	}, [ summaryMeta, attributes.game, gameMeta ] );
+
+	function updateSummary( newValue ) {
+		setMeta( { ...meta, _shortscore_summary: String( newValue ) } );
+	}
+
+	function updateShortscoreMeta( newValue ) {
+		setMeta( { ...meta, _shortscore_rating: String( newValue ) } );
+		setAttributes( { rating: String( newValue ) } );
+	}
+
+	function updateGameMeta( newValue ) {
+		const cleaned = newValue.replace( /(<([^>]+)>)/gi, '' );
+		setMeta( {
+			...meta,
+			_shortscore_game: cleaned,
+		} );
+		setAttributes( { game: newValue } );
 	}
 
 	return (

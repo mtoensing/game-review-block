@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "game-review/review-box",
   "version": "4.8.5",
   "title": "Game Review Box",
