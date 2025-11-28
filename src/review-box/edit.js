@@ -138,7 +138,7 @@ export default function Edit( {
 			/>
 
 			<p className={ statusClass }>
-				<Dashicon { ...statusiconAttribute } /> { attributes.status }
+				<Dashicon { ...statusiconAttribute } /> <small>{ attributes.status }</small>
 			</p>
 
 			<ServerSideRender
