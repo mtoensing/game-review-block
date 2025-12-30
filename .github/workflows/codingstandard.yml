@@ -3,13 +3,13 @@ name: Coding Standards
 on:
   push:
     branches:
-      - master
+      - main
     paths-ignore:
       - '**.md'
 
   pull_request:
     branches:
-      - master
+      - main
 
   workflow_dispatch:
 
