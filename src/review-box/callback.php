@@ -83,13 +83,13 @@ function getPlatformsJSON($post_id)
 {
     $whitelist = array(
         "Dreamcast" => "Sega Dreamcast",
-        "Dreamcast" => "Sega Dreamcast",
         "Switch" => "Nintendo Switch",
-        "GameBoy" => "GameBoy",
-        "iOS" => "iOS",
-        "Android" => "Android",
-        "GameCube" => "GameCube",
-        "Wii" => "Wii",
+        "Switch 2" => "Nintendo Switch 2",
+        "GameBoy" => "Nintendo GameBoy",
+        "iOS" => "Apple iOS",
+        "Android" => "Google Android",
+        "GameCube" => "Nintendo GameCube",
+        "Wii" => "Nintendo Wii",
         "Super Nintendo" => "Super Nintendo",
         "SNES" => "Super Nintendo",
         "Mega Drive" => "SEGA Mega Drive",
@@ -97,7 +97,7 @@ function getPlatformsJSON($post_id)
         "NES" => "Nintendo Entertainment System",
         "Nintendo Entertainment System" => "Nintendo Entertainment System",
         "Vita" => "PlayStation Vita",
-        "GBA" => "Gameboy Advance",
+        "GBA" => "Nintendo Gameboy Advance",
         "Gameboy Advance" => "Gameboy Advance",
         "PlayStation 1" => "PlayStation",
         "PlayStation 2" => "PlayStation 2",
@@ -118,7 +118,8 @@ function getPlatformsJSON($post_id)
         "Series S/X" => "Xbox Series S/X",
         "Xbox Series" => "Xbox Series S/X",
         "Xbox" => "Original Xbox",
-        "PSP" => "PlayStation Portable"
+        "PSP" => "PlayStation Portable",
+        "PlayStation Portable" => "PlayStation Portable"
     );
 
     $platforms = array();
