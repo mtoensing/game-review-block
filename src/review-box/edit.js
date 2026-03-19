@@ -7,7 +7,6 @@ import {
 	TextareaControl,
 } from '@wordpress/components';
 import { useEntityProp } from '@wordpress/core-data';
-import ServerSideRender from '@wordpress/server-side-render';
 import { useEffect } from '@wordpress/element';
 
 import './editor.scss';
@@ -26,14 +25,27 @@ export default function Edit( {
 	const summaryMeta = meta._shortscore_summary;
 	const statusiconAttribute = { icon: attributes.statusicon };
 	const statusClass = 'status notice status_' + attributes.statusicon;
+	const ratingNumber = Number( shortscoreMeta );
+	const hasValidRating = Number.isFinite( ratingNumber );
+	const previewRating = hasValidRating
+		? String( Number( ratingNumber.toFixed( 1 ) ) )
+		: '0';
+	const previewScoreClass = `shortscore shortscore-${
+		hasValidRating ? Math.max( 0, Math.floor( ratingNumber ) ) : 0
+	}`;
+	const previewGame = gameMeta || __( 'Game title', 'game-review-block' );
+	const previewSummary =
+		summaryMeta ||
+		__( 'A short summary of the review.', 'game-review-block' );
 
-	// Sync meta → attributes for game & rating after render
+	// Keep SSR preview attributes aligned with the editor meta state.
 	useEffect( () => {
 		setAttributes( {
 			game: gameMeta,
 			rating: String( shortscoreMeta ),
+			summary: summaryMeta,
 		} );
-	}, [ gameMeta, shortscoreMeta, setAttributes ] );
+	}, [ gameMeta, shortscoreMeta, summaryMeta, setAttributes ] );
 
 	// Update status / statusicon based on summary & game after render
 	useEffect( () => {
@@ -60,6 +72,7 @@ export default function Edit( {
 
 	function updateSummary( newValue ) {
 		setMeta( { ...meta, _shortscore_summary: String( newValue ) } );
+		setAttributes( { summary: String( newValue ) } );
 	}
 
 	function updateShortscoreMeta( newValue ) {
@@ -73,7 +86,7 @@ export default function Edit( {
 			...meta,
 			_shortscore_game: cleaned,
 		} );
-		setAttributes( { game: newValue } );
+		setAttributes( { game: cleaned } );
 	}
 
 	if ( ! postId && ! postType ) {
@@ -142,10 +155,33 @@ export default function Edit( {
 				<small>{ attributes.status }</small>
 			</p>
 
-			<ServerSideRender
-				block="game-review/review-box"
-				attributes={ attributes }
-			/>
+			<div className="wp-block-game-review-box">
+				<div className="shortscore-hreview">
+					<p className="text">
+						<span className="item">
+							<strong className="fn">{ previewGame }</strong>:
+						</span>{ ' ' }
+						<span className="summary">{ previewSummary }</span>
+						<span className="reviewer vcard">
+							{ ' - ' }
+							<span className="fn">Preview</span>
+						</span>
+					</p>
+					<div className="rating">
+						<div
+							id="shortscore_value"
+							className={ previewScoreClass }
+						>
+							<div className="value-wrapper">
+								<span className="value">{ previewRating }</span>
+							</div>
+						</div>
+						<div className="outof">
+							von <span className="best">10</span>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 }

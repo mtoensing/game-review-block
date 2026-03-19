@@ -23,6 +23,7 @@ Add a review rating block with a score from 1 to 10 to your post. Adds schema.or
 * Valid HTML output.
 * Inherits the style and typography of your theme.
 * 4 blocks: Game Review Box, Game List, Game Table and Random Game.
+* Live editor preview: the review score updates instantly while moving the slider in the backend.
 * Game Review add your review box.
 * Game List adds a list of all your rated games.
 * Random Game displays a random game title and links it to the coresponding post.
@@ -39,6 +40,7 @@ Contribute to this plugin on [GitHub](https://github.com/mtoensing/game-review-b
 = 4.9.2 =
 * Updated dependencies and rebuild with wp-scripts 31.6.0.
 * Tested compatibility with WordPress 6.9
+* Fixed: Review box score now updates live in the backend while moving the slider.
 
 = 4.9.1 =
 * Tested compatibility with WordPress 6.9 

@@ -12,6 +12,19 @@
  * Text Domain:       game-review-block
  */
 
+if (! defined('GAME_REVIEW_BLOCK_VERSION')) {
+    define('GAME_REVIEW_BLOCK_VERSION', '4.9.2');
+}
+
+function game_review_block_asset_version($filepath)
+{
+    if (file_exists($filepath)) {
+        return (string) filemtime($filepath);
+    }
+
+    return GAME_REVIEW_BLOCK_VERSION;
+}
+
 require dirname(__FILE__). '/src/review-box/callback.php';
 require dirname(__FILE__). '/src/random-game/callback.php';
 require dirname(__FILE__). '/src/game-list/callback.php';

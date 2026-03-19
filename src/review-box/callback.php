@@ -193,7 +193,13 @@ function getThemeLogoJSON()
 
 
 function enqueue_frontend(){
-    wp_enqueue_script("game-block", plugins_url( '/shortscore.js', __FILE__),'', 1.0, true); 
+    wp_enqueue_script(
+        "game-block",
+        plugins_url('/shortscore.js', __FILE__),
+        array(),
+        game_review_block_asset_version(__DIR__ . '/shortscore.js'),
+        true
+    );
 }
 
 function getReviewboxHTML()
