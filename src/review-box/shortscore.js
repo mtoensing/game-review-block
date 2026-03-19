@@ -3,8 +3,17 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	// Get the elements
 	const ratingElem = document.querySelector( '.shortscore' );
 	const hreviewElem = document.querySelector( '.shortscore-hreview' );
+
+	if ( ! ratingElem || ! hreviewElem ) {
+		return;
+	}
+
 	const valueWrapperElem = ratingElem.querySelector( '.value-wrapper' );
-	const valueElem = valueWrapperElem.querySelector( '.value' );
+	const valueElem = valueWrapperElem?.querySelector( '.value' );
+
+	if ( ! valueWrapperElem || ! valueElem ) {
+		return;
+	}
 
 	// Set the initial class value to 'shortscore-0'
 	ratingElem.className = 'shortscore shortscore-0';
@@ -20,7 +29,12 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
 		isAnimating = true; // Set the animation state to 'running'
 		let currentScore = 0;
-		const targetScore = parseInt( valueElem.innerText );
+		const targetScore = Number.parseInt( valueElem.textContent, 10 );
+
+		if ( Number.isNaN( targetScore ) ) {
+			isAnimating = false;
+			return;
+		}
 
 		const intervalID = setInterval( () => {
 			if ( currentScore <= targetScore ) {

@@ -13,43 +13,23 @@ function render_review_box($attributes, $content, $block)
         return '';
     }
 
+    $preview_attributes = array();
+
     if (defined('REST_REQUEST') && REST_REQUEST) {
+        $preview_attributes = $attributes;
+    }
 
-        /* migration from SHORTSCORE to-do
-        $result = get_post_meta ( get_the_ID(), '_shortscore_result', true );
-        if ( isset( $result->shortscore ) AND isset( $result->shortscore->summary ) ) {
+    $html = getReviewboxHTML($block->context['postId'], $preview_attributes);
 
-            $summary = ( get_post_meta( get_the_ID(), '_shortscore_summary', true ));
+    if ('' === $html) {
+        return '';
+    }
 
-            if ($summary == '' or $summary == false ){
-                savePostMeta( get_the_ID(), '_shortscore_summary', $result -> shortscore ->summary );
-            }
-        }
-
-        if ( property_exists ( $result ,'game' ) AND property_exists ( $result->game,'title' ) ){
-
-            $game = ( get_post_meta( get_the_ID(), '_shortscore_game', true ));
-
-            if ($game == '' or $game == false ){
-                savePostMeta( get_the_ID(), '_shortscore_game', $result->game->title );
-            }
-        }
-
-        if ( isset( $result->shortscore ) AND isset( $result->shortscore->userscore ) ) {
-            $rating = ( get_post_meta( get_the_ID(), '_shortscore_rating', true ));
-
-            if ($rating == '' or $rating == false or $rating < 2 ){
-                savePostMeta( get_the_ID(), '_shortscore_rating', $result->shortscore->userscore );
-            }
-        }
-
-        return "";
-        */
-    } else {
+    if (! (defined('REST_REQUEST') && REST_REQUEST)) {
         enqueue_frontend();
-        $html = getReviewboxHTML();
-        return $html;
-    };
+    }
+
+    return $html;
 }
 
 register_post_meta('post', '_shortscore_rating', array(
@@ -170,7 +150,7 @@ function getThemeLogoJSON()
 {
     $img_array = wp_get_attachment_image_src(get_theme_mod('custom_logo'), "medium") ;
 
-    if ($img_array or $img_array != '') {
+    if (! empty($img_array)) {
 
         $url = $img_array[0];
         $width = $img_array[1];
@@ -202,27 +182,53 @@ function enqueue_frontend(){
     );
 }
 
-function getReviewboxHTML()
+function format_review_rating($rating)
 {
+    return rtrim(rtrim(number_format((float) $rating, 1, '.', ''), '0'), '.');
+}
 
-    $post_id = get_the_ID();
+function getReviewPreviewValue($preview_attributes, $key, $fallback)
+{
+    if (is_array($preview_attributes) && array_key_exists($key, $preview_attributes)) {
+        return $preview_attributes[$key];
+    }
 
-    $summary = "";
-    $rating = 0;
-    $game = "";
+    return $fallback;
+}
 
-    $rating  = esc_html(get_post_meta($post_id, '_shortscore_rating', true));
-    $game  = esc_html(get_post_meta($post_id, '_shortscore_game', true));
-    $summary  = esc_html(get_post_meta($post_id, '_shortscore_summary', true));
+function getReviewboxHTML($post_id, $preview_attributes = array())
+{
+    $rating_raw = getReviewPreviewValue(
+        $preview_attributes,
+        'rating',
+        get_post_meta($post_id, '_shortscore_rating', true)
+    );
+    $game = wp_strip_all_tags((string) getReviewPreviewValue(
+        $preview_attributes,
+        'game',
+        get_post_meta($post_id, '_shortscore_game', true)
+    ));
+    $summary = wp_strip_all_tags((string) getReviewPreviewValue(
+        $preview_attributes,
+        'summary',
+        get_post_meta($post_id, '_shortscore_summary', true)
+    ));
 
-    if ($rating < 1 or $summary == "" or $game == "") {
-        return false;
+    if (! is_numeric($rating_raw)) {
+        return '';
+    }
+
+    $rating = (float) $rating_raw;
+    $rating_display = format_review_rating($rating);
+
+    if ($rating < 1 || '' === $summary || '' === $game) {
+        return '';
     }
 
     $permalink = get_permalink($post_id);
-    $date_published = get_the_date(DateTime::ISO8601);
-    $date_modified = get_the_modified_date(DateTime::ISO8601);
-    $author_nickname = get_the_author_meta('nickname', get_post_field('post_author', $post_id));
+    $date_published = get_the_date(DATE_W3C, $post_id);
+    $date_modified = get_the_modified_date(DATE_W3C, $post_id);
+    $author_nickname = wp_strip_all_tags((string) get_the_author_meta('nickname', get_post_field('post_author', $post_id)));
 
     $html =	'
 	<div class="wp-block-game-review-box">
@@ -233,14 +239,14 @@ function getReviewboxHTML()
 				</span>
 				<span class="summary">' . esc_html($summary) . '</span>
 				<span class="reviewer vcard"> – <span class="fn">' . esc_html($author_nickname) . '</span></span>
-			</p>
-			<div class="rating">
-				<div id="shortscore_value" class="shortscore shortscore-' . floor($rating) . '">
-                <div class="value-wrapper">
-					<span class="value">' . esc_html($rating) . '</span>
-                </div>
-				</div>
-				<div class="outof">von <span class="best">10</span></div>
+				</p>
+				<div class="rating">
+					<div id="shortscore_value" class="shortscore shortscore-' . floor($rating) . '">
+	                <div class="value-wrapper">
+						<span class="value">' . esc_html($rating_display) . '</span>
+	                </div>
+					</div>
+					<div class="outof">von <span class="best">10</span></div>
 				<span class="dtreviewed">' . esc_html($date_published) . '</span>
 			</div>
 		</div>
@@ -305,7 +311,7 @@ function getReviewboxHTML()
         $arr_review['@graph']['publisher']['logo'] = $logojson;
     }
 
-    $json_review = json_encode($arr_review, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)."\n";
+    $json_review = wp_json_encode($arr_review, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)."\n";
     $json_review_markup = '<script type="application/ld+json">' . $json_review . '</script>';
 
     $arr_videogame = array(
@@ -328,7 +334,7 @@ function getReviewboxHTML()
         $arr_videogame['operatingSystem'] = $platforms;
     }
 
-    $json_videogame = json_encode($arr_videogame, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)."\n";
+    $json_videogame = wp_json_encode($arr_videogame, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)."\n";
     $json_videogame_markup = '<script type="application/ld+json">' . $json_videogame . '</script>';
 
     return $html . $json_review_markup . $json_videogame_markup;
