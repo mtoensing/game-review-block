@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 5.0.0 =
+* Major release with broad internal updates across editor preview, render logic, table handling, caching and CI workflows.
+
 = 4.9 =
 * Tested compatibility with WordPress 6.9
 * Support for block api V3.

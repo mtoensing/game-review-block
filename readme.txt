@@ -3,7 +3,7 @@ Contributors:      MarcDK
 Tags:              block, review, schema, rating, shortscore
 Requires at least: 5.9
 Tested up to:      6.9
-Stable tag:        4.9.2
+Stable tag:        5.0.0
 Requires PHP:      7.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -36,6 +36,13 @@ Contribute to this plugin on [GitHub](https://github.com/mtoensing/game-review-b
 1. Activate the plugin through the 'Plugins' screen in WordPress
 
 == Changelog ==
+
+= 5.0.0 =
+* Major release with broad internal updates across editor preview, render logic, table handling, caching and CI workflows.
+* Improved live backend preview for the review score while moving the slider.
+* Improved cache busting for frontend assets after plugin updates.
+* Improved game table sorting, table targeting and styling.
+* Improved game list grouping and random game cache handling.
 
 = 4.9.2 =
 * Updated dependencies and rebuild with wp-scripts 31.6.0.

@@ -4,7 +4,7 @@
  * Plugin URI:        https://toensing.com
  * Description:       Add a review rating block with a score from 1 to 10 to your post. Adds schema.org meta data for Rich Results in search engines.
  * Requires PHP:      7.0
- * Version:           4.9.2
+ * Version:           5.0.0
  * Author:            Marc Tönsing
  * Author URI: 		  https://toensing.com
  * License:           GPL-2.0-or-later
@@ -13,7 +13,7 @@
  */
 
 if (! defined('GAME_REVIEW_BLOCK_VERSION')) {
-    define('GAME_REVIEW_BLOCK_VERSION', '4.9.2');
+    define('GAME_REVIEW_BLOCK_VERSION', '5.0.0');
 }
 
 function game_review_block_asset_version($filepath)
