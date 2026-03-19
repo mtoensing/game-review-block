@@ -5,6 +5,7 @@ function render_game_table($attributes)
     $alignclass = !empty($attributes['align']) ? 'align' . $attributes['align'] : '';
     $className = !empty($attributes['className']) ? sanitize_html_class($attributes['className']) : '';
     $html_class = '';
+    $table_id = wp_unique_id('game-table-');
 
     if (!empty($alignclass)) {
         $html_class .= " $alignclass";
@@ -20,8 +21,15 @@ function render_game_table($attributes)
         'orderby'        => array( 'meta_value_num' => 'DESC', 'date' => 'DESC' ),
         'meta_key'       => '_shortscore_rating',
         'meta_type'      => 'NUMERIC',
-        'compare'        => '>=',
-        'posts_per_page' => '1000',
+        'meta_query'     => array(
+            array(
+                'key'     => '_shortscore_rating',
+                'value'   => 0,
+                'type'    => 'NUMERIC',
+                'compare' => '>',
+            ),
+        ),
+        'posts_per_page' => 1000,
         'order'          => 'DESC',
         'ignore_sticky_posts' => 1
     );
@@ -35,7 +43,7 @@ function render_game_table($attributes)
 
     $script = '';
 
-    $html = "<table width=\"100%\" class=\"wp-block-table is-style-stripes " . esc_attr($html_class) . "\" id=\"game-table\">";
+    $html = "<table width=\"100%\" class=\"wp-block-table is-style-stripes game-review-table" . esc_attr($html_class) . "\" id=\"" . esc_attr($table_id) . "\" data-game-review-table=\"true\">";
 
     // Add table headers
     $html .= '<thead><tr><th class="th-sort-desc">' . __( 'Rating', 'game-review-block' ) . '</th><th class="th-sort-desc">' . __( 'Game title', 'game-review-block' ) . '</th><th class="th-sort-desc">' . __( 'Review published', 'game-review-block' ) . '</th></tr></thead><tbody>';

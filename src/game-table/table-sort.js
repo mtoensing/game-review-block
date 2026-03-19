@@ -1,75 +1,14 @@
 document.addEventListener( 'DOMContentLoaded', function () {
-	// Cache the table and headers
-	const table = document.querySelector( '#game-table' );
-	if ( ! table ) {
-		return;
-	} // Exit early if no table exists
+	const tables = Array.from(
+		document.querySelectorAll( '[data-game-review-table]' )
+	);
 
-	const headers = Array.from( table.querySelectorAll( 'th' ) );
-	const tBody = table.tBodies[ 0 ];
-	const rows = Array.from( tBody.querySelectorAll( 'tr' ) );
+	if ( ! tables.length ) {
+		return;
+	}
 
 	// Avoid recalculating the column map repeatedly
 	const columnMap = { rating: 0, title: 1, date: 2 };
-
-	function sortTable( column, asc ) {
-		const dirModifier = asc ? 1 : -1;
-
-		// Sort rows in-place for less memory allocation
-		rows.sort( ( a, b ) => {
-			const aCell = a.cells[ column ];
-			const bCell = b.cells[ column ];
-
-			const aColTime = aCell?.getAttribute( 'data-time' );
-			const bColTime = bCell?.getAttribute( 'data-time' );
-
-			if ( aColTime && bColTime ) {
-				return (
-					( parseInt( aColTime ) - parseInt( bColTime ) ) *
-					dirModifier
-				);
-			}
-
-			// Special handling for the rating column: treat values like "9/10" or "9.5" as numbers
-			if ( column === columnMap.rating ) {
-				const aRawText = aCell.textContent.trim();
-				const bRawText = bCell.textContent.trim();
-
-				const aNum = parseFloat( aRawText );
-				const bNum = parseFloat( bRawText );
-
-				if ( ! isNaN( aNum ) && ! isNaN( bNum ) ) {
-					return ( aNum - bNum ) * dirModifier;
-				}
-			}
-
-			const aColText = aCell.textContent.trim().toLowerCase();
-			const bColText = bCell.textContent.trim().toLowerCase();
-			return (
-				aColText.localeCompare( bColText, undefined, {
-					numeric: true,
-				} ) * dirModifier
-			);
-		} );
-
-		// Re-attach rows with minimal DOM operations
-		const fragment = document.createDocumentFragment();
-		rows.forEach( ( row ) => fragment.appendChild( row ) );
-		tBody.replaceChildren( fragment ); // Fastest way to replace children
-	}
-
-	function updateHeaderClasses( index, asc ) {
-		headers.forEach( ( header, i ) => {
-			header.classList.toggle( 'th-sort-asc', i === index && asc );
-			header.classList.toggle(
-				'th-sort-desc',
-				i === index &&
-					( ! asc ||
-						( index === columnMap.rating &&
-							isNaN( getSortParams().column ) ) )
-			);
-		} );
-	}
 
 	function updateURLParameter( param, value ) {
 		const url = new URL( window.location );
@@ -86,19 +25,76 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		};
 	}
 
-	function initTableSort() {
+	function initTableSort( table ) {
+		const headers = Array.from( table.querySelectorAll( 'th' ) );
+		const tBody = table.tBodies[ 0 ];
+
+		if ( ! headers.length || ! tBody ) {
+			return;
+		}
+
+		const rows = Array.from( tBody.querySelectorAll( 'tr' ) );
+
+		function sortTable( column, asc ) {
+			const dirModifier = asc ? 1 : -1;
+
+			rows.sort( ( a, b ) => {
+				const aCell = a.cells[ column ];
+				const bCell = b.cells[ column ];
+
+				const aColTime = aCell?.getAttribute( 'data-time' );
+				const bColTime = bCell?.getAttribute( 'data-time' );
+
+				if ( aColTime && bColTime ) {
+					return (
+						( Number.parseInt( aColTime, 10 ) -
+							Number.parseInt( bColTime, 10 ) ) *
+						dirModifier
+					);
+				}
+
+				// Treat ratings like "9/10" and "9.5/10" as numbers.
+				if ( column === columnMap.rating ) {
+					const aNum = parseFloat( aCell.textContent.trim() );
+					const bNum = parseFloat( bCell.textContent.trim() );
+
+					if ( ! isNaN( aNum ) && ! isNaN( bNum ) ) {
+						return ( aNum - bNum ) * dirModifier;
+					}
+				}
+
+				const aColText = aCell.textContent.trim().toLowerCase();
+				const bColText = bCell.textContent.trim().toLowerCase();
+				return (
+					aColText.localeCompare( bColText, undefined, {
+						numeric: true,
+					} ) * dirModifier
+				);
+			} );
+
+			const fragment = document.createDocumentFragment();
+			rows.forEach( ( row ) => fragment.appendChild( row ) );
+			tBody.replaceChildren( fragment );
+		}
+
+		function updateHeaderClasses( index, asc ) {
+			headers.forEach( ( header, i ) => {
+				header.classList.toggle( 'th-sort-asc', i === index && asc );
+				header.classList.toggle( 'th-sort-desc', i === index && ! asc );
+			} );
+		}
+
 		let { column, order } = getSortParams();
 
-		// Falls keine URL-Parameter gesetzt sind, standardmäßig erste Spalte (`rating`) mit `desc` sortieren
 		if ( isNaN( column ) ) {
 			column = columnMap.rating;
-			order = false; // Standardmäßig `desc`
+			order = false;
 			updateURLParameter( 'column', 'rating' );
 			updateURLParameter( 'order', 'desc' );
 		}
 
 		sortTable( column, order );
-		updateHeaderClasses( column, order ); // Korrekte Initialisierung der Header-Klassen
+		updateHeaderClasses( column, order );
 
 		headers.forEach( ( headerCell, index ) => {
 			headerCell.addEventListener( 'click', () => {
@@ -106,11 +102,9 @@ document.addEventListener( 'DOMContentLoaded', function () {
 					headerCell.classList.contains( 'th-sort-asc' );
 				const newIsAscending = ! isAscending;
 
-				// Perform sorting and updates
 				sortTable( index, newIsAscending );
 				updateHeaderClasses( index, newIsAscending );
 
-				// Update URL parameters
 				const columnName = Object.keys( columnMap ).find(
 					( key ) => columnMap[ key ] === index
 				);
@@ -120,5 +114,5 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		} );
 	}
 
-	initTableSort();
+	tables.forEach( initTableSort );
 } );

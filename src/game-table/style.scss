@@ -5,11 +5,11 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-#game-table td {
+.game-review-table td {
 	padding: 0.5em;
 }
 
-#game-table th {
+.game-review-table th {
 	user-select: none;
 	cursor: pointer;
 
@@ -22,10 +22,14 @@
 	}
 }
 
-#game-table th.th-sort-asc::after {
+body .wp-block-table.is-style-stripes tbody tr:nth-child(odd) {
+	background-color: #e2e2e2;
+}
+
+.game-review-table th.th-sort-asc::after {
 	border-bottom-color: #fff;
 }
 
-#game-table th.th-sort-desc::after {
+.game-review-table th.th-sort-desc::after {
 	border-top-color: #fff;
 }

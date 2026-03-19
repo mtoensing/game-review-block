@@ -1,12 +1,12 @@
 /* Style for table headers to indicate they are clickable */
-#game-table th {
+.game-review-table th {
 	cursor: pointer;
 	position: relative;
 	padding-right: 20px; /* Make room for the arrow icon */
 }
 
 /* Styles for sorting arrows */
-#game-table th::after {
+.game-review-table th::after {
 	content: "";
 	position: absolute;
 	right: 5px;
@@ -14,19 +14,19 @@
 }
 
 /* Arrow for ascending sort */
-#game-table th.th-sort-asc::after {
+.game-review-table th.th-sort-asc::after {
 	top: 50%;
 	margin-top: -2px;
 	border-bottom-color: #333; /* Dark arrow at the bottom */
 }
 
 /* Arrow for descending sort */
-#game-table th.th-sort-desc::after {
+.game-review-table th.th-sort-desc::after {
 	bottom: 50%;
 	margin-bottom: -2px;
 	border-top-color: #333; /* Dark arrow at the top */
 }
 
-#game-table td:first-child {
+.game-review-table td:first-child {
 	text-align: center;
 }
